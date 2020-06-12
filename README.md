@@ -45,9 +45,9 @@ No one commits directly to the `master` branch, all the code should undergo the 
 │   ├───hooks ................ (Contains only hooks)
 │   ├───state ................ (Contains only state-containing files)
 │   ├───types ................ (Contains only reused type info)
-│   ├───utils ................ (Contains only reused type info)
-│   │   ├───serviceWorker.ts . (Contains only reused type info)
-│   │   └───setuptests.ts .... (Contains only reused type info)
+│   ├───utils ................ (Contains only utility files)
+│   │   ├───serviceWorker.ts
+│   │   └───setuptests.ts
 │   └───index.tsx ............ (Project entry point)
 ├───.env ..................... (Environment variable configuration)
 ├───.gitignore
