@@ -15,7 +15,17 @@ module.exports = {
     ]),
     "pre-push": cmds([
       cmd(["pretty-quick", "--arrow-parens avoid", "--staged"]),
-      cmd(["yarn t", "--watchAll", "--ci", "--updateSnapshot"]),
+      cmd([
+        "yarn jest",
+        "--bail 1",
+        "--ci",
+        "--updateSnapshot",
+        "--cache",
+        "--passWithNoTests",
+        "--runInBand",
+        "--updateSnapshot",
+        "--verbose",
+      ]),
       "q",
     ]),
   },

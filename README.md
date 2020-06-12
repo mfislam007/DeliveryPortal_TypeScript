@@ -6,9 +6,9 @@ This is the Delivery Portal project.
 
 ## Project scripts
 
-| Command                          | Action                               |
-| -------------------------------- | ------------------------------------ |
-| **`yarn build`** or **`yarn b`** | Runs **`webpack`**                   |
-| **`yarn test`** or **`yarn t`**  | Runs **`jest --watchAll`**           |
-| **`yarn start`** or **`yarn s`** | Runs **`webpack-dev-server --open`** |
-| **`yarn eject`**                 | Runs **`react-scripts eject`**       |
+| Command                          | Action                                                                           |
+| -------------------------------- | -------------------------------------------------------------------------------- |
+| **`yarn build`** or **`yarn b`** | Runs **`webpack`**                                                               |
+| **`yarn test`** or **`yarn t`**  | Runs **`jest --cache --passWithNoTests --runInBand --updateSnapshot --verbose`** |
+| **`yarn start`** or **`yarn s`** | Runs **`webpack-dev-server --open`**                                             |
+| **`yarn eject`**                 | Runs **`react-scripts eject`**                                                   |

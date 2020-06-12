@@ -9,8 +9,8 @@
     "build": "webpack",
     "b": "webpack",
     "eject": "react-scripts eject",
-    "test": "jest --watchAll",
-    "t": "jest --watchAll"
+    "test": "jest --cache --passWithNoTests --runInBand --updateSnapshot --verbose",
+    "t": "jest --cache --passWithNoTests --runInBand --updateSnapshot --verbose"
   },
   "keywords": [],
   "author": "Ekseli Oy",
