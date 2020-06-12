@@ -4,6 +4,14 @@
 
 This is the Delivery Portal project.
 
+## Development pipeline
+
+1. All code is initially pushed into `dev` branch
+2. When all tests are written, pull request is made from `dev` to `test` branch
+3. When all tests pass, pull request is made from `test` to `master` branch
+
+No one commits directly to the `master` branch, all the code should undergo the verification and approval process.
+
 ## Project scripts
 
 | Command                          | Action                                                                           |
