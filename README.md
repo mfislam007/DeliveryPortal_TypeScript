@@ -104,9 +104,15 @@ Example:
 ```tsx
 import * as React from "react";
 
-type Props = {
+type A = {
   /* Your custom type */
 };
+
+type B {
+  /* Your custom type */
+}
+
+type Props = A & B;
 
 type State = {
   /* Your custom type */
