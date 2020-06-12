@@ -67,6 +67,9 @@ Test folder placement example:
 │   ├───__tests__
 │   │   └───App.test.tsx
 │   ├───buttons
+│   │   ├───__tests__
+│   │   │   └───BasicButton.test.tsx
+│   │   └───BasicButton.tsx
 │   ...
 │   ├───App.tsx
 │   ...
