@@ -21,7 +21,7 @@ module.exports = {
         test: /\.tsx?$/,
         include: path.resolve(__dirname, "src"),
         exclude: /node_modules/,
-        loader: "babel-loader", // awesome-typescript-loader
+        loader: "babel-loader",
       },
 
       // All output '.js' files will have any sourcemaps re-processed in this rule
@@ -31,7 +31,7 @@ module.exports = {
         loader: "source-map-loader",
       },
 
-      // All source code is processed by this rule
+      // Image loading rule
       {
         test: /\.(png|jpe?g|gif)$/i,
         include: path.resolve(__dirname, "src/assets/images"),
