@@ -150,7 +150,7 @@ export default ComponentName;
 
 ## Production
 
-1. Configured by **`webpack.dev.js`**
+1. Configured by **`webpack.prod.js`**
 2. Minimized
 3. Client cache-sensitive
 4. Optimized for initial loads
