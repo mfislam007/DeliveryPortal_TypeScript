@@ -4,7 +4,6 @@
  */
 
 const path = require("path");
-const webpack = require("webpack");
 const { CheckerPlugin } = require("awesome-typescript-loader");
 const LodashModuleReplacementPlugin = require("lodash-webpack-plugin");
 
@@ -67,7 +66,6 @@ module.exports = {
       // Image loading rule
       {
         test: /\.(png|jpe?g|gif|ico|svg)$/i,
-        exclude: /images\/favicon\.ico/,
         use: {
           loader: "file-loader",
           options: {

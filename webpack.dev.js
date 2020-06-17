@@ -1,6 +1,6 @@
 /**
  * This is a webpack configuration file for development build
- *  BUG (Roman Bezusiak) [ Image loading doesn't work in `developer` mode, probable cause: absence of native webpack mapping ]
+ *  BUG (Roman Bezusiak) [ Favicon loading doesn't work in `developer` mode, probable cause: absence of native webpack mapping ]
  */
 
 const path = require("path");
