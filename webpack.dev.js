@@ -45,6 +45,14 @@ module.exports = merge(common, {
     // with the up-to-date JS bundle import
     new HtmlWebpackPlugin({
       template: path.resolve(__dirname, "src/index.html"),
+      filename: "index.html",
+      meta: {
+        viewport: "width=device-width, initial-scale=1",
+        charset: "utf-8",
+      },
+      favicon: "./src/assets/images/favicon.ico",
+      cache: true,
+      scriptLoading: "defer",
     }),
   ],
 });

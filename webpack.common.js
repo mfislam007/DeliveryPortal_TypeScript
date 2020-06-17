@@ -67,6 +67,7 @@ module.exports = {
       // Image loading rule
       {
         test: /\.(png|jpe?g|gif|ico|svg)$/i,
+        exclude: /images\/favicon\.ico/,
         use: {
           loader: "file-loader",
           options: {
@@ -93,6 +94,6 @@ module.exports = {
   ],
 
   resolve: {
-    extensions: [".js", "jsx", ".ts", ".tsx"],
+    extensions: ["css", ".js", "jsx", ".ts", ".tsx"],
   },
 };

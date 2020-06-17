@@ -44,7 +44,7 @@ module.exports = merge(common, {
   },
 
   output: {
-    filename: "[name].[contentHash].bundle.js", // '[contentHash]' eliminates outdated client caches vie hash insertion
+    filename: "[name].[contentHash].bundle.js", // '[contentHash]' eliminates outdated client caches via hash insertion
   },
 
   // Minimized version generator
@@ -71,6 +71,14 @@ module.exports = merge(common, {
           collapseWhitespace: true,
           removeComments: true,
         },
+        filename: "index.[contenthash].html", // Plugin-specific `contenthash`
+        meta: {
+          viewport: "width=device-width, initial-scale=1",
+          charset: "utf-8",
+        },
+        favicon: "./src/assets/images/favicon.ico",
+        cache: true,
+        scriptLoading: "defer",
       }),
 
       new UglifyJsPlugin({
