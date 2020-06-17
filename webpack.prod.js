@@ -1,5 +1,7 @@
 /**
  * This is a webpack configuration file for production build
+ *
+ *  BUG (Roman Bezusiak) [ `vendor` chunks are minified in `production` mode ]
  */
 
 const path = require("path");
