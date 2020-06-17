@@ -5,12 +5,13 @@
 const path = require("path");
 const common = require("./webpack.common");
 const merge = require("webpack-merge");
+const webpack = require("webpack");
 const TerserPlugin = require("terser-webpack-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const OptimizeCssAssetsPlugin = require("optimize-css-assets-webpack-plugin");
-const { ProvidePlugin } = require("webpack");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
 
 module.exports = merge(common, {
   mode: "production",
@@ -47,6 +48,20 @@ module.exports = merge(common, {
   // Minimized version generator
   optimization: {
     minimize: true,
+
+    // Chunk optimizer (client caching)
+    // splitChunks: {
+    //   chunks(chunk) {
+    //     const excludedChunks = ["react", "react-dom"];
+
+    //     for (let i = 0; i < excludedChunks.length; i++) {
+    //       if (chunk.name === excludedChunks[i]) return false;
+    //     }
+
+    //     return true;
+    //   }
+    // },
+
     minimizer: [
       // JS minimizer
       new TerserPlugin({
@@ -69,6 +84,20 @@ module.exports = merge(common, {
           removeComments: true,
         },
       }),
+
+      new UglifyJsPlugin({
+        test: /\.js(\?.*)?$/i,
+        cache: true,
+        parallel: true,
+        sourceMap: true,
+        uglifyOptions: {
+          warnings: "verbose",
+          ie8: false,
+        },
+
+        // Exclude uglification for the `vendor` chunk
+        chunkFilter: chunk => chunk.name !== "vendor",
+      }),
     ],
   },
 
@@ -83,7 +112,7 @@ module.exports = merge(common, {
 
     // Initializes `react` and `react-dom` in `window` object in
     // order to simulate client caching
-    new ProvidePlugin({
+    new webpack.ProvidePlugin({
       "window.React": "react",
       "window.ReactDOM": "react-dom",
     }),
