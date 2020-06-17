@@ -48,20 +48,6 @@ module.exports = merge(common, {
   // Minimized version generator
   optimization: {
     minimize: true,
-
-    // Chunk optimizer (client caching)
-    // splitChunks: {
-    //   chunks(chunk) {
-    //     const excludedChunks = ["react", "react-dom"];
-
-    //     for (let i = 0; i < excludedChunks.length; i++) {
-    //       if (chunk.name === excludedChunks[i]) return false;
-    //     }
-
-    //     return true;
-    //   }
-    // },
-
     minimizer: [
       // JS minimizer
       new TerserPlugin({
