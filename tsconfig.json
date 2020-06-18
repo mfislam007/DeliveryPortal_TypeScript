@@ -8,9 +8,9 @@
     "allowSyntheticDefaultImports": true,
     "forceConsistentCasingInFileNames": true,
     "module": "ESNext",
-    "isolatedModules": false,
+    "isolatedModules": true,
     "jsx": "react",
-    "noImplicitAny": false,
+    "noImplicitAny": true,
     "preserveConstEnums": true
   },
   "include": ["src/**/*"],
