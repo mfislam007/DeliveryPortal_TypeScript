@@ -1,16 +1,19 @@
 /**
  * This is a webpack configuration file for production build
+ *
+ *  BUG (Roman Bezusiak) [ `vendor` chunks are minified in `production` mode ]
  */
 
 const path = require("path");
 const common = require("./webpack.common");
 const merge = require("webpack-merge");
+const webpack = require("webpack");
 const TerserPlugin = require("terser-webpack-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const OptimizeCssAssetsPlugin = require("optimize-css-assets-webpack-plugin");
-const { ProvidePlugin } = require("webpack");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
 
 module.exports = merge(common, {
   mode: "production",
@@ -41,7 +44,7 @@ module.exports = merge(common, {
   },
 
   output: {
-    filename: "[name].[contentHash].bundle.js", // '[contentHash]' eliminates outdated client caches vie hash insertion
+    filename: "[name].[contentHash].bundle.js", // '[contentHash]' eliminates outdated client caches via hash insertion
   },
 
   // Minimized version generator
@@ -68,6 +71,28 @@ module.exports = merge(common, {
           collapseWhitespace: true,
           removeComments: true,
         },
+        filename: "index.[contenthash].html", // Plugin-specific `contenthash`
+        meta: {
+          viewport: "width=device-width, initial-scale=1",
+          charset: "utf-8",
+        },
+        favicon: "./src/assets/images/favicon.ico",
+        cache: true,
+        scriptLoading: "defer",
+      }),
+
+      new UglifyJsPlugin({
+        test: /\.js(\?.*)?$/i,
+        cache: true,
+        parallel: true,
+        sourceMap: true,
+        uglifyOptions: {
+          warnings: "verbose",
+          ie8: false,
+        },
+
+        // Exclude uglification for the `vendor` chunk
+        chunkFilter: chunk => chunk.name !== "vendor",
       }),
     ],
   },
@@ -83,7 +108,7 @@ module.exports = merge(common, {
 
     // Initializes `react` and `react-dom` in `window` object in
     // order to simulate client caching
-    new ProvidePlugin({
+    new webpack.ProvidePlugin({
       "window.React": "react",
       "window.ReactDOM": "react-dom",
     }),

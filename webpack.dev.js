@@ -1,6 +1,6 @@
 /**
  * This is a webpack configuration file for development build
- *  BUG (Roman Bezusiak) [ Image loading doesn't work in `developer` mode, probable cause: absence of native webpack mapping ]
+ *  BUG (Roman Bezusiak) [ Favicon loading doesn't work in `developer` mode, probable cause: absence of native webpack mapping ]
  */
 
 const path = require("path");
@@ -45,6 +45,14 @@ module.exports = merge(common, {
     // with the up-to-date JS bundle import
     new HtmlWebpackPlugin({
       template: path.resolve(__dirname, "src/index.html"),
+      filename: "index.html",
+      meta: {
+        viewport: "width=device-width, initial-scale=1",
+        charset: "utf-8",
+      },
+      favicon: "./src/assets/images/favicon.ico",
+      cache: true,
+      scriptLoading: "defer",
     }),
   ],
 });
