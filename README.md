@@ -1,6 +1,7 @@
 # Delivery Portal
 
-[![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
+[![Build Status](https://dev.azure.com/ekseli/Delivery%20Portal/_apis/build/status/delivery-portal?branchName=master)](https://dev.azure.com/ekseli/Delivery%20Portal/_build/latest?definitionId=7&branchName=master)
+[![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat)](https://github.com/prettier/prettier)
 
 This is the Delivery Portal project.
 
