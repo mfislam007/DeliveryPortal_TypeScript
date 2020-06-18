@@ -150,7 +150,32 @@ export default ComponentName;
 
 ## Production
 
-1. Configured by **`webpack.dev.js`**
+1. Configured by **`webpack.prod.js`**
 2. Minimized
 3. Client cache-sensitive
 4. Optimized for initial loads
+
+## Styling
+
+In order to add CSS or SASS, one need to import the style file into the component and add the corresponding identifier in TSX.
+
+Example:
+
+```tsx
+/* App.tsx */
+import React from "react";
+import "./App.css";
+
+const App: React.FC = (): JSX.Element => {
+  return <div className="test">Project template</div>;
+};
+
+export default App;
+```
+
+```css
+/* App.css */
+.test {
+  background-color: #b574ff77;
+}
+```
