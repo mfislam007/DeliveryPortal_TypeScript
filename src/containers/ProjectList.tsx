@@ -14,18 +14,19 @@ const ProjectList: React.FC<Props> = (props): JSX.Element => {
         </div>
       </LoggedOut>
       <LoggedIn>
-        <span>Niko's POD card project</span>
-        {/* @TODO move data from Nikos POD, also fix blog->schema.org/Project */}
+        <span>
+          Project found in POD of https://ekseli.inrupt.net/profile/card#me
+        </span>
         <ProjectCard
           id={1}
           title={
             <Value
-              src={`["https://timojkankaanpaa.solid.community/profile/card#me"]["https://schema.org/Project#name"]`}
+              src={`["https://ekseli.inrupt.net/profile/card#me"]["https://schema.org/Project#name"]`}
             />
           }
           owner={
             <Value
-              src={`["https://nikosiltaloppi.inrupt.net/profile/card#me"].vcard$fn`}
+              src={`["https://ekseli.inrupt.net/profile/card#me"]["https://schema.org/Project#legalName"]`}
             />
           }
           tags={[{ id: 1, tag: "SGe" }]}
