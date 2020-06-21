@@ -74,8 +74,10 @@
   "dependencies": {
     "@inrupt/solid-react-components": "^0.5.4",
     "@solid/react": "^1.10.0",
-    "react": "^16.13.1",
-    "react-dom": "^16.13.1"
+    "react": "^16.8",
+    "react-dom": "^16.8",
+    "react-is": "^16.8",
+    "styled-components": "^5.0.0"
   },
   "browserslist": {
     "production": [

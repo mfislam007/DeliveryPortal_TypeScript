@@ -1,9 +1,19 @@
 import * as React from "react";
+import { ProviderLogin } from "@inrupt/solid-react-components";
+import { LoggedIn, LoggedOut, LogoutButton } from "@solid/react";
 
 const ProjectList: React.FC<Props> = (props): JSX.Element => {
   return (
     <div>
-      <span>Hello projects</span>
+      <LoggedOut>
+        <div className="loggedout">
+          <h2>Please login:</h2>
+          <ProviderLogin callbackUri={`${window.location.origin}/`} />
+        </div>
+      </LoggedOut>
+      <LoggedIn>
+        <span>Hello projects</span>
+      </LoggedIn>
     </div>
   );
 };
