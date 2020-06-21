@@ -1,6 +1,7 @@
 import * as React from "react";
 import { ProviderLogin } from "@inrupt/solid-react-components";
-import { LoggedIn, LoggedOut, LogoutButton, List } from "@solid/react";
+import { LoggedIn, LoggedOut, LogoutButton, List, Value } from "@solid/react";
+import ProjectCard from "../components/ProjectCard";
 
 const ProjectList: React.FC<Props> = (props): JSX.Element => {
   return (
@@ -14,11 +15,27 @@ const ProjectList: React.FC<Props> = (props): JSX.Element => {
       <LoggedIn>
         <span>Hello projects</span>
         {/* @TODO move data from Nikos POD */}
-        <List
+        <ProjectCard
+          id={1}
+          title={
+            <Value
+              src={`
+            ["https://nikosiltaloppi.inrupt.net/profile/card#me"].blog
+              .schema_blogPost.label`}
+            />
+          }
+          owner={
+            <Value
+              src={`["https://nikosiltaloppi.inrupt.net/profile/card#me"].vcard$fn`}
+            />
+          }
+          tags={[{ id: 1, tag: "SGe" }]}
+        />
+        {/*<List
           src={`
                   ["https://nikosiltaloppi.inrupt.net/profile/card#me"].blog
                     .schema_blogPost.label`}
-        />
+        />*/}
       </LoggedIn>
     </div>
   );
