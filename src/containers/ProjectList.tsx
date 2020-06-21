@@ -1,9 +1,10 @@
 import * as React from "react";
 import { ProviderLogin } from "@inrupt/solid-react-components";
 import { LoggedIn, LoggedOut, LogoutButton, List, Value } from "@solid/react";
-import ProjectCard from "../components/ProjectCard";
+import ProjectCard from "../components/ProjectCard/ProjectCard";
 
 const ProjectList: React.FC<Props> = (props): JSX.Element => {
+  //logs in to POD (Niko need to add your webid), reads two projects (we use blob now - later project ontology)
   return (
     <div>
       <LoggedOut>
@@ -13,8 +14,8 @@ const ProjectList: React.FC<Props> = (props): JSX.Element => {
         </div>
       </LoggedOut>
       <LoggedIn>
-        <span>Hello projects</span>
-        {/* @TODO move data from Nikos POD */}
+        <span>Niko's POD card project</span>
+        {/* @TODO move data from Nikos POD, also fix blog->schema.org/Project */}
         <ProjectCard
           id={1}
           title={
