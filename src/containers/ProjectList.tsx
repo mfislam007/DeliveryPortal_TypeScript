@@ -20,9 +20,7 @@ const ProjectList: React.FC<Props> = (props): JSX.Element => {
           id={1}
           title={
             <Value
-              src={`
-            ["https://nikosiltaloppi.inrupt.net/profile/card#me"].blog
-              .schema_blogPost.label`}
+              src={`["https://timojkankaanpaa.solid.community/profile/card#me"]["https://schema.org/Project#name"]`}
             />
           }
           owner={
