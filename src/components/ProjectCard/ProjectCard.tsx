@@ -4,7 +4,7 @@ import tagsIcon from "../../assets/images/projectcard/tag.png";
 import filesIcon from "../../assets/images/projectcard/files.png";
 import phIcon from "../../assets/images/projectcard/phicon1.png";
 import "./ProjectCard.css";
-import { useRouteMatch, useHistory } from "react-router-dom";
+//import { useRouteMatch, useHistory } from "react-router-dom";
 
 type cardProps = {
   id: number;
@@ -18,8 +18,8 @@ const ProjectCard: React.FC<cardProps> = (props: cardProps): JSX.Element => {
   const [title, setTitle] = useState<string>("");
   const [id, setId] = useState<number>(0);
   const [tagsElement, setTagsElement] = useState<JSX.Element[]>();
-  const { path } = useRouteMatch();
-  let history = useHistory();
+  //const { path } = useRouteMatch();
+  //let history = useHistory();
 
   useEffect(() => {
     setOwner(props.owner);
