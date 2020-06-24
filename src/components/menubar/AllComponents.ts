@@ -1,10 +1,10 @@
 import React, { Component } from "react";
 
-import Toolbar from "./components/menubar/Toolbar/Toolbar";
-import SideDrawer from "./components/menubar/SideDrawer/SideDrawer";
-import Backdrop from "./components//menubar/Backdrop/Backdrop";
-import DropDownbar from "./components/menubar/MenuBackdrop/DropDownbar";
-import MenuBackdrop from "./components/menubar/MenuBackdrop/MenuBackdrop";
+import Toolbar from "./menubar/Toolbar/Toolbar";
+import SideDrawer from "./menubar/SideDrawer/SideDrawer";
+import Backdrop from "./menubar/Backdrop/Backdrop";
+import DropDownbar from "./menubar/MenuBackdrop/DropDownbar";
+import MenuBackdrop from "./menubar/MenuBackdrop";
 
 class AllComponents extends Component {
   state = {
