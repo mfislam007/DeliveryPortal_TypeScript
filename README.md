@@ -224,3 +224,7 @@ export default ComponentName;
 2. Minimized
 3. Client cache-sensitive
 4. Optimized for initial loads
+
+## Known bugs
+
+1. `vendor` packages are minified in `production` mode
