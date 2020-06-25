@@ -1,0 +1,32 @@
+trigger:
+  - master
+
+pool:
+  vmImage: "ubuntu-latest"
+
+steps:
+  - task: NodeTool@0
+    inputs:
+      versionSpec: "12.x"
+    displayName: "Install Node.js"
+
+  - script: yarn install
+    displayName: "yarn install"
+
+  - script: yarn test
+    displayName: "yarn test"
+
+  - task: PublishTestResults@2
+    condition: succeededOrFailed()
+    inputs:
+      testRunner: JUnit
+      testResultsFiles: "./.jest/coverage/test-results.xml"
+
+  - task: PublishCodeCoverageResults@1
+    inputs:
+      codeCoverageTool: Cobertura
+      summaryFileLocation: "$(System.DefaultWorkingDirectory)/.jest/coverage/clover.xml"
+      reportDirectory: "$(System.DefaultWorkingDirectory)/.jest/coverage/lcov-report"
+
+  - script: yarn build
+    displayName: "yarn build"
