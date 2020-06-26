@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useRouteMatch, useHistory } from "react-router-dom";
 import usersIcon from "../../assets/images/project-card/users-icon.png";
 import tagsIcon from "../../assets/images/project-card/tag-icon.png";
 import filesIcon from "../../assets/images/project-card/files-icon.png";
@@ -17,6 +18,8 @@ const ProjectCard: React.FC<Props> = (props: Props): JSX.Element => {
   const [title, setTitle] = useState<string>("");
   const [id, setId] = useState<number>(0);
   const [tagsElement, setTagsElement] = useState<JSX.Element[]>();
+  const { path } = useRouteMatch();
+  let history = useHistory();
 
   useEffect(() => {
     setOwner(props.owner);
@@ -35,7 +38,7 @@ const ProjectCard: React.FC<Props> = (props: Props): JSX.Element => {
   }, [props]);
 
   const handleOnClick = (): void => {
-    /* Add link to projects own page. */
+    history.push(path + "projectid=" + id);
   };
 
   return (
