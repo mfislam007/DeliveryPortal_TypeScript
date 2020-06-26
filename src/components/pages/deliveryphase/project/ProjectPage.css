@@ -1,0 +1,16 @@
+/* Project users page */
+.projectUsersContainer {
+  display: flex;
+  justify-content: center;
+}
+
+.usersElement {
+  width: 50vw;
+  min-width: 600px;
+}
+
+.usersElement > h1,
+.usersElement > h2,
+.usersElement > h3 {
+  margin-bottom: 3px;
+}

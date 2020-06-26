@@ -1,0 +1,9 @@
+.homePageTable {
+  display: flex;
+  min-width: 1000px;
+  justify-content: center;
+}
+
+td > img {
+  padding: 20px;
+}
