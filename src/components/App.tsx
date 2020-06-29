@@ -1,7 +1,20 @@
 import React from "react";
+import { LoggedIn, LoggedOut, LogoutButton } from "@solid/react";
+import { ProviderLogin } from "@inrupt/solid-react-components";
+import ImageList from "../containers/ImageList/ImageList";
 
 const App: React.FC = (): JSX.Element => {
-  return <div>Project template</div>;
+  return (
+    <div>
+      <LoggedOut>
+        <ProviderLogin callbackUri={`${window.location.origin}/`} />
+      </LoggedOut>
+      <LoggedIn>
+        <ImageList />
+        <LogoutButton />
+      </LoggedIn>
+    </div>
+  );
 };
 
 export default App;
