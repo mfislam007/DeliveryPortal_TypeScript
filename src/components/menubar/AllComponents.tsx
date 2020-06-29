@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, useState, useEffect } from "react";
 
 import Toolbar from "./Toolbar/Toolbar";
 import SideDrawer from "./SideDrawer/SideDrawer";
@@ -6,63 +6,50 @@ import Backdrop from "./Backdrop/Backdrop";
 import DropDownbar from "./MenuBackdrop/DropDownbar";
 import MenuBackdrop from "./MenuBackdrop/MenuBackdrop";
 
-class AllComponents extends Component {
-  state = {
-    sideDrawerOpen: false,
-    topOpen: false,
+const AllComponents: React.FC = (): JSX.Element => {
+  const backdropClickHandler = () => {
+    setSideDrawerOpen(false);
+  };
+  const addBackdropClickHandler = () => {
+    setTopOpen(false);
   };
 
-  drawerToggleClickHandler = () => {
-    this.setState(prevState => {
-      return { sideDrawerOpen: !prevState.sideDrawerOpen };
-    });
+  const [sideDrawerOpen, setSideDrawerOpen] = useState(false);
+  const [topOpen, setTopOpen] = useState(false);
+  const [backdrop, setBackdrop] = useState<JSX.Element>(
+    sideDrawerOpen ? <Backdrop click={backdropClickHandler} /> : <p />
+  );
+  const [dropdownBar, setDropdownBar] = useState<JSX.Element>(
+    topOpen ? <DropDownbar /> : <p />
+  );
+  const [menuBackdrop, setMenuBackdrop] = useState<JSX.Element>(
+    topOpen ? <MenuBackdrop click={addBackdropClickHandler} /> : <p />
+  );
+
+  const drawerToggleClickHandler = () => {
+    setSideDrawerOpen(!sideDrawerOpen);
   };
 
-  backdropClickHandler = () => {
-    this.setState({ sideDrawerOpen: false });
+  const addDrawerButtonClickHandler = () => {
+    setTopOpen(!topOpen);
   };
 
-  addDrawerButtonClickHandler = () => {
-    this.setState(prevState => {
-      return { topOpen: !prevState.topOpen };
-    });
-  };
+  return (
+    <div style={{ height: "100%" }}>
+      <Toolbar
+        drawerClickHandler={drawerToggleClickHandler}
+        addClickHandler={addDrawerButtonClickHandler}
+      />
+      <SideDrawer show={sideDrawerOpen} />
 
-  addBackdropClickHandler = () => {
-    this.setState({ topOpen: false });
-  };
-
-  render() {
-    let backdrop;
-    let dropDownbar;
-    let menuBackdrop;
-
-    if (this.state.sideDrawerOpen) {
-      backdrop = <Backdrop click={this.backdropClickHandler} />;
-    }
-
-    if (this.state.topOpen) {
-      dropDownbar = <DropDownbar />;
-      menuBackdrop = <MenuBackdrop click={this.addBackdropClickHandler} />;
-    }
-
-    return (
-      <div style={{ height: "100%" }}>
-        <Toolbar
-          drawerClickHandler={this.drawerToggleClickHandler}
-          addClickHandler={this.addDrawerButtonClickHandler}
-        />
-        <SideDrawer show={this.state.sideDrawerOpen} />
-
-        {backdrop}
-        {dropDownbar}
-        {menuBackdrop}
-        <main style={{ marginTop: "64px" }}>
-          <p>This is the page content!</p>
-        </main>
-      </div>
-    );
-  }
-}
+      {backdrop}
+      {dropdownBar}
+      {menuBackdrop}
+      <main style={{ marginTop: "64px" }}>
+        <p>This is the page content!</p>
+      </main>
+    </div>
+  );
+};
 
 export default AllComponents;

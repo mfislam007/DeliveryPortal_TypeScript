@@ -1,11 +1,11 @@
 import React from "react";
 
 import "./SideDrawer.css";
-import delivery1 from "../../assets/images/menubar/delivery1.jpg";
-import news1 from "../../assets/images/menubar/news1.png";
-import calender1 from "../../assets/images/menubar/calender1.png";
-import setting1 from "../../assets/images/menubar/setting1.png";
-import dp1 from "../../assets/images/menubar/dp1.png";
+import delivery1 from "../../../assets/images/menubar/news1.png";
+import news1 from "../../../assets/images/menubar/news1.png";
+import calender1 from "../../../assets/images/menubar/calender1.png";
+import setting1 from "../../../assets/images/menubar/setting1.png";
+import dp1 from "../../../assets/images/menubar/news1.png";
 
 const sideDrawer = props => {
   let drawerClasses = "side-drawer";
@@ -17,26 +17,26 @@ const sideDrawer = props => {
       <ul>
         <li>
           <a href="/">
-            <img src={delivery1} alt="delivery1" class="logo" />
+            <img src={delivery1} alt="delivery1" className="logo" />
             Delivery portals
           </a>
         </li>
         <li>
           <a href="/">
-            <img src={news1} alt="news1" class="logo" />
+            <img src={news1} alt="news1" className="logo" />
             News
           </a>
         </li>
         <li>
           <a href="/">
-            <img src={calender1} alt="calender1" class="logo" />
+            <img src={calender1} alt="calender1" className="logo" />
             Calender
           </a>
         </li>
 
         <li>
           <a href="/">
-            <img src={setting1} alt="setting1" class="logo" />
+            <img src={setting1} alt="setting1" className="logo" />
             Setting
           </a>
         </li>
@@ -44,13 +44,13 @@ const sideDrawer = props => {
         <div className="addbar2">
           <li>
             <a href="/">
-              <img src={dp1} alt="dp1" class="logo" /> Join Delivery portal
+              <img src={dp1} alt="dp1" className="logo" /> Join Delivery portal
             </a>
           </li>
 
           <li>
             <a href="/">
-              <img src={dp1} alt="dp1" class="logo" /> Add Delivery portal
+              <img src={dp1} alt="dp1" className="logo" /> Add Delivery portal
             </a>
           </li>
         </div>

@@ -3,7 +3,7 @@
   top: 0;
   left: 0;
   width: 100%;
-  background: #0073cf;
+  background-color: lightgray;
   height: 56px;
 }
 
@@ -20,9 +20,10 @@
 }
 
 .toolbar__logo a {
-  color: white;
+  color: gray;
   text-decoration: none;
   font-size: 1.5rem;
+  font-family: Arial;
 }
 
 .spacer {
