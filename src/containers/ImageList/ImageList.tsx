@@ -1,26 +1,30 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import "regenerator-runtime/runtime";
 import ImageBrowser from "../../components/ImageBrowser/ImageBrowser";
 
 const ImageList: React.FC = (): JSX.Element => {
   const { default: data } = require("@solid/query-ldflex");
-  let images: string[] = [];
+  const [imageURLs, setImages] = useState([] as string[]);
   const datasource =
     data["https://nikosiltaloppi.solid.community/private/pictures/"];
 
-  useEffect(() => {
-    async function getImages(person: { ldp_contains: any }) {
-      for await (const image of person.ldp_contains) {
-        images.push(`${image}`);
-        //console.log(images);
-      }
+  async function fetchImageURLs(person: { ldp_contains: any }) {
+    let imageLinksBuffer: string[] = [];
+    for await (const imageURL of person.ldp_contains) {
+      imageLinksBuffer.push(imageURL as string);
     }
-    getImages(datasource);
+    setImages(imageLinksBuffer);
+  }
+
+  useEffect(() => {
+    (async () => {
+      await fetchImageURLs(datasource);
+    })();
   }, []);
 
   return (
     <div>
-      <ImageBrowser imagelist={images} />
+      <ImageBrowser imageURLs={imageURLs} />
     </div>
   );
 };
