@@ -1,0 +1,18 @@
+.imageCarousel {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.carouselImage {
+  max-width: 50%;
+  height: auto;
+}
+
+.controlButtonPrevious {
+  width: 50px;
+  transform: scaleX(-1);
+}
+
+.controlButtonNext {
+  width: 50px;
+}
