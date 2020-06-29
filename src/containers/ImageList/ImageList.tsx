@@ -2,13 +2,18 @@ import React, { useEffect, useState } from "react";
 import "regenerator-runtime/runtime";
 import ImageBrowser from "../../components/ImageBrowser/ImageBrowser";
 
-const ImageList: React.FC = (): JSX.Element => {
+interface imageListProps {
+  dataSource: string;
+}
+
+const ImageList: React.FC<imageListProps> = (
+  props: imageListProps
+): JSX.Element => {
   const { default: data } = require("@solid/query-ldflex");
   const [imageURLs, setImages] = useState([] as string[]);
-  const datasource =
-    data["https://nikosiltaloppi.solid.community/private/pictures/"];
+  const dataSource = data[props.dataSource];
 
-  async function fetchImageURLs(person: { ldp_contains: any }) {
+  async function fetchImageURLs(person: { ldp_contains: string }) {
     let imageLinksBuffer: string[] = [];
     for await (const imageURL of person.ldp_contains) {
       imageLinksBuffer.push(imageURL as string);
@@ -18,7 +23,7 @@ const ImageList: React.FC = (): JSX.Element => {
 
   useEffect(() => {
     (async () => {
-      await fetchImageURLs(datasource);
+      await fetchImageURLs(dataSource);
     })();
   }, []);
 

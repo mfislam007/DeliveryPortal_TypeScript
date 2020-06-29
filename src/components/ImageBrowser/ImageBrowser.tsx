@@ -21,7 +21,6 @@ const ImageBrowser: React.FC<imageProps> = (props: imageProps) => {
     } else {
       newImageIndex = imageShown - 1;
     }
-    console.log("went to previous image, state now: " + newImageIndex);
     setImageShown(newImageIndex);
   };
 
@@ -32,7 +31,6 @@ const ImageBrowser: React.FC<imageProps> = (props: imageProps) => {
     } else {
       newImageIndex = imageShown + 1;
     }
-    console.log("went to next image, state now: " + newImageIndex);
     setImageShown(newImageIndex);
   };
 
@@ -61,7 +59,7 @@ const ImageBrowser: React.FC<imageProps> = (props: imageProps) => {
             setCarouselHalted(true);
           }}
         />
-        {imageList[imageShown]}
+        <div className="imageWrapper">{imageList[imageShown]}</div>
         <img
           className="controlButtonNext"
           src={arrow}

@@ -10,7 +10,7 @@ const App: React.FC = (): JSX.Element => {
         <ProviderLogin callbackUri={`${window.location.origin}/`} />
       </LoggedOut>
       <LoggedIn>
-        <ImageList />
+        <ImageList dataSource="https://nikosiltaloppi.solid.community/private/pictures/" />
         <LogoutButton />
       </LoggedIn>
     </div>
