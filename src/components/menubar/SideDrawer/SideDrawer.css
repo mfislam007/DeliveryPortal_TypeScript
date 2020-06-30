@@ -3,7 +3,7 @@
   background: white;
   box-shadow: 1px 0px 7px rgba(0, 0, 0, 0.5);
   position: fixed;
-  top: 0;
+  top: -10px;
   left: 0;
   width: 70%;
   max-width: 400px;
@@ -43,7 +43,6 @@
 .side-drawer li:hover,
 .side-drawer li:active {
   cursor: pointer;
-  background-color: orangered;
 }
 
 .logo {
@@ -71,6 +70,6 @@
 
 @media (min-width: 769px) {
   .side-drawer {
-    display: none;
+    display: flex;
   }
 }
