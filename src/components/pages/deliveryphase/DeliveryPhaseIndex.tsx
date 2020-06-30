@@ -9,7 +9,7 @@ const DeliveryPhaseIndex: React.FC = (): JSX.Element => {
    * Read project names from POD
    */
   useEffect(() => {
-    getNames("https://ekseli.dev.inrupt.net/private/dp/cases/Project2/project.ttl");
+    getNames("https://ekseli.dev.inrupt.net/private/dp/cases/cases.ttl");
     async function getNames(webId: string) {
       const profileDoc = await fetchDocument(webId);
       const profile = profileDoc.getSubject(webId);
