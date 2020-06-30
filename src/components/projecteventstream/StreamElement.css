@@ -31,6 +31,8 @@
 .projectStreamEventUpcomingMain > img {
   align-self: end;
   justify-self: end;
+  max-width: 32px;
+  max-height: 32px;
   object-fit: contain;
 }
 
