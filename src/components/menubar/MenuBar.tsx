@@ -6,7 +6,7 @@ import Backdrop from "./Backdrop/Backdrop";
 import DropDownbar from "./MenuBackdrop/DropDownbar";
 import MenuBackdrop from "./MenuBackdrop/MenuBackdrop";
 
-const AllComponents: React.FC = (): JSX.Element => {
+const MenuBar: React.FC = (): JSX.Element => {
   const backdropClickHandler = () => {
     setSideDrawerOpen(false);
   };
@@ -45,11 +45,11 @@ const AllComponents: React.FC = (): JSX.Element => {
       {backdrop}
       {dropdownBar}
       {menuBackdrop}
-      <main style={{ marginTop: "64px" }}>
-        <p>This is the page content!</p>
+      <main style={{ marginTop: "100px" }}>
+        <p>here goes content</p>
       </main>
     </div>
   );
 };
 
-export default AllComponents;
+export default MenuBar;

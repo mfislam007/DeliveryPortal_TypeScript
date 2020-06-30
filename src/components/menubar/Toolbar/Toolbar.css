@@ -1,10 +1,13 @@
 .toolbar {
-  position: fixed;
-  top: 0;
-  left: 0;
+  top: 0px;
+  left: 0px;
   width: 100%;
-  background-color: lightgray;
-  height: 56px;
+  height: 40px;
+  /* UI Properties */
+  background: #ffffff 0% 0% no-repeat padding-box;
+  box-shadow: 0px 2px 2px #00000029;
+  opacity: 1;
+  position: fixed;
 }
 
 .toolbar__navigation {
@@ -15,15 +18,17 @@
 }
 
 .toolbar__logo {
-  margin-right: 20px;
-  padding: 1px 20px;
+  top: 26px;
+  left: 91px;
+  width: 205px;
+  height: 20px;
+  font-size: 20px;
+  font-family: Arial;
 }
 
 .toolbar__logo a {
-  color: gray;
+  color: black;
   text-decoration: none;
-  font-size: 1.5rem;
-  font-family: Arial;
 }
 
 .spacer {
@@ -38,17 +43,47 @@
 }
 
 .toolbar_navigation-items li {
-  padding: 0 0.5rem;
+  padding: 0 1rem;
 }
-
+.toolbar_project {
+  top: 26px;
+  left: 301px;
+  width: 124px;
+  height: 20px;
+  /* UI Properties */
+  background: var(--unnamed-color-ffffff) 0% 0% no-repeat padding-box;
+  background: #ffffff 0% 0% no-repeat padding-box;
+  box-shadow: 0px 2px 2px #00000029;
+  border: 1px solid #060606;
+  opacity: 1;
+}
 .toolbar_navigation-items a {
-  color: white;
+  color: black;
   text-decoration: none;
 }
 
 .toolbar_navigation-items a:hover,
 .toolbar_navigation-items a:active {
-  color: orangered;
+  color: gray;
+}
+.toolbar__toggle-button {
+  top: 21px;
+  left: 28px;
+  width: 23px;
+  height: 21px;
+  /* UI Properties */
+  opacity: 1;
+}
+.menu {
+  font-size: 1.1rem;
+  text-decoration: none;
+  font-family: Arial;
+  padding: 20px 0;
+  margin: 0 20px;
+}
+.menu:hover {
+  border-bottom: 4px solid gray;
+  padding: 6px 0;
 }
 
 .toolbar_navigation-items2 ul {
@@ -56,6 +91,8 @@
   margin: 0;
   padding: 0;
   display: flex;
+  width: 80px;
+  height: 20px;
 }
 
 .toolbar_navigation-items2 li {
@@ -67,61 +104,31 @@
   text-decoration: none;
 }
 
-.toolbar_navigation-items2 a:hover,
-.toolbar_navigation-items2 a:active {
-  color: orangered;
+.profile_image {
+  left: 1863px;
+  width: 24px;
+  height: 25px;
+  border-radius: 16px;
+  opacity: 1;
 }
 
-.imagea {
-  width: 35px;
-  height: 35px;
-  border-radius: 50%;
+.home_icon {
+  left: 1758px;
+  width: 20px;
+  height: 20px;
+  border-radius: 16px;
+  opacity: 1;
+}
+
+.button {
+  top: 60px;
+  width: 120px;
+  height: 25px;
   justify-content: center;
-  margin-top: 6px;
-  background: none;
+  margin-top: 0px;
   margin-left: 20px;
-}
-.imageb {
-  width: 30px;
-  height: 30px;
-  border-radius: 50%;
-  justify-content: center;
-  padding: 1px 20px;
-  background: none;
-}
-.imagec {
-  width: 30px;
-  height: 30px;
-  border-radius: 50%;
-  justify-content: center;
-  padding: 1px 20px;
-  background: none;
-}
-.imaged {
-  width: 30px;
-  height: 30px;
-  border-radius: 50%;
-  justify-content: center;
-  padding: 1px 20px;
-  background: none;
-}
-.imagee {
-  width: 30px;
-  height: 30px;
-  border-radius: 50%;
-  justify-content: center;
-  padding: 1px 20px;
-  background: none;
-}
-
-.imagef {
-  width: 30px;
-  height: 30px;
-  border-radius: 50%;
-  justify-content: center;
-  padding: 8px 10px;
-  margin: 0;
-  background: none;
+  border-color: black;
+  background: white;
 }
 
 .logoimage {
@@ -144,17 +151,16 @@
 
 @media (max-width: 768px) {
   .toolbar_navigation-items {
-    display: none;
+    display: flex;
   }
 }
 
 @media (min-width: 769px) {
   .toolbar__toggle-button {
-    display: none;
+    display: flex;
   }
 
   .toolbar__logo {
-    margin-left: 0;
-    padding: 0;
+    margin-left: 20px;
   }
 }

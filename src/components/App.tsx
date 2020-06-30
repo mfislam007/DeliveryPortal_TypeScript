@@ -1,10 +1,10 @@
 import React from "react";
-import AllComponents from "./menubar/AllComponents";
+import MenuBar from "./menubar/MenuBar";
 
 const App: React.FC = (): JSX.Element => {
   return (
     <div>
-      <AllComponents />
+      <MenuBar />
     </div>
   );
 };

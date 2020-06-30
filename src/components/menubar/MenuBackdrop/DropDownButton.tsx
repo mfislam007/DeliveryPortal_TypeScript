@@ -2,9 +2,9 @@ import React from "react";
 
 import "./DropDownButton.css";
 
-const dropDownButton = props => (
+const dropDownButton = (props: any) => (
   <div>
-    <button className="addbar" onMouseOver={props.click}>
+    <button className="addbar" onClick={props.click}>
       +
     </button>
   </div>

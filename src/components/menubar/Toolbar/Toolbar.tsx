@@ -3,84 +3,52 @@ import React from "react";
 import DrawerToggleButton from "../SideDrawer/DrawerToggleButton";
 import "./Toolbar.css";
 
-import delivery1 from "../../../assets/images/menubar/delivery1.png";
-import calender1 from "../../../assets/images/menubar/calender1.png";
-import setting1 from "../../../assets/images/menubar/setting1.png";
-import news1 from "../../../assets/images/menubar/news1.png";
 import timo1 from "../../../assets/images/menubar/timo1.png";
 import home from "../../../assets/images/menubar/home.png";
 
 import DropDownButton from "../MenuBackdrop/DropDownButton";
 
-const toolbar = props => (
+const toolbar = (props: any) => (
   <header className="toolbar">
     <nav className="toolbar__navigation">
       <div className="toolbar__toggle-button">
         <DrawerToggleButton click={props.drawerClickHandler} />
       </div>
       <div className="toolbar__logo">
-        <a href="/">Delivery Portal</a>
+        <a href="/">ABB's Delivery Portal</a>
       </div>
-
-      <div className="toolbar_navigation-items">
-        <ul>
-          <li>
-            <a href="/">
-              <div className="logoimage">
-                <img src={delivery1} alt="delivery1" className="imageb" />
-                Delevery Portal
-              </div>
-            </a>
-          </li>
-          <li>
-            <a href="/">
-              <div className="logoimage">
-                <img src={news1} alt="news" className="imagec" />
-                News
-              </div>
-            </a>
-          </li>
-          <li>
-            <a href="/">
-              <div className="logoimage">
-                <img src={calender1} alt="calender" className="imaged" />
-                Calander
-              </div>
-            </a>
-          </li>
-          <li>
-            <a href="/">
-              <div className="logoimage">
-                <img src={setting1} alt="setting" className="imagee" />
-                Setting
-              </div>
-            </a>
-          </li>
-        </ul>
+      <div>
+        <button className="toolbar_project"> R&D Project </button>
       </div>
       <div className="spacer" />
       <div className="toolbar_navigation-items">
         <ul>
           <li>
-            <div>
-              <DropDownButton click={props.addClickHandler} />
-            </div>
+            <a className="menu" href="/">
+              Stream
+            </a>
+          </li>
+          <li>
+            <a className="menu" href="/">
+              Phases
+            </a>
+          </li>
+          <li>
+            <a className="menu" href="/">
+              Users
+            </a>
           </li>
         </ul>
       </div>
+      <div className="spacer" />
+
       <div className="toolbar_navigation-items2">
         <ul>
           <li>
-            <a href="/">
-              <div className="logoimage">
-                <img src={home} alt="home" className="imagef" />
-              </div>
-            </a>
+            <img src={home} alt="home icon" className="home_icon" />
           </li>
           <li>
-            <a href="/">
-              <img src={timo1} alt="timo1" className="imagea" />
-            </a>
+            <img src={timo1} alt="profile image" className="profile_image" />
           </li>
         </ul>
       </div>
