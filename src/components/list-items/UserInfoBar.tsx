@@ -9,10 +9,10 @@ type Props = {
   portrait?: string;
 };
 
-const UserInfoBar: React.FC<Props> = (props: Props): JSX.Element => {
-  const [name, setName] = useState<string>("");
-  const [company, setCompany] = useState<string>("");
-  const [portrait, setPortrait] = useState<string>();
+const UserInfoBar: React.FC<Props> = (props): JSX.Element => {
+  const [name, setName] = useState("");
+  const [company, setCompany] = useState("");
+  const [portrait, setPortrait] = useState(undefined as string);
 
   useEffect(() => {
     setName(props.name);

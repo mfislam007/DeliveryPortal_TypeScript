@@ -3,7 +3,7 @@ import { useRouteMatch, useHistory } from "react-router-dom";
 import usersIcon from "../../assets/images/project-card/users-icon.png";
 import tagsIcon from "../../assets/images/project-card/tag-icon.png";
 import filesIcon from "../../assets/images/project-card/files-icon.png";
-import phIcon from "../../assets/images/project-card/ph-icon.png";
+import img from "../../assets/images/project-card/ph-icon.png";
 import "./ProjectCard.css";
 
 type Props = {
@@ -13,11 +13,11 @@ type Props = {
   tags?: { id: number; name: string }[];
 };
 
-const ProjectCard: React.FC<Props> = (props: Props): JSX.Element => {
-  const [owner, setOwner] = useState<string>("");
-  const [title, setTitle] = useState<string>("");
-  const [id, setId] = useState<number | string>(0);
-  const [tagsElement, setTagsElement] = useState<JSX.Element[]>();
+const ProjectCard: React.FC<Props> = (props): JSX.Element => {
+  const [owner, setOwner] = useState("");
+  const [title, setTitle] = useState("");
+  const [id, setId] = useState(0 as number | string);
+  const [tagsElement, setTagsElement] = useState(undefined as JSX.Element[]);
   const { path } = useRouteMatch();
   let history = useHistory();
 
@@ -59,7 +59,7 @@ const ProjectCard: React.FC<Props> = (props: Props): JSX.Element => {
         <img src={filesIcon} alt="files" />
       </div>
       <div className="cardImage">
-        <img src={phIcon} alt="img" />
+        <img src={img} alt="card" />
       </div>
     </div>
   );
