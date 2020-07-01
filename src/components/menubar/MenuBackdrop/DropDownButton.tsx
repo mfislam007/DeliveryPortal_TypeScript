@@ -2,11 +2,16 @@ import React from "react";
 
 import "./DropDownButton.css";
 
-const dropDownButton = (props: any) => (
+type Props = {
+  onClick: React.MouseEventHandler<HTMLElement>;
+};
+
+const DropDownButton: React.FC<Props> = (props: Props): JSX.Element => (
   <div>
-    <button className="addbar" onClick={props.click}>
+    <button className="addbar" onClick={props.onClick}>
       +
     </button>
   </div>
 );
-export default dropDownButton;
+
+export default DropDownButton;

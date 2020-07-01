@@ -4,7 +4,7 @@ import { useRouteMatch, Link } from "react-router-dom";
 const ProjectPageLinkSwitch: React.FC = (): JSX.Element => {
   const { url } = useRouteMatch();
   return (
-    <div className="toolbar_navigation-items">
+    <div className="toolbar-navigation-items">
       <ul>
         <li>
           <Link to={url} className="menu">
