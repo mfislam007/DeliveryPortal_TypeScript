@@ -1,11 +1,11 @@
 import React from "react";
+import { Route, useHistory } from "react-router";
 
-import DrawerToggleButton from "../SideDrawer/DrawerToggleButton";
 import "./Toolbar.css";
+import DrawerToggleButton from "../SideDrawer/DrawerToggleButton";
+import ToolbarProjectPageLinks from "./ToolbarProjectPageLinks";
 import timo1 from "../../../assets/images/menubar/timo1.png";
 import home from "../../../assets/images/commonicons/home-icon.png";
-import { Route, useHistory } from "react-router";
-import ToolbarProjectPageLinks from "./ProjectPageLinkSwitch";
 
 type Props = {
   onClick: React.MouseEventHandler<HTMLElement>;
