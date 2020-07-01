@@ -1,23 +1,24 @@
 import React from "react";
+
 import optionsIcon from "../../assets/images/commonicons/options-icon.png";
 
-type tprops = {
+type Props = {
   userImage: string;
   eventString: string;
   date?: string | Date;
   optionalImage?: string;
 };
 
-const StreamEvent: React.FC<tprops> = (props: tprops): JSX.Element => {
+const StreamEvent: React.FC<Props> = (props): JSX.Element => {
   return (
     <div className="streamEventElement">
-      <img src={props.userImage} alt=""></img>
+      <img src={props.userImage} alt="user"></img>
       <div className="streamEventData">
         <div>{props.eventString}</div>
         {props.date !== undefined && <div>{props.date}</div>}
-        {props.optionalImage !== undefined && <img src={props.optionalImage} alt="" />}
+        {props.optionalImage !== undefined && <img src={props.optionalImage} alt="optional" />}
       </div>
-      <img src={optionsIcon} alt="" className="options"></img>
+      <img src={optionsIcon} alt="options" className="options"></img>
     </div>
   );
 };

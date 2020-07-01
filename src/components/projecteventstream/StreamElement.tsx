@@ -1,18 +1,19 @@
 import React, { useState } from "react";
+
+import "./StreamElement.css";
+import portrait1 from "../../assets/images/projectstream/esko-user.png";
+import portrait2 from "../../assets/images/projectstream/timo-user.png";
+import optionalImg1 from "../../assets/images/projectstream/prima-building1.png";
+import optionalImg2 from "../../assets/images/projectstream/prima-building2.png";
 import StreamUpcoming from "./StreamUpcoming";
 import StreamEvent from "./StreamEvent";
-import portrait1 from "../../assets/images/projectstream/image1.png";
-import portrait2 from "../../assets/images/projectstream/image13.png";
-import optionalImg1 from "../../assets/images/projectstream/image11.png";
-import optionalImg2 from "../../assets/images/projectstream/image12.png";
-import "./StreamElement.css";
 
-type tprops = {
+type Props = {
   id?: number | string;
 };
 
-const StreamElement: React.FC<tprops> = (props: tprops): JSX.Element => {
-  const [id, setId] = useState<number | string>(1);
+const StreamElement: React.FC<Props> = (props): JSX.Element => {
+  const [id, setId] = useState(1 as number | string);
   return (
     <div id={id + ""} className="projectEventStreamContainer">
       <StreamUpcoming />

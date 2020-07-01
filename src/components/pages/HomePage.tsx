@@ -1,20 +1,21 @@
-import React from "react";
+import React, { MouseEvent } from "react";
+import { useHistory } from "react-router-dom";
+
+import "./Homepage.css";
 import salesphase from "../../assets/images/homepage/salesphase.png";
 import instructions from "../../assets/images/homepage/instructions.png";
 import delivery from "../../assets/images/homepage/delivery.png";
 import projectmanagement from "../../assets/images/homepage/projectmanagement.png";
 import performance from "../../assets/images/homepage/performance.png";
 import cloudmanufacturing from "../../assets/images/homepage/cloudmanufacturing.png";
-import { useHistory } from "react-router-dom";
-import "./Homepage.css";
 
 const HomePage: React.FC = (): JSX.Element => {
   const imgWidth = 300;
   const imgHeigth = 300;
   let history = useHistory();
 
-  const handleOnClick = (event: any) => {
-    const { id } = event.target;
+  const handleOnClick = (event: MouseEvent<HTMLImageElement>) => {
+    const id = event.currentTarget.id;
     history.push("/" + id);
   };
 

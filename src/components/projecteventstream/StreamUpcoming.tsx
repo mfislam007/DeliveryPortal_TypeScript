@@ -1,6 +1,7 @@
 import React from "react";
-import calenderIcon from "../../assets/images/commonicons/calender-icon.png";
+
 import "./StreamElement.css";
+import calenderIcon from "../../assets/images/commonicons/calender-icon.png";
 
 const StreamUpcoming: React.FC = (): JSX.Element => {
   return (

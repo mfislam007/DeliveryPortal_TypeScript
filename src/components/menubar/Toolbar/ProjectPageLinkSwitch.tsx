@@ -1,7 +1,7 @@
 import React from "react";
 import { useRouteMatch, Link } from "react-router-dom";
 
-const ProjectPageLinkSwitch: React.FC = (): JSX.Element => {
+const ToolbarProjectPageLinks: React.FC = (): JSX.Element => {
   const { url } = useRouteMatch();
   return (
     <div className="toolbar-navigation-items">
@@ -29,4 +29,4 @@ const ProjectPageLinkSwitch: React.FC = (): JSX.Element => {
   );
 };
 
-export default ProjectPageLinkSwitch;
+export default ToolbarProjectPageLinks;
