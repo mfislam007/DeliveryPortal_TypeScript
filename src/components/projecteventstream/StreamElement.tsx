@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import StreamUpcoming from "./StreamUpcoming";
 import StreamEvent from "./StreamEvent";
-import portrait1 from "../../assets/images/projectstream/image1.png";
-import portrait2 from "../../assets/images/projectstream/image13.png";
-import optionalImg1 from "../../assets/images/projectstream/image11.png";
-import optionalImg2 from "../../assets/images/projectstream/image12.png";
+import portrait1 from "../../assets/images/projectstream/esko-user.png";
+import portrait2 from "../../assets/images/projectstream/timo-user.png";
+import optionalImg1 from "../../assets/images/projectstream/prima-building1.png";
+import optionalImg2 from "../../assets/images/projectstream/prima-building2.png";
 import "./StreamElement.css";
 
 type tprops = {
