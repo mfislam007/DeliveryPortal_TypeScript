@@ -2,6 +2,7 @@
   display: flex;
   min-width: 1000px;
   justify-content: center;
+  margin-top: 75px;
 }
 
 td > img {
