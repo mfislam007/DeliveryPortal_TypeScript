@@ -5,7 +5,7 @@ import "./Backdrop.css";
 type Props = {
   onClick: React.MouseEventHandler<HTMLElement>;
 };
-const Backdrop: React.FC<Props> = (props: Props): JSX.Element => (
+const Backdrop: React.FC<Props> = (props): JSX.Element => (
   <div className="backdrop" onClick={props.onClick} />
 );
 

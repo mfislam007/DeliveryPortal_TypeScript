@@ -5,7 +5,7 @@ import "./SideDrawer.css";
 type Props = {
   show: boolean;
 };
-const SideDrawer: React.FC<Props> = (props: Props): JSX.Element => {
+const SideDrawer: React.FC<Props> = (props): JSX.Element => {
   // BUG (Hindia) [1. when the links are clicked the drawer doesnt shut, 2. when other places are clicked the drawer doesn't shut]
   return (
     <nav className={props.show ? "side-drawer open" : "side-drawer"}>

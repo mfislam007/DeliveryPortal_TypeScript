@@ -10,7 +10,7 @@ import ToolbarProjectPageLinks from "./ProjectPageLinkSwitch";
 type Props = {
   onClick: React.MouseEventHandler<HTMLElement>;
 };
-const Toolbar: React.FC<Props> = (props: Props): JSX.Element => {
+const Toolbar: React.FC<Props> = (props): JSX.Element => {
   let history = useHistory();
 
   return (
