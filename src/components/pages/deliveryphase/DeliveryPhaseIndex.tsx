@@ -9,7 +9,7 @@ const DeliveryPhaseIndex: React.FC = (): JSX.Element => {
    * Read project names from POD
    */
   useEffect(() => {
-    getNames("https://ekseli.dev.inrupt.net/private/dp/cases/cases.ttl");
+    getNames("https://ekseli.dev.inrupt.net/private/dp2/cases/cases.ttl");
     async function getNames(webId: string) {
       const profileDoc = await fetchDocument(webId);
       const profile = profileDoc.getSubject(webId);
@@ -22,6 +22,7 @@ const DeliveryPhaseIndex: React.FC = (): JSX.Element => {
    */
   const nameCards = names.map((name, index) => (
     <ProjectCard
+      key={index}
       id={index}
       title={name}
       owner="Esko Petäjä"

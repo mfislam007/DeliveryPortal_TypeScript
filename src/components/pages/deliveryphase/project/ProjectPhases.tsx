@@ -8,7 +8,7 @@ const ProjectPhases: React.FC = (): JSX.Element => {
   const [names, setNames] = useState<string[]>([]);
   useEffect(() => {
     /** Should pass the webid and project name as argument. To list the phases user must have read access to POD */
-    getNames("https://ekseli.dev.inrupt.net/private/dp/cases/Project2/project.ttl");
+    getNames("https://ekseli.dev.inrupt.net/private/dp2/cases/ProjectABC/project.ttl");
     async function getNames(webId: string) {
       const profileDoc = await fetchDocument(webId);
       const profile = profileDoc.getSubject(webId);
