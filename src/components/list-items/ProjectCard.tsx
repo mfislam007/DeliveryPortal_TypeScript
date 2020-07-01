@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { useRouteMatch, useHistory } from "react-router-dom";
+
 import usersIcon from "../../assets/images/project-card/users-icon.png";
 import tagsIcon from "../../assets/images/project-card/tag-icon.png";
 import filesIcon from "../../assets/images/project-card/files-icon.png";
-import img from "../../assets/images/project-card/ph-icon.png";
+import phIcon from "../../assets/images/project-card/ph-icon.png";
 import "./ProjectCard.css";
 
 type Props = {
@@ -59,7 +60,7 @@ const ProjectCard: React.FC<Props> = (props): JSX.Element => {
         <img src={filesIcon} alt="files" />
       </div>
       <div className="cardImage">
-        <img src={img} alt="card" />
+        <img src={phIcon} alt="card" />
       </div>
     </div>
   );

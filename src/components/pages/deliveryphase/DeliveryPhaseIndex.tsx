@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from "react";
-import ProjectCard from "../../list-items/ProjectCard";
-import "./DeliveryPhaseIndex.css";
-import "regenerator-runtime/runtime";
 import { fetchDocument } from "tripledoc";
+import "regenerator-runtime/runtime";
+
+import "./DeliveryPhaseIndex.css";
+import ProjectCard from "../../list-items/ProjectCard";
+
 const DeliveryPhaseIndex: React.FC = (): JSX.Element => {
   const [names, setNames] = useState<string[]>([]);
+
   /**
    * Read project names from POD
    */
@@ -17,6 +20,7 @@ const DeliveryPhaseIndex: React.FC = (): JSX.Element => {
       setNames(profile.getAllStrings("http://schema.org/Project#name"));
     }
   }, []);
+
   /**
    * loop here names array and create ProejctCards for them
    */
@@ -32,6 +36,7 @@ const DeliveryPhaseIndex: React.FC = (): JSX.Element => {
       ]}
     ></ProjectCard>
   ));
+
   return (
     <div>
       <h3>Delivery Portals</h3>
