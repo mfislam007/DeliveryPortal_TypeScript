@@ -18,18 +18,14 @@ const cmds = a => {
 
 module.exports = {
   hooks: {
-    "pre-commit": cmds([cmd(["pretty-quick", "--staged"])]),
+    "pre-commit": "pretty-quick --staged",
     "pre-push": cmds([
-      cmd(["pretty-quick", "--staged"]),
+      "pretty-quick --staged",
+      "yarn test --clearCache", // Clears cache and exits
       cmd([
         "yarn jest",
-        "--bail 1", // Exits on 1 failed test
-        "--ci", // Enables mandatory `--updateSnapshot`
-        "--updateSnapshot", // Re-initializes snapshots
-        "--cache", // Enables caching
         "--passWithNoTests", // Passes, if there are no tests
         "--runInBand", // Tests are run sequentially
-        "--verbose", // Verbose output
       ]),
     ]),
   },
