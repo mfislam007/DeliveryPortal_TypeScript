@@ -6,19 +6,18 @@ import "./DeliveryPhaseIndex.css";
 import ProjectCard from "../../list-items/ProjectCard";
 
 const DeliveryPhaseIndex: React.FC = (): JSX.Element => {
-  const [names, setNames] = useState<string[]>([]);
+  const [names, setNames] = useState([] as string[]);
 
   /**
    * Read project names from POD
    */
   useEffect(() => {
-    getNames("https://ekseli.dev.inrupt.net/private/dp2/cases/cases.ttl");
-    async function getNames(webId: string) {
+    (async (webId: string) => {
       const profileDoc = await fetchDocument(webId);
       const profile = profileDoc.getSubject(webId);
       console.log(JSON.stringify(profile.getAllStrings("http://schema.org/Project#name")));
       setNames(profile.getAllStrings("http://schema.org/Project#name"));
-    }
+    })(`https://ekseli.dev.inrupt.net/private/dp2/cases/cases.ttl`);
   }, []);
 
   /**
