@@ -1,10 +1,14 @@
 import React from "react";
+
+import { BrowserRouter as Router } from "react-router-dom";
 import MenuBar from "./menubar/MenuBar";
 
 const App: React.FC = (): JSX.Element => {
   return (
     <div>
-      <MenuBar />
+      <Router>
+        <MenuBar />
+      </Router>
     </div>
   );
 };
