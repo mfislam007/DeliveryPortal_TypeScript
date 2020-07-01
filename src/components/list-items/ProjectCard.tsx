@@ -7,7 +7,7 @@ import phIcon from "../../assets/images/project-card/ph-icon.png";
 import "./ProjectCard.css";
 
 type Props = {
-  id: number;
+  id: number | string;
   title: string;
   owner: string;
   tags?: { id: number; name: string }[];
@@ -16,7 +16,7 @@ type Props = {
 const ProjectCard: React.FC<Props> = (props: Props): JSX.Element => {
   const [owner, setOwner] = useState<string>("");
   const [title, setTitle] = useState<string>("");
-  const [id, setId] = useState<number>(0);
+  const [id, setId] = useState<number | string>(0);
   const [tagsElement, setTagsElement] = useState<JSX.Element[]>();
   const { path } = useRouteMatch();
   let history = useHistory();
