@@ -23,7 +23,7 @@ const DeliveryPhaseIndex: React.FC = (): JSX.Element => {
   const nameCards = names.map((name, index) => (
     <ProjectCard
       key={index}
-      id={index}
+      id={name}
       title={name}
       owner="Esko Petäjä"
       tags={[
