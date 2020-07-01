@@ -6,8 +6,9 @@ import "../DeliveryPhaseIndex.css";
 import ProjectCard from "../../../list-items/ProjectCard";
 
 const ProjectPhases: React.FC = (): JSX.Element => {
-  const [names, setNames] = useState<string[]>([]);
+  const [names, setNames] = useState([] as string[]);
   const { id } = useParams();
+
   useEffect(() => {
     /** Should pass the webid and project name as argument. To list the phases user must have read access to POD */
     (async (webId: string) => {
