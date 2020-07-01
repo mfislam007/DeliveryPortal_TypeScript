@@ -22,10 +22,12 @@
   top: 26px;
   left: 91px;
   width: 205px;
+  min-width: 3em;
   height: 20px;
   font-size: 20px;
   font-family: Arial;
   margin-top: 20px;
+  overflow: hidden;
 }
 
 .toolbar__logo a {
