@@ -1,43 +1,32 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 import "./SideDrawer.css";
-import delivery1 from "../../../assets/images/menubar/news1.png";
-import news1 from "../../../assets/images/menubar/news1.png";
-import calender1 from "../../../assets/images/menubar/calender1.png";
-import setting1 from "../../../assets/images/menubar/setting1.png";
-import dp1 from "../../../assets/images/menubar/news1.png";
-
-const sideDrawer = (props: any) => {
-  let drawerClasses = "side-drawer";
-  if (props.show) {
-    drawerClasses = "side-drawer open";
-  }
+type Props = {
+  show: boolean;
+};
+const SideDrawer: React.FC<Props> = (props): JSX.Element => {
+  // BUG (Hindia) [1. when the links are clicked the drawer doesnt shut, 2. when other places are clicked the drawer doesn't shut]
   return (
-    <nav className={drawerClasses}>
+    <nav className={props.show ? "side-drawer open" : "side-drawer"}>
       <ul>
         <li>
-          <a href="/">Delivery portals</a>
-        </li>
-        <li>
-          <a href="/">News</a>
-        </li>
-        <li>
-          <a href="/">Calender</a>
+          <Link to="/deliveryportal">Delivery portals</Link>
         </li>
 
         <li>
-          <a href="/">Setting</a>
+          <Link to="/">Settings</Link>
         </li>
         <li>
-          <a href="/">Join Delivery portal</a>
+          <Link to="/">Join Delivery portal</Link>
         </li>
 
         <li>
-          <a href="/">Add Delivery portal</a>
+          <Link to="/">Add Delivery portal</Link>
         </li>
       </ul>
     </nav>
   );
 };
 
-export default sideDrawer;
+export default SideDrawer;

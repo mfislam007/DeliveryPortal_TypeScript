@@ -1,8 +1,8 @@
 import React from "react";
 
-import "./DropDownbar.css";
+import "./DropDownBar.css";
 
-const dropDownbar = props => (
+const DropDownBar: React.FC = (): JSX.Element => (
   <nav className="dropdown">
     <ul>
       <li>
@@ -14,4 +14,5 @@ const dropDownbar = props => (
     </ul>
   </nav>
 );
-export default dropDownbar;
+
+export default DropDownBar;

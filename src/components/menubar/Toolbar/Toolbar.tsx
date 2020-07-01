@@ -1,59 +1,54 @@
 import React from "react";
+import { Route, useHistory } from "react-router";
 
-import DrawerToggleButton from "../SideDrawer/DrawerToggleButton";
 import "./Toolbar.css";
-
-import timo1 from "../../../assets/images/menubar/timo1.png";
+import DrawerToggleButton from "../SideDrawer/DrawerToggleButton";
+import ToolbarProjectPageLinks from "./ToolbarProjectPageLinks";
+import profile from "../../../assets/images/menubar/profile.png";
 import home from "../../../assets/images/menubar/home.png";
 
-import DropDownButton from "../MenuBackdrop/DropDownButton";
+type Props = {
+  onClick: React.MouseEventHandler<HTMLElement>;
+};
+const Toolbar: React.FC<Props> = (props): JSX.Element => {
+  let history = useHistory();
 
-const toolbar = (props: any) => (
-  <header className="toolbar">
-    <nav className="toolbar__navigation">
-      <div className="toolbar__toggle-button">
-        <DrawerToggleButton click={props.drawerClickHandler} />
-      </div>
-      <div className="toolbar__logo">
-        <a href="/">ABB's Delivery Portal</a>
-      </div>
-      <div>
-        <button className="toolbar_project"> R&D Project </button>
-      </div>
-      <div className="spacer" />
-      <div className="toolbar_navigation-items">
-        <ul>
-          <li>
-            <a className="menu" href="/">
-              Stream
-            </a>
-          </li>
-          <li>
-            <a className="menu" href="/">
-              Phases
-            </a>
-          </li>
-          <li>
-            <a className="menu" href="/">
-              Users
-            </a>
-          </li>
-        </ul>
-      </div>
-      <div className="spacer" />
+  return (
+    <header className="toolbar">
+      <nav className="toolbar-navigation">
+        <div className="toolbar-toggle-button">
+          <DrawerToggleButton onClick={props.onClick} />
+        </div>
+        <div className="toolbar-logo">
+          <a href="/">ABB's Delivery Portal</a>
+        </div>
+        <div>
+          <button className="toolbar-project"> R&D Project </button>
+        </div>
+        <div className="spacer" />
+        <ToolbarProjectPageLinks />
+        <div className="spacer" />
 
-      <div className="toolbar_navigation-items2">
-        <ul>
-          <li>
-            <img src={home} alt="home icon" className="home_icon" />
-          </li>
-          <li>
-            <img src={timo1} alt="profile image" className="profile_image" />
-          </li>
-        </ul>
-      </div>
-    </nav>
-  </header>
-);
+        <div className="toolbar-navigation-items-2">
+          <ul>
+            <li>
+              <img
+                src={home}
+                alt="home"
+                className="home-icon"
+                onClick={() => {
+                  history.push("");
+                }}
+              />
+            </li>
+            <li>
+              <img src={profile} alt="profile" className="profile-image" />
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </header>
+  );
+};
 
-export default toolbar;
+export default Toolbar;

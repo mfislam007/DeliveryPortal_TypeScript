@@ -2,8 +2,11 @@ import React from "react";
 
 import "./MenuBackdrop.css";
 
-const menuBackdrop = props => (
-  <div className="menuBackdrop" onMouseOut={props.click} />
+type Props = {
+  onClick: React.MouseEventHandler<HTMLElement>;
+};
+const MenuBackDrop: React.FC<Props> = (props): JSX.Element => (
+  <div className="menuBackdrop" onMouseOut={props.onClick} />
 );
 
-export default menuBackdrop;
+export default MenuBackDrop;
