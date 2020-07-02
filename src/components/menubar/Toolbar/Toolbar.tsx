@@ -1,15 +1,19 @@
 import React from "react";
-import { Route, useHistory } from "react-router";
+import { useHistory } from "react-router";
 
 import "./Toolbar.css";
 import DrawerToggleButton from "../SideDrawer/DrawerToggleButton";
 import ToolbarProjectPageLinks from "./ToolbarProjectPageLinks";
 import profile from "../../../assets/images/menubar/profile.png";
 import home from "../../../assets/images/menubar/home.png";
+import plusIcon from "../../../assets/images/menubar/plus-icon.png";
+import plusIconClicked from "../../../assets/images/menubar/plus-icon-clicked.png";
 
 type Props = {
   onClick: React.MouseEventHandler<HTMLElement>;
+  show: boolean;
 };
+
 const Toolbar: React.FC<Props> = (props): JSX.Element => {
   let history = useHistory();
 
@@ -23,7 +27,7 @@ const Toolbar: React.FC<Props> = (props): JSX.Element => {
           <a href="/">ABB's Delivery Portal</a>
         </div>
         <div>
-          <button className="toolbar-project"> R&D Project </button>
+          <button className="toolbar-project"> R&amp;D Project </button>
         </div>
         <div className="spacer" />
         <ToolbarProjectPageLinks />
@@ -40,6 +44,13 @@ const Toolbar: React.FC<Props> = (props): JSX.Element => {
                   history.push("");
                 }}
               />
+            </li>
+            <li>
+              {props.show ? (
+                <img src={plusIconClicked} alt="plus" className={"plus-icon"} />
+              ) : (
+                <img src={plusIcon} alt="plus" className={"plus-icon"} />
+              )}
             </li>
             <li>
               <img src={profile} alt="profile" className="profile-image" />
