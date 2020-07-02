@@ -164,5 +164,6 @@
   .toolbar-navigation-items-2 {
     display: flex;
     margin-top: 20px;
+    margin-right: 30px;
   }
 }
