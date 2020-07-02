@@ -5,7 +5,7 @@ import { fetchDocument } from "tripledoc";
 import "../DeliveryPhaseIndex.css";
 import ProjectCard from "../../../list-items/ProjectCard";
 import ImageList from "../../../../containers/ImageList/ImageList";
-import TimeLine from "../../../timeline/Timeline";
+import TimeLine from "../../../time-line/TimeLine";
 
 const ProjectPhases: React.FC = (): JSX.Element => {
   const [names, setNames] = useState([] as string[]);
