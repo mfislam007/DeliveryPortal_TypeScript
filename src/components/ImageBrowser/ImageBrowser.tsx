@@ -11,22 +11,12 @@ const ImageBrowser: React.FC<Props> = props => {
   const [imageShown, setImageShown] = useState(0);
   const [carouselHalted, setCarouselHalted] = useState(true);
 
-  const imageList = props.imageURLs.map((image: string, index: number) => (
-    <img className="carouselImage" key={index} src={image} />
-  ));
-
   const previousImage = (imageShown: number) => {
-    let newImageIndex: number = 0;
-    setImageShown(
-      imageShown === 0 ? (newImageIndex = imageList.length - 1) : (newImageIndex = imageShown - 1)
-    );
+    setImageShown(imageShown === 0 ? props.imageURLs.length - 1 : imageShown - 1);
   };
 
   const nextImage = (imageShown: number) => {
-    let newImageIndex: number = 0;
-    setImageShown(
-      imageShown === imageList.length - 1 ? (newImageIndex = 0) : (newImageIndex = imageShown + 1)
-    );
+    setImageShown(imageShown === props.imageURLs.length - 1 ? 0 : imageShown + 1);
   };
 
   useEffect(() => {
@@ -54,7 +44,9 @@ const ImageBrowser: React.FC<Props> = props => {
             setCarouselHalted(true);
           }}
         />
-        <div className="imageWrapper">{imageList[imageShown]}</div>
+        <div className="imageWrapper">
+          <img className="carouselImage" src={props.imageURLs[imageShown]} />
+        </div>
         <img
           className="controlButtonNext"
           src={arrow}

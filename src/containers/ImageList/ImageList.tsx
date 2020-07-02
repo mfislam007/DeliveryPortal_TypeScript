@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "regenerator-runtime/runtime";
+
 import ImageBrowser from "../../components/ImageBrowser/ImageBrowser";
 
 interface Props {
@@ -11,9 +12,9 @@ const ImageList: React.FC<Props> = (props): JSX.Element => {
   const [imageURLs, setImages] = useState([] as string[]);
   const dataSource = data[props.dataSource];
 
-  async function fetchImageURLs(person: { ldp_contains: string }) {
+  async function fetchImageURLs(img: { ldp_contains: string }) {
     let imageLinksBuffer: string[] = [];
-    for await (const imageURL of person.ldp_contains) {
+    for await (const imageURL of img.ldp_contains) {
       imageLinksBuffer.push(imageURL as string);
     }
     setImages(imageLinksBuffer);
