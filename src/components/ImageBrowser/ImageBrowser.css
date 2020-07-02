@@ -1,0 +1,28 @@
+.imageCarousel {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.carouselImage {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.controlButtonPrevious {
+  width: 50px;
+  transform: scaleX(-1);
+}
+
+.controlButtonNext {
+  width: 50px;
+}
+
+.imageWrapper {
+  width: 100%;
+  height: 0;
+  padding-top: 50%;
+  position: relative;
+}
