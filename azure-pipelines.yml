@@ -4,6 +4,9 @@ trigger:
 pool:
   vmImage: "ubuntu-latest"
 
+variables:
+  - group: Deployment
+
 steps:
   - task: NodeTool@0
     inputs:
