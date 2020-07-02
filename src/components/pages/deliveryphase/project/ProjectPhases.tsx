@@ -4,6 +4,7 @@ import { fetchDocument } from "tripledoc";
 
 import "../DeliveryPhaseIndex.css";
 import ProjectCard from "../../../list-items/ProjectCard";
+import ImageList from "../../../../containers/ImageList/ImageList";
 
 const ProjectPhases: React.FC = (): JSX.Element => {
   const [names, setNames] = useState([] as string[]);
@@ -32,7 +33,14 @@ const ProjectPhases: React.FC = (): JSX.Element => {
     ></ProjectCard>
   ));
 
-  return <div className="deliveryPortalProjectsContainer">{nameCards}</div>;
+  return (
+    <div>
+      <ImageList
+        dataSource={"https://ekseli.dev.inrupt.net/private/dp2/cases/ProjectBCD/Pictures/"}
+      />
+      <div className="deliveryPortalProjectsContainer">{nameCards}</div>
+    </div>
+  );
 };
 
 export default ProjectPhases;
