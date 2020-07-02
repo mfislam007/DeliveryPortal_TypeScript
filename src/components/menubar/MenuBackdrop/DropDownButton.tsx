@@ -3,7 +3,6 @@ import React from "react";
 import "./DropDownButton.css";
 
 import plusIcon from "../../../assets/images/menubar/plus-icon.png";
-import plusIconClicked from "../../../assets/images/menubar/plus-icon-clicked.png";
 
 type Props = {
   onClick: React.MouseEventHandler<HTMLElement>;

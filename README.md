@@ -49,7 +49,7 @@ One is able to run the project by simply running **`yarn s`**.
 │   ├───types ................ (Contains only reused type info)
 │   ├───utils ................ (Contains only utility files)
 │   │   ├───serviceWorker.ts
-│   │   └───setuptests.ts
+│   │   └───setuptests.ts .... (Jest and Enzyme pre-testing configuration script)
 │   ├───index.html ........... (HTML template for the project (used by Webpack))
 │   └───index.tsx ............ (Project entry point)
 ├───.env ..................... (Environment variable configuration)
@@ -99,6 +99,77 @@ Any `.ts`/`.tsx` file should follow the following structure:
 2. Contents
 3. Default exporting statement
 
+### Styling
+
+In order to add CSS or SASS, one need to import the style file into the component and add the corresponding identifier in TSX.
+
+Example:
+
+```tsx
+/* App.tsx */
+import React from "react";
+import "./App.css";
+
+const App: React.FC = (): JSX.Element => {
+  return <div className="test">Project template</div>;
+};
+
+export default App;
+```
+
+```css
+/* App.css */
+.test {
+  background-color: #b574ff77;
+}
+```
+
+### Testing
+
+1. Tests should be named as the file that they are testing, but with `.test.` suffix (`App.tsx` -> `App.test.tsx`)
+2. There should always be unit tests using Enzyme's [shallow rendering](https://enzymejs.github.io/enzyme/docs/api/shallow.html) or/and [static rendering](https://enzymejs.github.io/enzyme/docs/api/render.html)
+3. There optionally may be integration (or system) tests using Enzyme's [full DOM rendering](https://enzymejs.github.io/enzyme/docs/api/mount.html) (**be careful, and use integration tests where necessary, they can drastically slow down your test runs**)
+4. Tests should be structured in the following order.
+   1. Unit
+   2. Integration
+   3. System
+
+Example:
+
+```tsx
+/* ./src/components/App.tsx */
+
+import React from "react";
+
+const App: React.FC = (): JSX.Element => {
+  return <div>Project template</div>;
+};
+
+export default App;
+```
+
+```tsx
+/* ./src/components/__tests__/App.test.tsx */
+
+import React from "react";
+import { shallow, mount } from "enzyme";
+import App from "../App";
+
+describe("'App' component", () => {
+  describe("Unit tests", () => {
+    it("shallow renders without crashing", () => {
+      shallow(<App />);
+    });
+  });
+
+  describe("Integration tests", () => {
+    it("mounts in a full DOM", () => {
+      expect(mount(<App />).find(App).length).toBe(1);
+    });
+  });
+});
+```
+
 ### Typing
 
 In-file types should be declared right before their first usage. Try not to use
@@ -138,45 +209,22 @@ function util(s: string): string {
 export default ComponentName;
 ```
 
-### Testing
+## Internals
 
-1. Tests should be named as the file that they are testing, but with `.test.` suffix (`App.tsx` -> `App.test.tsx`)
+### Builds
 
-## Builds
-
-## Development
+#### Development
 
 1. Configured by **`webpack.dev.js`**
 2. Not-minimized
 
-## Production
+#### Production
 
 1. Configured by **`webpack.prod.js`**
 2. Minimized
 3. Client cache-sensitive
 4. Optimized for initial loads
 
-## Styling
+## Known bugs
 
-In order to add CSS or SASS, one need to import the style file into the component and add the corresponding identifier in TSX.
-
-Example:
-
-```tsx
-/* App.tsx */
-import React from "react";
-import "./App.css";
-
-const App: React.FC = (): JSX.Element => {
-  return <div className="test">Project template</div>;
-};
-
-export default App;
-```
-
-```css
-/* App.css */
-.test {
-  background-color: #b574ff77;
-}
-```
+1. `vendor` packages are minified in `production` mode

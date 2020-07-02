@@ -1,40 +1,45 @@
 import React, { useState, useEffect } from "react";
-import usersIcon from "../../assets/images/projectcard/users.png";
-import tagsIcon from "../../assets/images/projectcard/tag.png";
-import filesIcon from "../../assets/images/projectcard/files.png";
-import phIcon from "../../assets/images/projectcard/phicon1.png";
+import { useRouteMatch, useHistory } from "react-router-dom";
+
+import usersIcon from "../../assets/images/project-card/users-icon.png";
+import tagsIcon from "../../assets/images/project-card/tag-icon.png";
+import filesIcon from "../../assets/images/project-card/files-icon.png";
+import phIcon from "../../assets/images/project-card/ph-icon.png";
 import "./ProjectCard.css";
 
-type cardProps = {
-  id: number;
+type Props = {
+  id: number | string;
   title: string;
   owner: string;
-  tags?: { id: number; tag: string }[];
+  tags?: { id: number; name: string }[];
 };
 
-const ProjectCard: React.FC<cardProps> = (props: cardProps): JSX.Element => {
-  const [owner, setOwner] = useState<string>("");
-  const [title, setTitle] = useState<string>("");
-  const [id, setId] = useState<number>(0);
-  const [tagsElement, setTagsElement] = useState<JSX.Element[]>();
+const ProjectCard: React.FC<Props> = (props): JSX.Element => {
+  const [owner, setOwner] = useState("");
+  const [title, setTitle] = useState("");
+  const [id, setId] = useState(0 as number | string);
+  const [tagsElement, setTagsElement] = useState(undefined as JSX.Element[]);
+  const { path } = useRouteMatch();
+  let history = useHistory();
 
   useEffect(() => {
     setOwner(props.owner);
     setTitle(props.title);
     setId(props.id);
+
     if (props.tags) {
       setTagsElement(
         props.tags.map(tag => (
-          <div className="tagDiv" key={tag.id + ""}>
-            {tag.tag}
+          <div className="tagDiv" key={tag.id.toString()}>
+            {tag.name}
           </div>
         ))
       );
     }
   }, [props]);
 
-  const handleOnClick = () => {
-    /* Add link to projects own page. */
+  const handleOnClick = (): void => {
+    history.push(path + "projectid=" + id);
   };
 
   return (
@@ -55,7 +60,7 @@ const ProjectCard: React.FC<cardProps> = (props: cardProps): JSX.Element => {
         <img src={filesIcon} alt="files" />
       </div>
       <div className="cardImage">
-        <img src={phIcon} alt="img" />
+        <img src={phIcon} alt="card" />
       </div>
     </div>
   );

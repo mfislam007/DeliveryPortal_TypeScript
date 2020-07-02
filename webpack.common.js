@@ -18,6 +18,7 @@ module.exports = {
     contentBase: path.join(__dirname, "dist"),
     compress: true,
     port: 8080,
+    historyApiFallback: true,
   },
 
   // Enable sourcemaps for debugging webpack's output.
@@ -79,6 +80,7 @@ module.exports = {
 
   output: {
     path: path.resolve(__dirname, "dist"),
+    publicPath: "/",
   },
 
   plugins: [
@@ -92,6 +94,6 @@ module.exports = {
   ],
 
   resolve: {
-    extensions: ["css", ".js", "jsx", ".ts", ".tsx"],
+    extensions: [".js", "jsx", ".ts", ".tsx"],
   },
 };

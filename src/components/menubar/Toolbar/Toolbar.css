@@ -49,7 +49,6 @@
 .toolbar-navigation-items li {
   padding: 0 1rem;
 }
-
 .toolbar-navigation-items a {
   color: black;
   text-decoration: none;
@@ -139,6 +138,18 @@
   margin-left: 20px;
   border-color: black;
   background: white;
+}
+
+.plus-icon {
+  border-radius: 100%;
+  background: none;
+  border: none;
+  top: 23px;
+  left: 1804px;
+  width: 20px;
+  height: 20px;
+  /* UI Properties */
+  opacity: 1;
 }
 
 @media (max-width: 768px) {
