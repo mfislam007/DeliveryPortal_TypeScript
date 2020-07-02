@@ -30,3 +30,15 @@ steps:
 
   - script: yarn build
     displayName: "yarn build"
+
+  - script: |
+      apt-get update -qy
+      apt-get install -y ruby-dev
+      gem install dpl
+    displayName: "Installing DPL"
+
+  - script: |
+      if [ $(Build.SourceBranch) =~ .*(heroku-deployment-integration|dev|test|master) ]; then
+      dpl --provider=heroku --app=$(HEROKU_APP_NAME_DELIVERY_PORTAL_FRONTEND_REACT) --api-key=$(HEROKU_API_KEY) --skip_cleanup
+      fi
+    displayName: "Deploying to Heroku, if on 'heroku-deployment-integration', 'dev', 'test' or 'master'"

@@ -43,14 +43,28 @@ module.exports = merge(common, {
     // Auto-generates the `index.html` based on the existing template
     // with the up-to-date JS bundle import
     new HtmlWebpackPlugin({
-      template: path.resolve(__dirname, "src/index.html"),
+      // template: path.resolve(__dirname, "src/index.html"),
+      templateContent: ({ htmlWebpackPlugin }) => `
+        <html lang="en">
+          <head>
+            <title>Delivery Portal</title>
+            ${htmlWebpackPlugin.tags.headTags}
+          </head>
+          <body>
+            <noscript>You need to enable JavaScript to run this app.</noscript>
+            <div id="root"></div>
+            ${htmlWebpackPlugin.tags.bodyTags}
+          </body>
+        </html>
+      `,
       filename: "index.html",
       meta: {
         viewport: "width=device-width, initial-scale=1",
         charset: "utf-8",
       },
-      favicon: "./src/assets/images/favicon.ico",
+      favicon: path.resolve(__dirname, "src/assets/images/favicon.ico"),
       cache: true,
+      inject: "body",
       scriptLoading: "defer",
     }),
   ],
