@@ -65,7 +65,6 @@ module.exports = merge(common, {
       // Auto-generates and minimizes the `index.html` based on the existing template
       // with the up-to-date JS bundle import
       new HtmlWebpackPlugin({
-        // template: path.resolve(__dirname, "src/index.html"),
         templateContent: ({ htmlWebpackPlugin }) => `
           <html lang="en">
             <head>
