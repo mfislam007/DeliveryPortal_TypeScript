@@ -1,0 +1,8 @@
+.addbar {
+  border-radius: 50%;
+  font-size: 2rem;
+  background: none;
+  border: none;
+  vertical-align: middle;
+  margin-right: 30px;
+}
