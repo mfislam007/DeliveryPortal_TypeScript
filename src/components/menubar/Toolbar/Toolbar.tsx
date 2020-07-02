@@ -4,12 +4,15 @@ import { Route, useHistory } from "react-router";
 import "./Toolbar.css";
 import DrawerToggleButton from "../SideDrawer/DrawerToggleButton";
 import ToolbarProjectPageLinks from "./ToolbarProjectPageLinks";
-import timo1 from "../../../assets/images/menubar/timo1.png";
-import home from "../../../assets/images/commonicons/home-icon.png";
+import profile from "../../../assets/images/menubar/profile.png";
+import home from "../../../assets/images/menubar/home.png";
+import plusIcon from "../../../assets/images/menubar/plus-icon.png";
 
 type Props = {
   onClick: React.MouseEventHandler<HTMLElement>;
+  show: boolean;
 };
+
 const Toolbar: React.FC<Props> = (props): JSX.Element => {
   let history = useHistory();
 
@@ -23,13 +26,13 @@ const Toolbar: React.FC<Props> = (props): JSX.Element => {
           <a href="/">ABB's Delivery Portal</a>
         </div>
         <div>
-          <button className="toolbar-project"> R&D Project </button>
+          <button className="toolbar-project"> R&amp;D Project </button>
         </div>
         <div className="spacer" />
         <Route path="/deliveryportal/projectid=:id" component={ToolbarProjectPageLinks}></Route>
         <div className="spacer" />
 
-        <div className="toolbar-navigation-items2">
+        <div className="toolbar-navigation-items-2">
           <ul>
             <li>
               <img
@@ -42,7 +45,10 @@ const Toolbar: React.FC<Props> = (props): JSX.Element => {
               />
             </li>
             <li>
-              <img src={timo1} alt="profile" className="profile-image" />
+              <img src={plusIcon} alt="plus" className={"plus-icon"} />
+            </li>
+            <li>
+              <img src={profile} alt="profile" className="profile-image" />
             </li>
           </ul>
         </div>

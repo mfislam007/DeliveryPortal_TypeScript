@@ -1,6 +1,7 @@
 import React from "react";
 
 import "./DropDownButton.css";
+import plusIcon from "../../../assets/images/menubar/plus-icon.png";
 
 type Props = {
   onClick: React.MouseEventHandler<HTMLElement>;
@@ -8,8 +9,8 @@ type Props = {
 
 const DropDownButton: React.FC<Props> = (props): JSX.Element => (
   <div>
-    <button className="addbar" onClick={props.onClick}>
-      +
+    <button className="plus-icon" onClick={props.onClick}>
+      <img src={plusIcon} alt="plus" className="plus-icon" />
     </button>
   </div>
 );
