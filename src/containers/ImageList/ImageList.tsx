@@ -2,13 +2,11 @@ import React, { useEffect, useState } from "react";
 import "regenerator-runtime/runtime";
 import ImageBrowser from "../../components/ImageBrowser/ImageBrowser";
 
-interface imageListProps {
+interface Props {
   dataSource: string;
 }
 
-const ImageList: React.FC<imageListProps> = (
-  props: imageListProps
-): JSX.Element => {
+const ImageList: React.FC<Props> = (props): JSX.Element => {
   const { default: data } = require("@solid/query-ldflex");
   const [imageURLs, setImages] = useState([] as string[]);
   const dataSource = data[props.dataSource];
