@@ -3,3 +3,11 @@
   flex-flow: row wrap;
   margin-top: 75px;
 }
+
+.first-section {
+  display: flex;
+  height: 100%;
+  width: 100%;
+  align-items: center;
+  padding: 0 1rem;
+}

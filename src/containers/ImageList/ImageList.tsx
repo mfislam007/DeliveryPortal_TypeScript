@@ -3,6 +3,8 @@ import "regenerator-runtime/runtime";
 
 import ImageBrowser from "../../components/ImageBrowser/ImageBrowser";
 
+import "./ImageList.css";
+
 interface Props {
   dataSource: string;
 }
@@ -27,7 +29,7 @@ const ImageList: React.FC<Props> = (props): JSX.Element => {
   }, []);
 
   return (
-    <div>
+    <div className="imagelist">
       <ImageBrowser imageURLs={imageURLs} />
     </div>
   );

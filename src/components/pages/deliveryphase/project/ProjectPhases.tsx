@@ -5,6 +5,7 @@ import { fetchDocument } from "tripledoc";
 import "../DeliveryPhaseIndex.css";
 import ProjectCard from "../../../list-items/ProjectCard";
 import ImageList from "../../../../containers/ImageList/ImageList";
+import TimeLine from "../../../time-line/TimeLine";
 
 const ProjectPhases: React.FC = (): JSX.Element => {
   const [names, setNames] = useState([] as string[]);
@@ -35,9 +36,12 @@ const ProjectPhases: React.FC = (): JSX.Element => {
 
   return (
     <div>
-      <ImageList
-        dataSource={"https://ekseli.dev.inrupt.net/private/dp2/cases/ProjectBCD/Pictures/"}
-      />
+      <div className="first-section">
+        <TimeLine />
+        <ImageList
+          dataSource={"https://ekseli.dev.inrupt.net/private/dp2/cases/ProjectBCD/Pictures/"}
+        />
+      </div>
       <div className="deliveryPortalProjectsContainer">{nameCards}</div>
     </div>
   );
