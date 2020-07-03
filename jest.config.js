@@ -18,6 +18,10 @@ module.exports = {
     __DEV__: true,
   },
   moduleFileExtensions: ["ts", "tsx", "js", "jsx"],
+  moduleNameMapper: {
+    "^.+\\.(jpg|ico|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga|css|less|sass|scss)$":
+      "<rootDir>src/mocks/binaryFileMock.ts",
+  },
   reporters: ["default"],
   setupFiles: ["raf/polyfill"],
   setupFilesAfterEnv: ["<rootDir>src/util/setupTests.ts"],
