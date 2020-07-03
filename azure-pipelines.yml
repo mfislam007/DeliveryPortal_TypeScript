@@ -1,10 +1,8 @@
 trigger:
-  branshes:
-    include:
-      - master
-      - dev
-      - test
-      - feature/heroku-deployment-integration
+  - master
+  - dev
+  - test
+  - feature/heroku-deployment-integration
 
 pool:
   vmImage: "ubuntu-latest"
