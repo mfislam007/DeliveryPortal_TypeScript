@@ -1,4 +1,4 @@
-import React, { useState, useEffect, Fragment } from "react";
+import React, { useState, useEffect } from "react";
 
 import "./PhaseWidgetCard.css";
 import optionsIcon from "../../assets/images/commonicons/options-icon.png";
@@ -58,7 +58,7 @@ const PhaseWidgetCard: React.FC<Props> = (props): JSX.Element => {
       </div>
       <div className="PhaseWidgetCardMisc">
         <div className="PhaseWidgetCardOptions">
-          <img src={optionsIcon} alt=""></img>
+          <img src={optionsIcon} alt="options"></img>
         </div>
         {showCompletion()}
       </div>
