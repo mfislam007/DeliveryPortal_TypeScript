@@ -3,9 +3,10 @@ import { useParams } from "react-router-dom";
 import { fetchDocument } from "tripledoc";
 
 import "../DeliveryPhaseIndex.css";
-import ProjectCard from "../../../list-items/ProjectCard";
+import { PhaseColors } from "../../../../constants/WidgetColors";
 import ImageList from "../../../../containers/ImageList/ImageList";
 import TimeLine from "../../../time-line/TimeLine";
+import PhaseWidgetCard from "../../../list-items/PhaseWidgetCard";
 
 const ProjectPhases: React.FC = (): JSX.Element => {
   const [names, setNames] = useState([] as string[]);
@@ -21,28 +22,25 @@ const ProjectPhases: React.FC = (): JSX.Element => {
     })(`https://ekseli.dev.inrupt.net/private/dp2/cases/${id}/project.ttl`);
   }, []);
 
-  const nameCards = names.map((name, index) => (
-    <ProjectCard
-      id={index}
+  const PhaseCards = names.map((name, index) => (
+    <PhaseWidgetCard
       key={index}
-      title={name}
-      owner="This is a phase but uses ProjectCards for visualization"
-      tags={[
-        { id: 1, name: "SGe" },
-        { id: 2, name: "Car Industry" },
-      ]}
-    ></ProjectCard>
+      label={name}
+      timeframe="May 10 - June 11"
+      completion={{ tasksCompleted: 5, totalTasks: 5 }}
+      phaseColor={PhaseColors[index]}
+    />
   ));
 
   return (
-    <div>
+    <div className="project-phase-page-main">
       <div className="first-section">
         <TimeLine />
         <ImageList
           dataSource={"https://ekseli.dev.inrupt.net/private/dp2/cases/ProjectBCD/Pictures/"}
         />
       </div>
-      <div className="deliveryPortalProjectsContainer">{nameCards}</div>
+      <div className="project-phase-second-section">{PhaseCards}</div>
     </div>
   );
 };
