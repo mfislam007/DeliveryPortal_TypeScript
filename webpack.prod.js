@@ -82,7 +82,7 @@ module.exports = merge(common, {
           collapseWhitespace: true,
           removeComments: true,
         },
-        filename: "index.[contenthash].html", // Plugin-specific `contenthash`
+        filename: "index.html", // Plugin-specific `contenthash`
         meta: {
           viewport: "width=device-width, initial-scale=1",
           charset: "utf-8",
