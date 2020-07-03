@@ -5,8 +5,8 @@
   "private": true,
   "main": "index.tsx",
   "scripts": {
-    "start": "node index.js",
-    "s": "node index.js",
+    "start": "node --max-old-space-size=4096 index.js",
+    "s": "node --max-old-space-size=4096 index.js",
     "build dev": "webpack --config webpack.dev.js",
     "bd": "webpack --config webpack.dev.js",
     "build prod": "webpack --config webpack.prod.js",

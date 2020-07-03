@@ -6,4 +6,4 @@ var app = express();
 
 app
   .use(express.static(path.join(__dirname, "dist")))
-  .listen(PORT, () => console.log(`Listening on ${PORT}`));
+  .listen(PORT, () => console.log(`Running on 'localhost:${PORT}'`));
