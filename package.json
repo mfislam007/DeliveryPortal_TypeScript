@@ -5,10 +5,8 @@
   "private": true,
   "main": "index.tsx",
   "scripts": {
-    "start": "webpack-dev-server --open --color --config webpack.dev.js",
-    "s": "webpack-dev-server --open --color --config webpack.dev.js",
-    "build": "webpack --config webpack.prod.js",
-    "b": "webpack --config webpack.prod.js",
+    "dev": "webpack --config webpack.dev.js && node index.js",
+    "prod": "webpack --config webpack.prod.js && node index.js",
     "eject": "react-scripts eject",
     "test": "jest --cache --passWithNoTests --runInBand",
     "t": "jest --cache --passWithNoTests --runInBand"
@@ -49,6 +47,7 @@
     "csstype": "^2.6.10",
     "enzyme": "^3.11.0",
     "enzyme-adapter-react-16": "^1.15.2",
+    "express": "^4.17.1",
     "file-loader": "^6.0.0",
     "html-loader": "^1.1.0",
     "html-webpack-plugin": "^4.3.0",
@@ -100,5 +99,6 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  }
+  },
+  "devDependencies": {}
 }
