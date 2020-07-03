@@ -13,7 +13,6 @@ const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const OptimizeCssAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
-const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
 
 module.exports = merge(common, {
   mode: "production",
@@ -54,7 +53,7 @@ module.exports = merge(common, {
       // JS minimizer
       new TerserPlugin({
         cache: true,
-        parallel: true,
+        parallel: false,
         sourceMap: true,
         extractComments: "all",
       }),
@@ -65,34 +64,33 @@ module.exports = merge(common, {
       // Auto-generates and minimizes the `index.html` based on the existing template
       // with the up-to-date JS bundle import
       new HtmlWebpackPlugin({
-        template: path.resolve(__dirname, "src/index.html"),
+        templateContent: ({ htmlWebpackPlugin }) => `
+          <html lang="en">
+            <head>
+              <title>Delivery Portal</title>
+              ${htmlWebpackPlugin.tags.headTags}
+            </head>
+            <body>
+              <noscript>You need to enable JavaScript to run this app.</noscript>
+              <div id="root"></div>
+              ${htmlWebpackPlugin.tags.bodyTags}
+            </body>
+          </html>
+        `,
         minify: {
           removeAttributeQuotes: true,
           collapseWhitespace: true,
           removeComments: true,
         },
-        filename: "index.[contenthash].html", // Plugin-specific `contenthash`
+        filename: "index.html", // Plugin-specific `contenthash`
         meta: {
           viewport: "width=device-width, initial-scale=1",
           charset: "utf-8",
         },
-        favicon: "./src/assets/images/favicon.ico",
+        favicon: path.resolve(__dirname, "src/assets/images/favicon.ico"),
         cache: true,
+        inject: "body",
         scriptLoading: "defer",
-      }),
-
-      new UglifyJsPlugin({
-        test: /\.js(\?.*)?$/i,
-        cache: true,
-        parallel: true,
-        sourceMap: true,
-        uglifyOptions: {
-          warnings: "verbose",
-          ie8: false,
-        },
-
-        // Exclude uglification for the `vendor` chunk
-        chunkFilter: chunk => chunk.name !== "vendor",
       }),
     ],
   },

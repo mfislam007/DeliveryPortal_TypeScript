@@ -1,8 +1,14 @@
 trigger:
   - master
+  - dev
+  - test
+  - feature/heroku-deployment-integration
 
 pool:
   vmImage: "ubuntu-latest"
+
+variables:
+  - group: Deployment
 
 steps:
   - task: NodeTool@0
@@ -28,5 +34,12 @@ steps:
       summaryFileLocation: "$(System.DefaultWorkingDirectory)/.jest/coverage/clover.xml"
       reportDirectory: "$(System.DefaultWorkingDirectory)/.jest/coverage/lcov-report"
 
-  - script: yarn build
-    displayName: "yarn build"
+  - script: yarn bp
+    displayName: "Build Test"
+
+  - script: |
+      sudo apt-get update -qy
+      sudo apt-get install -y ruby-dev
+      sudo gem install dpl
+      sudo dpl --provider=heroku --app=$(HEROKU_APP_NAME_DELIVERY_PORTAL_FRONTEND_REACT) --api-key=$(HEROKU_API_KEY) --skip_cleanup
+    displayName: "Deployment"
