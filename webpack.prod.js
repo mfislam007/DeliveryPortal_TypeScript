@@ -53,7 +53,7 @@ module.exports = merge(common, {
       // JS minimizer
       new TerserPlugin({
         cache: true,
-        parallel: true,
+        parallel: false,
         sourceMap: true,
         extractComments: "all",
       }),
