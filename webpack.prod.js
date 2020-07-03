@@ -13,7 +13,6 @@ const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const OptimizeCssAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
-const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
 
 module.exports = merge(common, {
   mode: "production",
@@ -92,20 +91,6 @@ module.exports = merge(common, {
         cache: true,
         inject: "body",
         scriptLoading: "defer",
-      }),
-
-      new UglifyJsPlugin({
-        test: /\.js(\?.*)?$/i,
-        cache: true,
-        parallel: true,
-        sourceMap: true,
-        uglifyOptions: {
-          warnings: "verbose",
-          ie8: false,
-        },
-
-        // Exclude uglification for the `vendor` chunk
-        chunkFilter: chunk => chunk.name !== "vendor",
       }),
     ],
   },

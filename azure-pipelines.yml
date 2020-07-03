@@ -34,8 +34,8 @@ steps:
       summaryFileLocation: "$(System.DefaultWorkingDirectory)/.jest/coverage/clover.xml"
       reportDirectory: "$(System.DefaultWorkingDirectory)/.jest/coverage/lcov-report"
 
-  - script: yarn build
-    displayName: "yarn build"
+  - script: yarn b
+    displayName: "Build Test"
 
   - task: Bash@3
     inputs:
