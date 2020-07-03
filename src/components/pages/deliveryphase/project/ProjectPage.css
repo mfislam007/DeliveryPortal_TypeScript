@@ -20,11 +20,26 @@
 
 .project-phase-page-main {
   display: flex;
-  flex-flow: column nowrap;
+  flex-flow: row nowrap;
   align-items: center;
 }
 
+.project-phase-first-section {
+  display: flex;
+  justify-content: start;
+  height: 100%;
+  width: 250px;
+  align-items: flex-start;
+  padding: 0 1rem;
+  position: fixed;
+  top: 75px;
+}
+
 .project-phase-second-section {
+  margin-left: 282px;
+}
+
+.project-phase-card-section {
   display: flex;
   flex-flow: row wrap;
   justify-self: center;

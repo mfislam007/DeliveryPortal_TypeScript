@@ -34,13 +34,15 @@ const ProjectPhases: React.FC = (): JSX.Element => {
 
   return (
     <div className="project-phase-page-main">
-      <div className="first-section">
+      <div className="project-phase-first-section">
         <TimeLine />
+      </div>
+      <div className="project-phase-second-section">
         <ImageList
           dataSource={"https://ekseli.dev.inrupt.net/private/dp2/cases/ProjectBCD/Pictures/"}
         />
+        <div className="project-phase-card-section">{PhaseCards}</div>
       </div>
-      <div className="project-phase-second-section">{PhaseCards}</div>
     </div>
   );
 };
