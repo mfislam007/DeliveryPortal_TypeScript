@@ -5,8 +5,12 @@
   "private": true,
   "main": "index.tsx",
   "scripts": {
-    "dev": "webpack --config webpack.dev.js && node index.js",
-    "prod": "webpack --config webpack.prod.js && node index.js",
+    "start": "node index.js",
+    "s": "node index.js",
+    "build dev": "webpack --config webpack.dev.js",
+    "bd": "webpack --config webpack.dev.js",
+    "build prod": "webpack --config webpack.prod.js && node index.js",
+    "bp": "webpack --config webpack.prod.js && node index.js",
     "eject": "react-scripts eject",
     "test": "jest --cache --passWithNoTests --runInBand",
     "t": "jest --cache --passWithNoTests --runInBand"

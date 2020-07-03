@@ -34,7 +34,7 @@ steps:
       summaryFileLocation: "$(System.DefaultWorkingDirectory)/.jest/coverage/clover.xml"
       reportDirectory: "$(System.DefaultWorkingDirectory)/.jest/coverage/lcov-report"
 
-  - script: yarn b
+  - script: yarn bp
     displayName: "Build Test"
 
   - script: |
