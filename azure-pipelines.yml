@@ -37,14 +37,11 @@ steps:
   - script: yarn b
     displayName: "Build Test"
 
-  - task: Bash@3
-    inputs:
-      failOnStderr: true
-      targetType: "inline"
-      script: |
-        apt-get update -qy
-        apt-get install -y ruby-dev
-        gem install dpl
-        if [ $(Build.SourceBranch) =~ .*(heroku-deployment-integration|dev|test|master) ]; then
-        dpl --provider=heroku --app=$(HEROKU_APP_NAME_DELIVERY_PORTAL_FRONTEND_REACT) --api-key=$(HEROKU_API_KEY) --skip_cleanup
-        fi
+  - script: |
+      sudo apt-get update -qy
+      sudo apt-get install -y ruby-dev
+      sudo gem install dpl
+      if [ $(Build.SourceBranch) =~ .*(heroku-deployment-integration|dev|test|master) ]; then
+      sudo dpl --provider=heroku --app=$(HEROKU_APP_NAME_DELIVERY_PORTAL_FRONTEND_REACT) --api-key=$(HEROKU_API_KEY) --skip_cleanup
+      fi
+    displayName: "Deployment"
