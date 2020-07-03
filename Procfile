@@ -1,1 +1,2 @@
-web: yarn bp
+web: increase-memory-limit
+web: yarn bd
