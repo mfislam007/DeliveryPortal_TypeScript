@@ -7,11 +7,16 @@ const AddProject: React.FC = (): JSX.Element => {
   const [projectName, setProjectName] = useState("");
 
   useEffect(() => {
-    setProjectName(localStorage.getItem("projectName"));
+    setProjectName(JSON.parse(localStorage.getItem("projectName")));
+    if (!localStorage.getItem("projectName")) {
+      setProjectName("projectName");
+    } else {
+      setProjectName("");
+    }
   }, []);
 
   useEffect(() => {
-    localStorage.setItem("projectName", projectName);
+    localStorage.setItem("projectName", JSON.stringify(projectName));
   }, [projectName]);
 
   const onRequestOpen = () => {
@@ -28,9 +33,10 @@ const AddProject: React.FC = (): JSX.Element => {
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     alert("project name created: " + projectName);
     event.preventDefault();
+    setProjectName("");
   };
 
-  const enabled = projectName.length > 3;
+  const isEnabled = projectName.length > 3;
 
   return (
     <div className="maincontent">
@@ -38,17 +44,17 @@ const AddProject: React.FC = (): JSX.Element => {
       <Modal isOpen={modalIsOpen}>
         <form onSubmit={handleSubmit}>
           <div className="content">
-            <h2>Create Delivery Portal</h2>
+            <h2 text-align="center">Add Delivery Portal</h2>
 
             <label>Project Name:</label>
             <input value={projectName} type="text" onChange={onChange} />
           </div>
           <div>
-            <button className="button" onClick={onRequesClose}>
-              Cancel
+            <button className="button1" onClick={onRequesClose}>
+              ⨯ Cancel
             </button>
-            <button className="button" type="submit" disabled={!enabled}>
-              Create
+            <button className="button2" type="submit" disabled={!isEnabled}>
+              + Create
             </button>
           </div>
         </form>
