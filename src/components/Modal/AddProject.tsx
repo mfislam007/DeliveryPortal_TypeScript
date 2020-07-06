@@ -25,7 +25,7 @@ const AddProject: React.FC = (): JSX.Element => {
     setProjectName(event.currentTarget.value);
   };
 
-  const handleSubmit = (event: React.FormEvent<HTMLInputElement>) => {
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     alert("project name created: " + projectName);
     event.preventDefault();
   };
@@ -41,7 +41,7 @@ const AddProject: React.FC = (): JSX.Element => {
             <h2>Create Delivery Portal</h2>
 
             <label>Project Name:</label>
-            <input value={projectName} type="text" minLength="3" onChange={onChange} />
+            <input value={projectName} type="text" onChange={onChange} />
           </div>
           <div>
             <button className="button" onClick={onRequesClose}>
