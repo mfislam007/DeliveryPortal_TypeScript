@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import Modal from "react-modal";
+import React, { useState, useEffect } from "./react";
+import Modal from "./react-modal";
 import "./AddProject.css";
 import ProjectContainer from "./ProjectContainer";
 

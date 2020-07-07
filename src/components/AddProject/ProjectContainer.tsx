@@ -1,4 +1,4 @@
-import React from "react";
+import React from "./react";
 interface Props {
   project: { name: string; customer: string; ProjectManager: string };
 }
