@@ -8,7 +8,7 @@ stages:
   - stage: "Main"
     displayName: "Main stage"
     variables:
-      - VMImageName: "ubuntu-latest" # Shared between all jobs
+      VMImageName: "ubuntu-latest" # Used in all jobs
     jobs:
       #################################################
       # Programmer defined tests and result reporting #
