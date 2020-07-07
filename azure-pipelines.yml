@@ -4,11 +4,12 @@ trigger:
   - test
   - feature/pipeline-modularization
 
+variables:
+  VMImageName: "ubuntu-latest"
+
 stages:
   - stage: Testing
     displayName: "Testing stage"
-    variables:
-      VMImageName: "ubuntu-latest" # Used in all jobs
     jobs:
       #################################################
       # Programmer defined tests and result reporting #
@@ -77,8 +78,7 @@ stages:
     displayName: "Deployment stage"
     dependsOn: Testing
     variables:
-      VMImageName: "ubuntu-latest" # Used in all jobs
-      environmentName: "Project-X"
+      - group: Deployment
     jobs:
       ########################
       # Deployment to Heroku #
@@ -86,11 +86,9 @@ stages:
       - deployment: Deployment_to_Heroku
         displayName: "Deployment to Heroku"
         condition: succeeded()
-        environment: $(environmentName)
+        environment: "Project-X"
         pool:
           vmImage: $(VMImageName)
-        variables:
-          - group: Deployment
         timeoutInMinutes: 6
         strategy:
           runOnce:
