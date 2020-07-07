@@ -2,7 +2,7 @@ trigger:
   - master
   - dev
   - test
-  - feature/heroku-deployment-integration
+  - fix/routing-bug-352
 
 pool:
   vmImage: "ubuntu-latest"
