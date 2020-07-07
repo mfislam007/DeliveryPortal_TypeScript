@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { fetchDocument } from "tripledoc";
 import "regenerator-runtime/runtime";
 
-import "./DeliveryPhaseIndex.css";
+import "./DeliveryPhaseIndex.scss";
 import ProjectCard from "../../list-items/ProjectCard";
 
 const DeliveryPhaseIndex: React.FC = (): JSX.Element => {

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { fetchDocument } from "tripledoc";
 
-import "../DeliveryPhaseIndex.css";
+import "../DeliveryPhaseIndex.scss";
 import { PhaseColors } from "../../../../constants/WidgetColors";
 import ImageList from "../../../../containers/ImageList/ImageList";
 import TimeLine from "../../../time-line/TimeLine";
