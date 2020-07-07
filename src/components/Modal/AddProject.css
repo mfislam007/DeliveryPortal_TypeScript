@@ -34,7 +34,7 @@
   font-size: 15px;
   margin: 10px 10px;
   cursor: pointer;
-  border: 1px solid white;
+  border: 1px solid gray;
 }
 .button2 {
   background-color: white;
@@ -48,7 +48,7 @@
   margin: 10px 20px;
   cursor: pointer;
   border: blanchedalmond;
-  border: 1px solid white;
+  border: 1px solid gray;
 }
 .maincontent {
   text-align: center;

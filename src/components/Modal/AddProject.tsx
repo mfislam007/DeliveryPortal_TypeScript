@@ -1,37 +1,44 @@
 import React, { useState, useEffect } from "react";
 import Modal from "react-modal";
 import "./AddProject.css";
+import ProjectContainer from "./ProjectContainer";
 
 const AddProject: React.FC = (): JSX.Element => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
-  const [projectName, setProjectName] = useState("");
-  const [customerName, setCustomerName] = useState("");
+  const [test, setTest] = useState("");
+  const [project, setProject] = useState({ name: "", customer: "" });
 
-  useEffect(() => {
+  {
+    /* useEffect(() => {
     setProjectName(JSON.parse(localStorage.getItem("projectName")));
     if (!localStorage.getItem("projectName")) {
       setProjectName("projectName");
     } else {
       setProjectName("");
     }
-  }, []);
+  }, []);*/
+  }
 
-  useEffect(() => {
+  {
+    /*useEffect(() => {
     setCustomerName(JSON.parse(localStorage.getItem("customerName")));
     if (!localStorage.getItem("customerName")) {
       setCustomerName("customerName");
     } else {
       setCustomerName("");
     }
-  }, []);
+  }, []);*/
+  }
 
   useEffect(() => {
-    localStorage.setItem("projectName", JSON.stringify(projectName));
-  }, [projectName]);
+    localStorage.setItem("project", JSON.stringify(project));
+  }, [project]);
 
-  useEffect(() => {
+  {
+    /*useEffect(() => {
     localStorage.setItem("customerName", JSON.stringify(customerName));
-  }, [customerName]);
+  }, [customerName]);*/
+  }
 
   const onRequestOpen = () => {
     setModalIsOpen(true);
@@ -41,21 +48,31 @@ const AddProject: React.FC = (): JSX.Element => {
   };
 
   const onChangeProject = (event: React.FormEvent<HTMLInputElement>) => {
-    setProjectName(event.currentTarget.value);
+    if (event.currentTarget.id == "name") {
+      const newProject = { ...project };
+      newProject.name = event.currentTarget.value;
+      setProject(newProject);
+    }
+    if (event.currentTarget.id == "customer") {
+      const newProject = { ...project };
+      newProject.customer = event.currentTarget.value;
+      setProject(newProject);
+    }
   };
 
-  const onChangeCustomer = (event: React.FormEvent<HTMLInputElement>) => {
+  {
+    /* const onChangeCustomer = (event: React.FormEvent<HTMLInputElement>) => {
     setCustomerName(event.currentTarget.value);
-  };
+  };*/
+  }
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    alert("project name: " + projectName + " and " + "customer name: " + customerName);
-    setProjectName("");
-    setCustomerName("");
+    alert("project name: " + project.name + " and " + "customer name: " + project.customer);
+    setTest(JSON.stringify(<ProjectContainer project={project} />));
     event.preventDefault();
   };
 
-  const isEnabled = projectName.length > 3 && customerName.length > 3;
+  const isEnabled = project.name.length > 3 && project.customer.length > 3;
 
   return (
     <div className="maincontent">
@@ -66,11 +83,11 @@ const AddProject: React.FC = (): JSX.Element => {
             <h2 text-align="center">Add Delivery Portal</h2>
 
             <label>Project Name:</label>
-            <input value={projectName} type="text" onChange={onChangeProject} />
+            <input id="name" value={project.name} type="text" onChange={onChangeProject} />
           </div>
           <div className="customercontent">
             <label>Customer Name:</label>
-            <input value={customerName} type="text" onChange={onChangeCustomer} />
+            <input id="customer" value={project.customer} type="text" onChange={onChangeProject} />
           </div>
           <div>
             <button className="button1" onClick={onRequesClose}>
@@ -81,6 +98,7 @@ const AddProject: React.FC = (): JSX.Element => {
             </button>
           </div>
         </form>
+        {test}
       </Modal>
     </div>
   );
