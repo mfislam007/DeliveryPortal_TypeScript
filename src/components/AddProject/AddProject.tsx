@@ -8,37 +8,9 @@ const AddProject: React.FC = (): JSX.Element => {
   const [test, setTest] = useState("");
   const [project, setProject] = useState({ name: "", customer: "", ProjectManager: "" });
 
-  {
-    /* useEffect(() => {
-    setProjectName(JSON.parse(localStorage.getItem("projectName")));
-    if (!localStorage.getItem("projectName")) {
-      setProjectName("projectName");
-    } else {
-      setProjectName("");
-    }
-  }, []);*/
-  }
-
-  {
-    /*useEffect(() => {
-    setCustomerName(JSON.parse(localStorage.getItem("customerName")));
-    if (!localStorage.getItem("customerName")) {
-      setCustomerName("customerName");
-    } else {
-      setCustomerName("");
-    }
-  }, []);*/
-  }
-
   useEffect(() => {
     localStorage.setItem("project", JSON.stringify(project));
   }, [project]);
-
-  {
-    /*useEffect(() => {
-    localStorage.setItem("customerName", JSON.stringify(customerName));
-  }, [customerName]);*/
-  }
 
   const onRequestOpen = () => {
     setModalIsOpen(true);
@@ -64,12 +36,6 @@ const AddProject: React.FC = (): JSX.Element => {
       setProject(newProject);
     }
   };
-
-  {
-    /* const onChangeCustomer = (event: React.FormEvent<HTMLInputElement>) => {
-    setCustomerName(event.currentTarget.value);
-  };*/
-  }
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     alert(
