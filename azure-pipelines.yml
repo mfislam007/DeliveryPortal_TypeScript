@@ -5,7 +5,7 @@ trigger:
   - feature/pipeline-modularization
 
 stages:
-  - stage: "Main"
+  - stage: Main
     displayName: "Main stage"
     variables:
       VMImageName: "ubuntu-latest" # Used in all jobs
