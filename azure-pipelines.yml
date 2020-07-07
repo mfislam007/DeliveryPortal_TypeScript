@@ -2,6 +2,7 @@ trigger:
   - master
   - dev
   - test
+  - fix/routing-bug-352
 
 pool:
   vmImage: "ubuntu-latest"
