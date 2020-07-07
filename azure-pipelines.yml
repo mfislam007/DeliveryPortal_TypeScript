@@ -5,18 +5,16 @@ trigger:
   - feature/pipeline-modularization
 
 stages:
-  - stage: Main
+  - stage: Testing
     jobs:
-      - job: Main
+      #########################################################################
+      # Programmer defined tests, result reporting, and production build test #
+      #########################################################################
+      - job: Testing
         pool:
           vmImage: "ubuntu-latest"
-        variables:
-          - group: Deployment
-        timeoutInMinutes: 10
+        timeoutInMinutes: 3
         steps:
-          ################
-          # Installation #
-          ################
           - task: NodeTool@0
             inputs:
               versionSpec: "12.x"
@@ -26,9 +24,6 @@ stages:
             displayName: "Install dependencies"
             condition: succeeded()
 
-          #################################################
-          # Programmer defined tests and result reporting #
-          #################################################
           - script: yarn test
             displayName: "Run tests"
             condition: succeeded()
@@ -48,23 +43,30 @@ stages:
               summaryFileLocation: "$(System.DefaultWorkingDirectory)/.jest/coverage/clover.xml"
               reportDirectory: "$(System.DefaultWorkingDirectory)/.jest/coverage/lcov-report"
 
-          #########################
-          # Production build test #
-          #########################
           - script: yarn build-production
             displayName: "Build production"
             condition: succeeded()
 
-          ########################
-          # Deployment to Heroku #
-          ########################
+  - stage: Deployment
+    dependsOn: Testing
+    condition: succeeded()
+    variables:
+      - group: Deployment
+    jobs:
+      ################################
+      # Deployment to Heroku via Git #
+      ################################
+      - job: Deployment_to_Heroku
+        displayName: "Deployment to Heroku"
+        pool:
+          vmImage: $(VMImageName)
+        variables:
+          - group: Deployment
+        timeoutInMinutes: 6
+        steps:
           - script: |
-              sudo apt-get update -qy
-              sudo apt-get install -y ruby-dev
-              sudo gem install dpl
-            displayName: "Install dpl"
-            condition: succeeded()
-
-          - script: sudo dpl --provider=heroku --app=$(HEROKU_APP_NAME_DELIVERY_PORTAL_FRONTEND_REACT) --api-key=$(HEROKU_API_KEY) --skip_cleanup
+              git checkout $(Build.SourceBranchName)
+              git remote add heroku https://heroku:$(HEROKU_AUTHORIZATION_TOKEN)@git.heroku.com/$(HEROKU_APP_NAME_DELIVERY_PORTAL_FRONTEND_REACT).git
+              git push heroku $(Build.SourceBranchName)
             displayName: "Deploy to Heroku"
             condition: succeeded()
