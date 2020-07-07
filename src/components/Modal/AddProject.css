@@ -1,7 +1,7 @@
 .projectcontent label {
   padding: 10px 5px;
   margin-right: 50px;
-  font-size: 18px;
+  font-size: 20px;
 }
 .projectcontent input {
   padding: 5px 5px;
@@ -12,7 +12,7 @@
 .customercontent label {
   padding: 10px 5px;
   margin-right: 50px;
-  font-size: 18px;
+  font-size: 20px;
   margin-top: 15px;
 }
 .customercontent input {
@@ -20,13 +20,13 @@
   width: 15rem;
   font-size: 18px;
   margin-top: 15px;
-  margin-left: -18px;
+  margin-left: -21px;
 }
 
 .managercontent label {
   padding: 10px 5px;
   margin-right: 50px;
-  font-size: 18px;
+  font-size: 20px;
   margin-top: 15px;
 }
 .managercontent input {
@@ -34,7 +34,7 @@
   width: 15rem;
   font-size: 18px;
   margin-top: 15px;
-  margin-left: -20px;
+  margin-left: -23px;
 }
 
 .button1 {

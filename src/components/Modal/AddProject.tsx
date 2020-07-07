@@ -73,14 +73,15 @@ const AddProject: React.FC = (): JSX.Element => {
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     alert(
-      "project name: " +
+      " Project name: " +
         project.name +
         " and " +
-        "customer name: " +
+        " Customer name: " +
         project.customer +
         " and " +
-        "ProjectManager name: " +
-        project.ProjectManager
+        " ProjectManager name: " +
+        project.ProjectManager +
+        " are created "
     );
     setTest(JSON.stringify(<ProjectContainer project={project} />));
     event.preventDefault();
