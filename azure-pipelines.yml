@@ -36,7 +36,7 @@ steps:
       reportDirectory: "$(System.DefaultWorkingDirectory)/.jest/coverage/lcov-report"
     displayName: "Publish code coverage results"
 
-  - script: yarn build production
+  - script: yarn build-production
     displayName: "Test if production build succeeds"
 
   - script: |
