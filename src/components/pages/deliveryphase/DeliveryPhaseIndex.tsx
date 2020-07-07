@@ -1,34 +1,22 @@
-import React, { useState, useEffect } from "react";
-import { fetchDocument } from "tripledoc";
-import "regenerator-runtime/runtime";
+import React from "react";
 
 import "./DeliveryPhaseIndex.css";
 import ProjectCard from "../../list-items/ProjectCard";
 
-const DeliveryPhaseIndex: React.FC = (): JSX.Element => {
-  const [names, setNames] = useState([] as string[]);
+interface Props {
+  projectNames: string[];
+}
 
+const DeliveryPhaseIndex: React.FC<Props> = props => {
   /**
-   * Read project names from POD
+   * loop here names array and create ProjectCards for them
    */
-  useEffect(() => {
-    (async (webId: string) => {
-      const profileDoc = await fetchDocument(webId);
-      const profile = profileDoc.getSubject(webId);
-      console.log(JSON.stringify(profile.getAllStrings("http://schema.org/Project#name")));
-      setNames(profile.getAllStrings("http://schema.org/Project#name"));
-    })(`https://ekseli.dev.inrupt.net/private/dp2/cases/cases.ttl`);
-  }, []);
-
-  /**
-   * loop here names array and create ProejctCards for them
-   */
-  const nameCards = names.map((name, index) => (
+  const nameCards = props.projectNames.map((name, index) => (
     <ProjectCard
       key={index}
       id={name}
       title={name}
-      owner="Esko Petäjä"
+      owner="John Smith"
       tags={[
         { id: 1, name: "SGe" },
         { id: 2, name: "Car Industry" },
