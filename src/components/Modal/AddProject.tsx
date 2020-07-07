@@ -6,7 +6,7 @@ import ProjectContainer from "./ProjectContainer";
 const AddProject: React.FC = (): JSX.Element => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [test, setTest] = useState("");
-  const [project, setProject] = useState({ name: "", customer: "" });
+  const [project, setProject] = useState({ name: "", customer: "", ProjectManager: "" });
 
   {
     /* useEffect(() => {
@@ -58,6 +58,11 @@ const AddProject: React.FC = (): JSX.Element => {
       newProject.customer = event.currentTarget.value;
       setProject(newProject);
     }
+    if (event.currentTarget.id == "ProjectManager") {
+      const newProject = { ...project };
+      newProject.ProjectManager = event.currentTarget.value;
+      setProject(newProject);
+    }
   };
 
   {
@@ -67,12 +72,22 @@ const AddProject: React.FC = (): JSX.Element => {
   }
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    alert("project name: " + project.name + " and " + "customer name: " + project.customer);
+    alert(
+      "project name: " +
+        project.name +
+        " and " +
+        "customer name: " +
+        project.customer +
+        " and " +
+        "ProjectManager name: " +
+        project.ProjectManager
+    );
     setTest(JSON.stringify(<ProjectContainer project={project} />));
     event.preventDefault();
   };
 
-  const isEnabled = project.name.length > 3 && project.customer.length > 3;
+  const isEnabled =
+    project.name.length > 3 && project.customer.length > 3 && project.ProjectManager.length > 3;
 
   return (
     <div className="maincontent">
@@ -88,6 +103,15 @@ const AddProject: React.FC = (): JSX.Element => {
           <div className="customercontent">
             <label>Customer Name:</label>
             <input id="customer" value={project.customer} type="text" onChange={onChangeProject} />
+          </div>
+          <div className="managercontent">
+            <label>Project Manager:</label>
+            <input
+              id="ProjectManager"
+              value={project.ProjectManager}
+              type="text"
+              onChange={onChangeProject}
+            />
           </div>
           <div>
             <button className="button1" onClick={onRequesClose}>

@@ -23,6 +23,20 @@
   margin-left: -18px;
 }
 
+.managercontent label {
+  padding: 10px 5px;
+  margin-right: 50px;
+  font-size: 18px;
+  margin-top: 15px;
+}
+.managercontent input {
+  padding: 5px 5px;
+  width: 15rem;
+  font-size: 18px;
+  margin-top: 15px;
+  margin-left: -20px;
+}
+
 .button1 {
   background-color: white;
   border: none;
@@ -56,6 +70,9 @@
 
 @media (max-width: 700px) {
   .customercontent input {
+    margin-left: 0px;
+  }
+  .managercontent input {
     margin-left: 0px;
   }
 }
