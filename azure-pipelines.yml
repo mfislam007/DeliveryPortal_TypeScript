@@ -9,7 +9,6 @@ variables:
 
 stages:
   - stage: Testing
-    displayName: "Testing stage"
     jobs:
       #################################################
       # Programmer defined tests and result reporting #
@@ -74,9 +73,31 @@ stages:
             displayName: "Run production build"
             condition: succeeded()
 
-  - stage: Deployment
-    displayName: "Deployment stage"
+  - stage: Packaging
     dependsOn: Testing
+    jobs:
+      ####################################
+      # Preparing the deployment package #
+      ####################################
+      - job: Prepare_artifact
+        displayName: "Prepare artifact"
+        pool:
+          vmImage: $(vmImageName)
+        steps:
+          - task: ArchiveFiles@2
+            displayName: "Archive files"
+            inputs:
+              rootFolderOrFile: "$(System.DefaultWorkingDirectory)"
+              includeRootFolder: false
+              archiveType: zip
+              archiveFile: $(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip
+              replaceExistingArchive: true
+
+          - upload: $(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip
+            artifact: WebApp
+
+  - stage: Deployment
+    dependsOn: Packaging
     variables:
       - group: Deployment
     jobs:
