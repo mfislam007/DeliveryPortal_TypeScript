@@ -2,7 +2,6 @@ trigger:
   - master
   - dev
   - test
-  - fix/routing-bug-352
 
 pool:
   vmImage: "ubuntu-latest"
@@ -17,29 +16,31 @@ steps:
     displayName: "Install Node.js"
 
   - script: yarn install
-    displayName: "yarn install"
+    displayName: "Install dependencies"
 
   - script: yarn test
-    displayName: "yarn test"
+    displayName: "Run tests"
 
   - task: PublishTestResults@2
     condition: succeededOrFailed()
     inputs:
       testRunner: JUnit
       testResultsFiles: "./.jest/coverage/test-results.xml"
+    displayName: "Publish test results"
 
   - task: PublishCodeCoverageResults@1
     inputs:
       codeCoverageTool: Cobertura
       summaryFileLocation: "$(System.DefaultWorkingDirectory)/.jest/coverage/clover.xml"
       reportDirectory: "$(System.DefaultWorkingDirectory)/.jest/coverage/lcov-report"
+    displayName: "Publish code coverage results"
 
-  - script: yarn bp
-    displayName: "Build Test"
+  - script: yarn build production
+    displayName: "Test if production build succeeds"
 
   - script: |
       sudo apt-get update -qy
       sudo apt-get install -y ruby-dev
       sudo gem install dpl
       sudo dpl --provider=heroku --app=$(HEROKU_APP_NAME_DELIVERY_PORTAL_FRONTEND_REACT) --api-key=$(HEROKU_API_KEY) --skip_cleanup
-    displayName: "Deployment"
+    displayName: "Deploy"
