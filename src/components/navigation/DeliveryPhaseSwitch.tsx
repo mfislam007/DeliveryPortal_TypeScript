@@ -1,7 +1,7 @@
 import React from "react";
 import { Switch, Route, useRouteMatch } from "react-router-dom";
 
-import DeliveryPhaseIndex from "../pages/deliveryphase/DeliveryPhaseIndex";
+import GetProjects from "../../containers/GetProjects/GetProjects";
 import ProjectPageSwitch from "./ProjectPageSwitch";
 
 const DeliveryPhaseSwitch: React.FC = (): JSX.Element => {
@@ -9,7 +9,7 @@ const DeliveryPhaseSwitch: React.FC = (): JSX.Element => {
 
   return (
     <Switch>
-      <Route exact path={path + "/"} component={DeliveryPhaseIndex}></Route>
+      <Route exact path={path + "/"} component={GetProjects}></Route>
       <Route path={path + "/projectid=:id"} component={ProjectPageSwitch}></Route>
     </Switch>
   );
