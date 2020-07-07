@@ -3,44 +3,91 @@ trigger:
   - dev
   - test
 
-pool:
-  vmImage: "ubuntu-latest"
+stages:
+  - stage: "Main"
+    displayName: "Main stage"
+    variables:
+      - VMImageName: "ubuntu-latest" # Shared between all jobs
+    jobs:
+      #################################################
+      # Programmer defined tests and result reporting #
+      #################################################
+      - job: "Jest and Enzyme tests"
+        displayName: "Jest and Enzyme tests"
+        pool:
+          vmImage: $(VMImageName)
+        timeoutInMinutes: 3
+        steps:
+          - task: NodeTool@0
+            inputs:
+              versionSpec: "12.x"
+            displayName: "Install Node.js"
 
-variables:
-  - group: Deployment
+          - script: yarn install
+            displayName: "Install dependencies"
+            condition: succeeded()
 
-steps:
-  - task: NodeTool@0
-    inputs:
-      versionSpec: "12.x"
-    displayName: "Install Node.js"
+          - script: yarn test
+            displayName: "Run tests"
+            condition: succeeded()
 
-  - script: yarn install
-    displayName: "Install dependencies"
+          - task: PublishTestResults@2
+            displayName: "Publish test results"
+            condition: succeededOrFailed()
+            inputs:
+              testRunner: JUnit
+              testResultsFiles: "./.jest/coverage/test-results.xml"
 
-  - script: yarn test
-    displayName: "Run tests"
+          - task: PublishCodeCoverageResults@1
+            displayName: "Publish code coverage results"
+            condition: succeededOrFailed()
+            inputs:
+              codeCoverageTool: Cobertura
+              summaryFileLocation: "$(System.DefaultWorkingDirectory)/.jest/coverage/clover.xml"
+              reportDirectory: "$(System.DefaultWorkingDirectory)/.jest/coverage/lcov-report"
 
-  - task: PublishTestResults@2
-    condition: succeededOrFailed()
-    inputs:
-      testRunner: JUnit
-      testResultsFiles: "./.jest/coverage/test-results.xml"
-    displayName: "Publish test results"
+      #############################################
+      # Testing whether production build succeeds #
+      #############################################
+      - job: "Production build test"
+        displayName: "Production build test"
+        pool:
+          vmImage: $(VMImageName)
+        timeoutInMinutes: 3
+        steps:
+          - task: NodeTool@0
+            inputs:
+              versionSpec: "12.x"
+            displayName: "Install Node.js"
 
-  - task: PublishCodeCoverageResults@1
-    inputs:
-      codeCoverageTool: Cobertura
-      summaryFileLocation: "$(System.DefaultWorkingDirectory)/.jest/coverage/clover.xml"
-      reportDirectory: "$(System.DefaultWorkingDirectory)/.jest/coverage/lcov-report"
-    displayName: "Publish code coverage results"
+          - script: yarn install
+            displayName: "Install dependencies"
+            condition: succeeded()
 
-  - script: yarn build-production
-    displayName: "Test if production build succeeds"
+          - script: yarn build-production
+            displayName: "Run production build"
+            condition: succeeded()
 
-  - script: |
-      sudo apt-get update -qy
-      sudo apt-get install -y ruby-dev
-      sudo gem install dpl
-      sudo dpl --provider=heroku --app=$(HEROKU_APP_NAME_DELIVERY_PORTAL_FRONTEND_REACT) --api-key=$(HEROKU_API_KEY) --skip_cleanup
-    displayName: "Deploy"
+      ##############
+      # Deployment #
+      ##############
+      - deployment: "Deployment to Heroku"
+        dependsOn: # Awaits both test jobs to finish
+          - "Jest and Enzyme tests"
+          - "Production build test"
+        condition: succeeded()
+        pool:
+          name: $(VMImageName)
+        variables:
+          - group: Deployment
+        timeoutInMinutes: 6
+        strategy:
+          runOnce:
+            deploy:
+              steps:
+                - script: |
+                    sudo apt-get update -qy
+                    sudo apt-get install -y ruby-dev
+                    sudo gem install dpl
+                    sudo dpl --provider=heroku --app=$(HEROKU_APP_NAME_DELIVERY_PORTAL_FRONTEND_REACT) --api-key=$(HEROKU_API_KEY) --skip_cleanup
+                  displayName: "Deploy to Heroku"
