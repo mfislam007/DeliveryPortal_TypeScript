@@ -11,8 +11,8 @@ stages:
   - stage: Testing
     jobs:
       # Programmer defined tests,result reporting and production build test
-      - job: Programmatic_tests
-        displayName: "Jest and Enzyme tests"
+      - job: Running_tests_and_build
+        displayName: "Running tests and build"
         pool:
           vmImage: $(VMImageName)
         timeoutInMinutes: 3
@@ -46,7 +46,7 @@ stages:
               reportDirectory: "$(System.DefaultWorkingDirectory)/.jest/coverage/lcov-report"
 
           - script: yarn build-production
-            displayName: "Run production build"
+            displayName: "Build production"
             condition: succeeded()
 
   - stage: Deployment
