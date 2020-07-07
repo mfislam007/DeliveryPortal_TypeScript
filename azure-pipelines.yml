@@ -9,11 +9,12 @@ stages:
     displayName: "Main stage"
     variables:
       VMImageName: "ubuntu-latest" # Used in all jobs
+      environmentName: "Project-X"
     jobs:
       #################################################
       # Programmer defined tests and result reporting #
       #################################################
-      - job: "Jest and Enzyme tests"
+      - job: Programmatic_tests
         displayName: "Jest and Enzyme tests"
         pool:
           vmImage: $(VMImageName)
@@ -50,7 +51,7 @@ stages:
       #############################################
       # Testing whether production build succeeds #
       #############################################
-      - job: "Production build test"
+      - job: Production_build_test
         displayName: "Production build test"
         pool:
           vmImage: $(VMImageName)
@@ -74,9 +75,10 @@ stages:
       ##############
       - deployment: "Deployment to Heroku"
         dependsOn: # Awaits both test jobs to finish
-          - "Jest and Enzyme tests"
-          - "Production build test"
+          - Programmatic_tests
+          - Production_build_test
         condition: succeeded()
+        environment: $(environmentName)
         pool:
           vmImage: $(VMImageName)
         variables:
