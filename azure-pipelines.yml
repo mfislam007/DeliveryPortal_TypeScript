@@ -68,7 +68,7 @@ stages:
         timeoutInMinutes: 6
         steps:
           - script: |
-              git fetch https://git.heroku.com/delivery-portal-frontend-react.git
+              git fetch https://git.heroku.com/$(HEROKU_APP_NAME_DELIVERY_PORTAL_FRONTEND_REACT).git
               git checkout $(Build.SourceBranchName)
               git remote add heroku https://heroku:$(HEROKU_AUTHORIZATION_TOKEN)@git.heroku.com/$(HEROKU_APP_NAME_DELIVERY_PORTAL_FRONTEND_REACT).git
               git push heroku $(Build.SourceBranchName)
