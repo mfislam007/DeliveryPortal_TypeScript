@@ -4,6 +4,9 @@ trigger:
   - test
   - feature/pipeline-modularization
 
+variables:
+  VMImageName: "ubuntu-latest"
+
 stages:
   - stage: Testing
     jobs:
@@ -12,7 +15,7 @@ stages:
       #########################################################################
       - job: Testing
         pool:
-          vmImage: "ubuntu-latest"
+          vmImage: $(VMImageName)
         timeoutInMinutes: 3
         steps:
           - task: NodeTool@0
