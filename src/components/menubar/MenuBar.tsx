@@ -4,7 +4,8 @@ import Toolbar from "./Toolbar/Toolbar";
 import SideDrawer from "./SideDrawer/SideDrawer";
 
 const MenuBar: React.FC = (): JSX.Element => {
-  const [sideDrawerOpen, setSideDrawerOpen] = useState(false);
+  const [sideDrawerOpen, setSideDrawerOpen] = useState(false as boolean);
+  const [menuBackDropOpen, setmenuBackDropOpen] = useState(false as boolean);
 
   const drawerToggleClickHandler = () => {
     setSideDrawerOpen(!sideDrawerOpen);
@@ -12,7 +13,7 @@ const MenuBar: React.FC = (): JSX.Element => {
 
   return (
     <div>
-      <Toolbar onClick={drawerToggleClickHandler} />
+      <Toolbar onClick={drawerToggleClickHandler} show={menuBackDropOpen} />
       <SideDrawer show={sideDrawerOpen} />
     </div>
   );

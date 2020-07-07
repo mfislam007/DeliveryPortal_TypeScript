@@ -35,10 +35,10 @@
 .dropdown li:hover,
 .dropdown li:active {
   cursor: pointer;
-  background-color: orangered;
+  background-color: gray;
 }
 
 .dropdown a:hover,
 .dropdown a:active {
-  color: orangered;
+  color: gray;
 }
