@@ -5,11 +5,10 @@ trigger:
   - feature/pipeline-modularization
 
 stages:
-  - stage: Main
-    displayName: "Main stage"
+  - stage: Testing
+    displayName: "Testing stage"
     variables:
       VMImageName: "ubuntu-latest" # Used in all jobs
-      environmentName: "Project-X"
     jobs:
       #################################################
       # Programmer defined tests and result reporting #
@@ -19,6 +18,8 @@ stages:
         pool:
           vmImage: $(VMImageName)
         timeoutInMinutes: 3
+        strategy:
+          parallel: 1
         steps:
           - task: NodeTool@0
             inputs:
@@ -56,6 +57,8 @@ stages:
         pool:
           vmImage: $(VMImageName)
         timeoutInMinutes: 3
+        strategy:
+          parallel: 1
         steps:
           - task: NodeTool@0
             inputs:
@@ -70,13 +73,18 @@ stages:
             displayName: "Run production build"
             condition: succeeded()
 
-      ##############
-      # Deployment #
-      ##############
+  - stage: Deployment
+    displayName: "Deployment stage"
+    dependsOn: Testing
+    variables:
+      VMImageName: "ubuntu-latest" # Used in all jobs
+      environmentName: "Project-X"
+    jobs:
+      ########################
+      # Deployment to Heroku #
+      ########################
       - deployment: Deployment_to_Heroku
-        dependsOn: # Awaits both test jobs to finish
-          - Programmatic_tests
-          - Production_build_test
+        displayName: "Deployment to Heroku"
         condition: succeeded()
         environment: $(environmentName)
         pool:
