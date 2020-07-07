@@ -77,7 +77,7 @@ stages:
           - "Production build test"
         condition: succeeded()
         pool:
-          name: $(VMImageName)
+          vmImage: $(VMImageName)
         variables:
           - group: Deployment
         timeoutInMinutes: 6
