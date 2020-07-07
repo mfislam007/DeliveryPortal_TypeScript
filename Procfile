@@ -1,3 +1,2 @@
 web: increase-memory-limit
-web: yarn bd
-web: yarn s
+web: yarn build production start
