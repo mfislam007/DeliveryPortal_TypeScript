@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 
-import "./PhaseWidgetCard.css";
+import "./PhaseWidgetCard.scss";
 import optionsIcon from "../../assets/images/commonicons/options-icon.png";
 
 type Props = {

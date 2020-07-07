@@ -1,7 +1,7 @@
 import React from "react";
 import Timeline from "react-time-line";
 
-import "./TimeLine.css";
+import "./TimeLine.scss";
 
 const TimeLine: React.FC = (): JSX.Element => {
   const events = [

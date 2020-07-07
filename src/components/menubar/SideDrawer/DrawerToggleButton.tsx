@@ -1,6 +1,6 @@
 import React from "react";
 
-import "./DrawerToggleButton.css";
+import "./DrawerToggleButton.scss";
 type Props = {
   onClick: React.MouseEventHandler<HTMLElement>;
 };
