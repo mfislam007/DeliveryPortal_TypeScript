@@ -73,7 +73,7 @@ stages:
       ##############
       # Deployment #
       ##############
-      - deployment: "Deployment to Heroku"
+      - deployment: Deployment_to_Heroku
         dependsOn: # Awaits both test jobs to finish
           - Programmatic_tests
           - Production_build_test
