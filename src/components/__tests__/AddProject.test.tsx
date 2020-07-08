@@ -2,23 +2,23 @@ import React from "react";
 import AddProject from "../AddProject/AddProject";
 import { configure, shallow } from "enzyme";
 import Adapter from "enzyme-adapter-react-16";
-import { stringify } from "querystring";
-
-type project = {
-  "https://schema.org/Project#name": string;
-  "https://schema.org/Organization#name": string;
-  "https://schema.org/Person#name": String;
-};
 
 configure({ adapter: new Adapter() });
 describe('Testing AddProject component")', () => {
   it("Modal exists", () => {
-    let project = {
-      "https://schema.org/Project#name": "Test project",
-      "https://schema.org/Organization#name": "Test customer",
-      "https://schema.org/Person#name": "Test person",
-    };
     const wrapper = shallow(<AddProject />);
     expect(wrapper.find("Modal")).toHaveLength(1);
+  });
+  it("Modal has one form", () => {
+    const wrapper = shallow(<AddProject />);
+    expect(wrapper.find("form")).toHaveLength(1);
+  });
+  it("Modal has three input fields", () => {
+    const wrapper = shallow(<AddProject />);
+    expect(wrapper.find("input")).toHaveLength(3);
+  });
+  it("Modal has two buttons, this is failing because we need to remove trigger model button finally", () => {
+    const wrapper = shallow(<AddProject />);
+    expect(wrapper.find("button")).toHaveLength(2);
   });
 });
