@@ -6,6 +6,7 @@ import Button from "@material-ui/core/Button";
 import DateFnsUtils from "@date-io/date-fns";
 import { MuiPickersUtilsProvider, KeyboardDatePicker } from "@material-ui/pickers";
 import Modal from "react-modal";
+import { stringify } from "querystring";
 interface Props {
   phase: string;
   start: Date;
@@ -42,14 +43,22 @@ const EditPhase: React.FC<Props> = (props): JSX.Element => {
   const classes = useStyles();
 
   function save() {
+    alert("Hello");
     //TODO:call container like
     //<PhaseContainer https://schema.org/identifier={props.phase} https://schema.org/startTime={startDate} https://schema.org/endTime={endDate}/>
     //now save to localStorage
-    let phase = {};
+    let phase = {
+      "https://schema.org/identifier": string,
+      "https://schema.org/startTime": Date,
+      "https://schema.org/endTime": Date,
+    };
+    alert("yep");
     phase["https://schema.org/identifier"] = props.phase;
     phase["https://schema.org/startTime"] = startDate;
     phase["https://schema.org/endTime"] = endDate;
+    alert(JSON.stringify(phase));
     localStorage.setItem("phase", JSON.stringify(phase));
+    alert("Saved to localStorage with name phase");
   }
 
   return (
