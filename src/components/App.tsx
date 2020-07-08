@@ -9,7 +9,6 @@ const App: React.FC = (): JSX.Element => {
   return (
     <div className="App">
       <Router>
-        <MenuBar />
         <HomePageSwitch />
       </Router>
     </div>
