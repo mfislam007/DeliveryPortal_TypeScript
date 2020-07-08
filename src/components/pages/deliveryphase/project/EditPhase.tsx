@@ -1,15 +1,10 @@
 import React from "react";
 import "date-fns";
 import TextField from "@material-ui/core/TextField";
-import Grid from "@material-ui/core/Grid";
 import { makeStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
 import DateFnsUtils from "@date-io/date-fns";
-import {
-  MuiPickersUtilsProvider,
-  KeyboardTimePicker,
-  KeyboardDatePicker,
-} from "@material-ui/pickers";
+import { MuiPickersUtilsProvider, KeyboardDatePicker } from "@material-ui/pickers";
 import Modal from "react-modal";
 interface Props {
   phase: string;
@@ -46,9 +41,20 @@ const EditPhase: React.FC<Props> = (props): JSX.Element => {
 
   const classes = useStyles();
 
+  function save() {
+    //TODO:call container like
+    //<PhaseContainer https://schema.org/identifier={props.phase} https://schema.org/startTime={startDate} https://schema.org/endTime={endDate}/>
+    //now save to localStorage
+    let phase = {};
+    phase["https://schema.org/identifier"] = props.phase;
+    phase["https://schema.org/startTime"] = startDate;
+    phase["https://schema.org/endTime"] = endDate;
+    localStorage.setItem("phase", JSON.stringify(phase));
+  }
+
   return (
     <div>
-      <h1>Edit phases</h1>
+      <h3>Edit phase</h3>
       <Modal isOpen={true}>
         <div className={classes.root}>
           <TextField id="phase" value={parsePhaseName(props.phase)} label="Phase" />
@@ -84,7 +90,7 @@ const EditPhase: React.FC<Props> = (props): JSX.Element => {
             <Button variant="contained" color="primary">
               Cancel
             </Button>
-            <Button variant="contained" color="primary">
+            <Button variant="contained" color="primary" onClick={save}>
               Save
             </Button>
           </div>
