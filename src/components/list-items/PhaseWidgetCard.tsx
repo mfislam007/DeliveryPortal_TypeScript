@@ -58,7 +58,7 @@ const PhaseWidgetCard: React.FC<Props> = (props): JSX.Element => {
       </div>
       <div className="PhaseWidgetCardMisc">
         <div className="PhaseWidgetCardOptions">
-          <img src={optionsIcon} alt="options"></img>
+          <img onClick={alert("Hello")} src={optionsIcon} alt="options"></img>
         </div>
         {showCompletion()}
       </div>
