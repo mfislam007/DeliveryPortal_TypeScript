@@ -14,9 +14,9 @@ stages:
           - group: Deployment
         timeoutInMinutes: 10
         steps:
-          ################
-          # Installation #
-          ################
+          ##########################
+          # Installation for tests #
+          ##########################
           - task: NodeTool@0
             inputs:
               versionSpec: "12.x"
@@ -55,9 +55,9 @@ stages:
             displayName: "Build production"
             condition: succeeded()
 
-          ########################
-          # Deployment to Heroku #
-          ########################
+          ###############################
+          # Installation for deployment #
+          ###############################
           - script: |
               sudo apt-get update -qy
               sudo apt-get install -y ruby-dev
@@ -65,6 +65,9 @@ stages:
             displayName: "Install dpl"
             condition: succeeded()
 
+          ########################
+          # Deployment to Heroku #
+          ########################
           - script: sudo dpl --provider=heroku --app=$(HEROKU_APP_NAME_DELIVERY_PORTAL_FRONTEND_REACT) --api-key=$(HEROKU_API_KEY) --skip_cleanup
             displayName: "Deploy to Heroku"
             condition: succeeded()
