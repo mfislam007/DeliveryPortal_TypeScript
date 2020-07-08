@@ -22,17 +22,17 @@ const EditPhase: React.FC<Props> = (props): JSX.Element => {
   const [startDate, setStartDate] = React.useState(props.start);
   const [endDate, setEndDate] = React.useState(props.end);
 
-  const handleDateChange = date => {
+  function handleDateChange(date: Date) {
     setStartDate(date);
-  };
+  }
 
-  const parsePhaseName = url => {
+  function parsePhaseName(url: string) {
     return url.substring(url.lastIndexOf("/") + 1, url.length);
-  };
+  }
 
-  const handleEndDateChange = date => {
+  function handleEndDateChange(date: Date) {
     setEndDate(date);
-  };
+  }
 
   return (
     <div>
