@@ -2,6 +2,8 @@ import React from "react";
 import "date-fns";
 import TextField from "@material-ui/core/TextField";
 import Grid from "@material-ui/core/Grid";
+import { makeStyles } from "@material-ui/core/styles";
+import Button from "@material-ui/core/Button";
 import DateFnsUtils from "@date-io/date-fns";
 import {
   MuiPickersUtilsProvider,
@@ -34,14 +36,22 @@ const EditPhase: React.FC<Props> = (props): JSX.Element => {
     setEndDate(date);
   }
 
+  const useStyles = makeStyles(theme => ({
+    root: {
+      "& > *": {
+        margin: theme.spacing(1),
+      },
+    },
+  }));
+
+  const classes = useStyles();
+
   return (
     <div>
       <h1>Edit phases</h1>
       <Modal isOpen={true}>
-        <Grid container justify="space-around">
-          <p>
-            <TextField id="phase" value={parsePhaseName(props.phase)} label="Phase" />
-          </p>
+        <div className={classes.root}>
+          <TextField id="phase" value={parsePhaseName(props.phase)} label="Phase" />
           <MuiPickersUtilsProvider utils={DateFnsUtils}>
             <KeyboardDatePicker
               disableToolbar
@@ -70,7 +80,15 @@ const EditPhase: React.FC<Props> = (props): JSX.Element => {
               }}
             />
           </MuiPickersUtilsProvider>
-        </Grid>
+          <div className={classes.root}>
+            <Button variant="contained" color="primary">
+              Cancel
+            </Button>
+            <Button variant="contained" color="primary">
+              Save
+            </Button>
+          </div>
+        </div>
       </Modal>
     </div>
   );
