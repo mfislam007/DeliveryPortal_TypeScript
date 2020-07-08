@@ -19,13 +19,13 @@ const StreamElement: React.FC<Props> = (props): JSX.Element => {
         <StreamEvent userImage={portrait1} eventString="Share something with ABB..." />
         <StreamEvent
           userImage={portrait1}
-          eventString="Esko updated checklist."
+          eventString="John Smith updated checklist."
           date="25.5.2020 15:35"
           optionalImage={optionalImg1}
         />
         <StreamEvent
           userImage={portrait2}
-          eventString="Timo added a new task."
+          eventString="Jane Doe added a new task."
           date="22.5.2020 15:15"
           optionalImage={optionalImg2}
         />
