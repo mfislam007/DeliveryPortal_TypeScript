@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 
 import arrow from "../../assets/images/imagebrowser/arrow.png";
-import "./ImageBrowser.css";
+import "./ImageBrowser.scss";
 
 interface Props {
   imageURLs: string[];

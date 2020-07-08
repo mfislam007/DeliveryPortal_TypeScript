@@ -1,7 +1,7 @@
 import React from "react";
 import { Route, useHistory } from "react-router";
 
-import "./Toolbar.css";
+import "./Toolbar.scss";
 import DrawerToggleButton from "../SideDrawer/DrawerToggleButton";
 import ToolbarProjectPageLinks from "./ToolbarProjectPageLinks";
 import profile from "../../../assets/images/menubar/profile.png";

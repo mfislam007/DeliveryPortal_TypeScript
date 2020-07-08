@@ -1,7 +1,7 @@
 import React from "react";
 import { useParams } from "react-router-dom";
 
-import "./ProjectPage.css";
+import "./ProjectPage.scss";
 import UserInfoBar from "../../../list-items/UserInfoBar";
 
 const ProjectUsers: React.FC = (): JSX.Element => {
@@ -11,13 +11,13 @@ const ProjectUsers: React.FC = (): JSX.Element => {
       <div className="usersElement">
         <h2>Admins</h2>
         <hr />
-        <UserInfoBar name="Esko Petäjä" company="Prima Power" />
-        <UserInfoBar name="Timo Kankaanpää" company="Ekseli" />
-        <UserInfoBar name="Admin Name" company="ABB" />
+        <UserInfoBar name="John Smith" company="Company A" />
+        <UserInfoBar name="Jane Doe" company="Company B" />
+        <UserInfoBar name="Adam Lambert" company="Company C" />
         <h2>Users</h2>
         <hr />
-        <UserInfoBar name="First Last" company="ABB" />
-        <UserInfoBar name="First Last" company="ABB" />
+        <UserInfoBar name="Jane Smith" company="ABB" />
+        <UserInfoBar name="John Doe" company="ABB" />
       </div>
     </div>
   );

@@ -1,6 +1,6 @@
 import React from "react";
 
-import "./DeliveryPhaseIndex.css";
+import "./DeliveryPhaseIndex.scss";
 import ProjectCard from "../../list-items/ProjectCard";
 
 interface Props {

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 
 import moreOptions from "../../assets/images/commonicons/options-icon.png";
 import defaultPortrait from "../../assets/images/commonicons/portrait-icon.png";
-import "./UserInfoBar.css";
+import "./UserInfoBar.scss";
 
 type Props = {
   name: string;
