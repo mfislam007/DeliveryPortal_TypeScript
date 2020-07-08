@@ -2,7 +2,6 @@ trigger:
   - master
   - dev
   - test
-  - feature/pipeline-modularization
 
 stages:
   - stage: Main
