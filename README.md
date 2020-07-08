@@ -233,6 +233,7 @@ export default ComponentName;
 3. Utilizes client cache
 4. Optimized for initial loads
 
-## Known bugs
+## Known issues
 
 1. `vendor` packages are minified in `production` mode
+2. Azure pipeline timeouts in 10 minutes, in order to exceed the timeout, increase `timeoutInMinutes` property value in the `Main` job
