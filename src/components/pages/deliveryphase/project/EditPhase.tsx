@@ -48,7 +48,7 @@ const EditPhase: React.FC<Props> = (props): JSX.Element => {
     //<PhaseContainer https://schema.org/identifier={props.phase} https://schema.org/startTime={startDate} https://schema.org/endTime={endDate}/>
     //now save to localStorage
     let phase = {
-      "https://schema.org/identifier": string,
+      "https://schema.org/identifier": String,
       "https://schema.org/startTime": Date,
       "https://schema.org/endTime": Date,
     };
