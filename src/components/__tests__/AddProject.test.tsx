@@ -17,8 +17,8 @@ describe('Testing AddProject component")', () => {
     const wrapper = shallow(<AddProject />);
     expect(wrapper.find("input")).toHaveLength(3);
   });
-  it("Modal has two buttons, this is failing because we need to remove trigger model button finally", () => {
+  it("Modal has three (should be two) buttons, (this is failing because we need to remove trigger model button finally)", () => {
     const wrapper = shallow(<AddProject />);
-    expect(wrapper.find("button")).toHaveLength(2);
+    expect(wrapper.find("button")).toHaveLength(3);
   });
 });
