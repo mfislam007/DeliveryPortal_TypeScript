@@ -1,5 +1,10 @@
+@import "../../../styles/variables.scss";
+
 .deliveryPortalProjectsContainer {
   display: flex;
   flex-flow: row wrap;
-  margin-top: 75px;
+  margin-top: 70px;
+  height: 100%;
+  width: 100%;
+  background-color: $background-color;
 }

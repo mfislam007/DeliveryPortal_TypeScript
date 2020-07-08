@@ -2,6 +2,7 @@ import React from "react";
 
 import "./DeliveryPhaseIndex.scss";
 import ProjectCard from "../../list-items/ProjectCard";
+import MenuBar from "../../menubar/MenuBar";
 
 interface Props {
   projectNames: string[];
@@ -26,7 +27,7 @@ const DeliveryPhaseIndex: React.FC<Props> = props => {
 
   return (
     <div>
-      <h3>Delivery Portals</h3>
+      <MenuBar />
       <div className="deliveryPortalProjectsContainer">{nameCards}</div>
     </div>
   );
