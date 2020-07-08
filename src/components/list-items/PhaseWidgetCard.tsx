@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 
 import "./PhaseWidgetCard.css";
 import optionsIcon from "../../assets/images/commonicons/options-icon.png";
+import EditPhase from "../pages/deliveryphase/project/EditPhase";
 
 type Props = {
   label: string;
@@ -47,8 +48,17 @@ const PhaseWidgetCard: React.FC<Props> = (props): JSX.Element => {
     }
   };
 
+  const handleOnClick = (): void => {
+    <EditPhase
+      phase="https://ekseli.dev.inrupt.net/private/dp2/cases/ProjectABC/Installation/"
+      start={new Date(2020, 7, 1)}
+      end={new Date(2020, 8, 1)}
+    />;
+    alert("Hello " + label);
+  };
+
   return (
-    <div className="PhaseWidgetCardMain">
+    <div className="PhaseWidgetCardMain" onClick={handleOnClick}>
       <div className="PhaseWidgetCardTextContainer">
         <div>
           <div className="PhaseWidgetCardTextLabel">{label}</div>
@@ -58,7 +68,7 @@ const PhaseWidgetCard: React.FC<Props> = (props): JSX.Element => {
       </div>
       <div className="PhaseWidgetCardMisc">
         <div className="PhaseWidgetCardOptions">
-          <img onClick={alert("Hello")} src={optionsIcon} alt="options"></img>
+          <img src={optionsIcon} alt="options"></img>
         </div>
         {showCompletion()}
       </div>

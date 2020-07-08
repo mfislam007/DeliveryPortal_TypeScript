@@ -17,6 +17,7 @@ interface Props {
  */
 
 const EditPhase: React.FC<Props> = (props): JSX.Element => {
+  console.log("here");
   const [startDate, setStartDate] = React.useState(props.start);
   const [endDate, setEndDate] = React.useState(props.end);
 
