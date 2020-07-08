@@ -31,11 +31,7 @@ const EditPhase: React.FC<Props> = (props): JSX.Element => {
   };
 
   const handleEndDateChange = date => {
-    if (endDate.getMilliseconds() > startDate.getMilliseconds()) {
-      setEndDate(date);
-    } else {
-      alert("Start date cannot be later than end date");
-    }
+    setEndDate(date);
   };
 
   return (
