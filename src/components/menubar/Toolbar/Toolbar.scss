@@ -61,15 +61,16 @@
 
 .toolbar-navigation-items-2 ul {
   list-style: none;
-  margin: 0;
-  padding: 0;
   display: flex;
   width: 80px;
   height: 20px;
+  margin-right: 30px;
 }
 
 .toolbar-navigation-items-2 li {
   padding: 0 0.5rem;
+  width: 20px;
+  height: 20px;
 }
 
 .toolbar-navigation-items-2 a {
@@ -112,23 +113,6 @@
   padding: 6px 0;
 }
 
-.profile-image {
-  left: 1863px;
-  width: 24px;
-  height: 25px;
-  border-radius: 16px;
-  opacity: 1;
-}
-
-.home-icon {
-  cursor: pointer;
-  left: 1758px;
-  width: 20px;
-  height: 20px;
-  border-radius: 16px;
-  opacity: 1;
-}
-
 .button {
   top: 60px;
   width: 120px;
@@ -138,18 +122,6 @@
   margin-left: 20px;
   border-color: black;
   background: white;
-}
-
-.plus-icon {
-  border-radius: 100%;
-  background: none;
-  border: none;
-  top: 23px;
-  left: 1804px;
-  width: 20px;
-  height: 20px;
-  /* UI Properties */
-  opacity: 1;
 }
 
 @media (max-width: 768px) {
@@ -171,10 +143,5 @@
   .toolbar-navigation-items {
     display: flex;
     margin-top: 35px;
-  }
-  .toolbar-navigation-items-2 {
-    display: flex;
-    margin-top: 20px;
-    margin-right: 30px;
   }
 }
