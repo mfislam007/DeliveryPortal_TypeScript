@@ -43,17 +43,17 @@ const Toolbar: React.FC<Props> = (props): JSX.Element => {
                   history.push("");
                 }}
               >
-                <HomeIcon fontSize="medium" />
+                <HomeIcon fontSize="default" />
               </IconButton>
             </li>
             <li>
               <IconButton color="inherit">
-                <AddIcon fontSize="medium" />
+                <AddIcon fontSize="default" />
               </IconButton>
             </li>
             <li>
               <IconButton color="inherit">
-                <PersonIcon fontSize="medium" />
+                <PersonIcon fontSize="default" />
               </IconButton>
             </li>
           </ul>
