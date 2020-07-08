@@ -43,7 +43,7 @@ const EditPhase: React.FC<Props> = (props): JSX.Element => {
   const classes = useStyles();
 
   function save() {
-    let phase = {};
+    let phase: any = {};
     phase["https://schema.org/identifier"] = props.phase;
     phase["https://schema.org/startTime"] = startDate;
     phase["https://schema.org/endTime"] = endDate;
