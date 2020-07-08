@@ -6,30 +6,29 @@ import Button from "@material-ui/core/Button";
 import DateFnsUtils from "@date-io/date-fns";
 import { MuiPickersUtilsProvider, KeyboardDatePicker } from "@material-ui/pickers";
 import Modal from "react-modal";
-import { stringify } from "querystring";
 interface Props {
   phase: string;
   start: Date;
   end: Date;
 }
-/**This modal component is used to adjust phase start and end time
- * @See https://github.com/mui-org/material-ui-pickers/issues/1440
+/**This modal component is used to adjust phase start and end time and finally to save the changed to the POD where the phase data locates.
+ * @See https://github.com/mui-org/material-ui-pickers/issues/1440 for date-fns iise, needed to use older version of @date-io/date-fns in package.json
  */
 
 const EditPhase: React.FC<Props> = (props): JSX.Element => {
   const [startDate, setStartDate] = React.useState(props.start);
   const [endDate, setEndDate] = React.useState(props.end);
 
-  function handleDateChange(date: Date) {
+  function handleDateChange(date: Date): void {
     setStartDate(date);
   }
 
-  function parsePhaseName(url: string) {
-    return url.substring(url.lastIndexOf("/") + 1, url.length);
+  function handleEndDateChange(date: Date): void {
+    setEndDate(date);
   }
 
-  function handleEndDateChange(date: Date) {
-    setEndDate(date);
+  function parsePhaseName(url: string): string {
+    return url.substring(url.lastIndexOf("/") + 1, url.length);
   }
 
   const useStyles = makeStyles(theme => ({
@@ -42,7 +41,10 @@ const EditPhase: React.FC<Props> = (props): JSX.Element => {
 
   const classes = useStyles();
 
-  function save() {
+  /** Will save phase dates to POD, at the moment uses localStorage
+   * TODO: Update later to use POD for data storage.
+   */
+  function save(): void {
     let phase: any = {};
     phase["https://schema.org/identifier"] = props.phase;
     phase["https://schema.org/startTime"] = startDate;
