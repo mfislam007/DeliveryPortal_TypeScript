@@ -53,7 +53,7 @@ const EditPhase: React.FC<Props> = (props): JSX.Element => {
       "https://schema.org/endTime": Date,
     };
     alert("yep");
-    phase["https://schema.org/identifier"] = props.phase;
+    phase["https://schema.org/identifier"] = new String(props.phase);
     phase["https://schema.org/startTime"] = startDate;
     phase["https://schema.org/endTime"] = endDate;
     alert(JSON.stringify(phase));
