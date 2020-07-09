@@ -5,21 +5,21 @@ import "./App.scss";
 import HomePageSwitch from "./navigation/HomePageSwitch";
 import MenuBar from "./menubar/MenuBar";
 import EditPhase from "./pages/deliveryphase/project/EditPhase";
-import PhaseContainerStub from "./pages/deliveryphase/project/PhaseContainerStub";
 
 const App: React.FC = (): JSX.Element => {
   return (
     <div className="App">
-      <PhaseContainerStub
-        identifier="https://ekseli.dev.inrupt.net/private/dp2/cases/ProjectABC/Installation"
-        startTime={new Date(2021, 7, 1, 9, 0, 0)}
-        endTime={new Date(2021, 8, 15, 13, 0)}
+      <EditPhase
+        phase="https://ekseli.dev.inrupt.net/private/dp2/cases/ProjectABC/Preinstallation"
+        start={new Date(2021, 7, 1, 9, 0, 0)}
+        end={new Date(2021, 8, 15, 13, 0)}
+        open={true}
       />
-      ;
+      {/*       
       <Router>
         <MenuBar />
         <HomePageSwitch />
-      </Router>
+      </Router>*/}
     </div>
   );
 };

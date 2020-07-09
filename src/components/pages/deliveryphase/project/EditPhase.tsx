@@ -36,16 +36,6 @@ const EditPhase: React.FC<Props> = (props): JSX.Element => {
     return url.substring(url.lastIndexOf("/") + 1, url.length);
   }
 
-  const useStyles = makeStyles(theme => ({
-    root: {
-      "& > *": {
-        margin: theme.spacing(1),
-      },
-    },
-  }));
-
-  const classes = useStyles();
-
   /** Will save phase dates to POD, at the moment uses localStorage
    * TODO: Update later to use POD for data storage.
    */
@@ -88,7 +78,7 @@ const EditPhase: React.FC<Props> = (props): JSX.Element => {
         aria-labelledby="simple-modal-title"
         aria-describedby="simple-modal-description"
       >
-        <div className={classes.root}>
+        <div>
           <TextField id="phase" value={parsePhaseName(props.phase)} label="Phase" />
           <MuiPickersUtilsProvider utils={DateFnsUtils}>
             <KeyboardDatePicker
@@ -118,7 +108,7 @@ const EditPhase: React.FC<Props> = (props): JSX.Element => {
               }}
             />
           </MuiPickersUtilsProvider>
-          <div className={classes.root}>
+          <div>
             <Button variant="contained" color="primary">
               Cancel
             </Button>
