@@ -2,6 +2,7 @@ trigger:
   - master
   - dev
   - test
+  - feature/tab-auto-launch-and-hot-reloading-374
 
 stages:
   - stage: Main
