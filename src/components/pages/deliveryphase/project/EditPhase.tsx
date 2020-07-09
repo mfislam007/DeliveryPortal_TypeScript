@@ -5,7 +5,9 @@ import Button from "@material-ui/core/Button";
 import DateFnsUtils from "@date-io/date-fns";
 import { MuiPickersUtilsProvider, KeyboardDatePicker } from "@material-ui/pickers";
 import Modal from "@material-ui/core/Modal";
-import { updatePhaseDates } from "./PhaseController";
+import { updatePhaseDates } from "../../../../controllers/ProjectController/PhaseController";
+import { getPhaseDate } from "../../../../controllers/ProjectController/PhaseController";
+
 interface Props {
   phase: string;
   start: Date;
@@ -22,6 +24,21 @@ const EditPhase: React.FC<Props> = (props): JSX.Element => {
   const [endDate, setEndDate] = React.useState(props.end);
   const [open, setOpen] = React.useState(props.open);
 
+  /**Before editing the dates, fetching the dates from POD to make sure using latest values */
+  React.useEffect(() => {
+    getPhaseDate(
+      "https://ekseli.dev.inrupt.net/private/dp2/cases/ProjectABC/Installation",
+      "https://schema.org/startTime"
+    ).then(result => {
+      setStartDate(result);
+    });
+    getPhaseDate(
+      "https://ekseli.dev.inrupt.net/private/dp2/cases/ProjectABC/Installation",
+      "https://schema.org/endTime"
+    ).then(result => {
+      setEndDate(result);
+    });
+  }, []);
   function handleDateChange(date: Date): void {
     setStartDate(date);
   }

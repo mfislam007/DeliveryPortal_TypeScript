@@ -1,18 +1,18 @@
 import React from "react";
-import { getPhaseDate } from "../controllers/ProjectController/PhaseController";
 import "./App.scss";
+import EditPhase from "./pages/deliveryphase/project/EditPhase";
 
 const App: React.FC = (): JSX.Element => {
-  const [start, setStart] = React.useState<Date>(new Date());
-  React.useEffect(() => {
-    getPhaseDate(
-      "https://ekseli.dev.inrupt.net/private/dp2/cases/ProjectABC/Installation",
-      "https://schema.org/endTime"
-    ).then(result => {
-      setStart(result);
-    });
-  }, []);
-  return <div className="App">Hello{start.toString()}</div>;
+  return (
+    <div className="App">
+      <EditPhase
+        phase="https://ekseli.dev.inrupt.net/private/dp2/cases/ProjectABC/Installation"
+        start={null}
+        end={null}
+        open={true}
+      />
+    </div>
+  );
 };
 
 export default App;
