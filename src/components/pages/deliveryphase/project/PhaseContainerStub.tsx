@@ -4,7 +4,6 @@ interface Props {
   identifier: string; //webid having the foolder path to phase to be updated
   startTime: Date;
   endTime: Date;
-  type: string;
 }
 const PhaseContainerStub: React.FC<Props> = (props): JSX.Element => {
   useEffect(() => {
@@ -14,8 +13,8 @@ const PhaseContainerStub: React.FC<Props> = (props): JSX.Element => {
   async function addPhaseDates(webId: string, start: Date, end: Date) {
     const profileDoc = await fetchDocument(webId + "/action.ttl");
     const profile = profileDoc.getSubject(webId);
-    profile.addDateTime("https://schema.org/startTime", start);
-    profile.addDateTime("https://schema.org/endTime", end);
+    profile.setDateTime("https://schema.org/startTime", start);
+    profile.setDateTime("https://schema.org/endTime", end);
     //https://vincenttunru.gitlab.io/tripledoc/docs/cheatsheet#tripledoc-3 document has error should be like:
     await profileDoc.save();
   }

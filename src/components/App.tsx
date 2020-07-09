@@ -12,8 +12,8 @@ const App: React.FC = (): JSX.Element => {
     <div className="App">
       <PhaseContainerStub
         identifier="https://ekseli.dev.inrupt.net/private/dp2/cases/ProjectABC/Installation"
-        startTime={new Date(2020, 7, 1)}
-        endTime={new Date(2020, 8, 15)}
+        startTime={new Date(2021, 7, 1, 9, 0, 0)}
+        endTime={new Date(2021, 8, 15, 13, 0)}
       />
       ;
       <Router>

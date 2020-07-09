@@ -50,8 +50,13 @@ const PhaseWidgetCard: React.FC<Props> = (props): JSX.Element => {
 
   const handleOnClick = (): void => {
     let label2 = "https://ekseli.dev.inrupt.net/private/dp2/cases/ProjectABC/" + label;
-    <EditPhase phase={label2} start={new Date(2020, 7, 1)} end={new Date(2020, 8, 1)} />;
-    alert("Hello " + label2);
+    <EditPhase
+      open={true}
+      phase={label2}
+      start={new Date(2020, 7, 1)}
+      end={new Date(2020, 8, 1)}
+    />;
+    alert("Where is the modal " + label2);
   };
 
   return (
