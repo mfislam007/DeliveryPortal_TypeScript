@@ -113,7 +113,7 @@ const EditPhase: React.FC<Props> = (props): JSX.Element => {
               variant="inline"
               format="yyyy-MM-dd"
               margin="normal"
-              id="date-picker-inline"
+              id="https://schema.org/endTime"
               label="End date"
               value={endDate}
               onChange={handleEndDateChange}
