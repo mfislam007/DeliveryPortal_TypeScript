@@ -6,6 +6,7 @@ import Button from "@material-ui/core/Button";
 import DateFnsUtils from "@date-io/date-fns";
 import { MuiPickersUtilsProvider, KeyboardDatePicker } from "@material-ui/pickers";
 import Modal from "react-modal";
+import PhaseContainerStub from "./PhaseContainerStub";
 interface Props {
   phase: string;
   start: Date;
@@ -53,6 +54,7 @@ const EditPhase: React.FC<Props> = (props): JSX.Element => {
     phase["https://schema.org/endTime"] = endDate;
     console.log(JSON.stringify(phase));
     localStorage.setItem("phase", JSON.stringify(phase));
+    <PhaseContainerStub identifier={props.phase} startTime={startDate} endTime={endDate} />;
     alert("Saved to localStorage with name phase :" + localStorage.getItem("phase"));
   }
 
@@ -68,7 +70,7 @@ const EditPhase: React.FC<Props> = (props): JSX.Element => {
               variant="inline"
               format="yyyy-MM-dd"
               margin="normal"
-              id="date-picker-inline"
+              id="https://schema.org/startTime"
               label="Start date"
               value={startDate}
               onChange={handleDateChange}
