@@ -1,6 +1,6 @@
 import React from "react";
 
-import "./DropDownButton.css";
+import "./DropDownButton.scss";
 import plusIcon from "../../../assets/images/menubar/plus-icon.png";
 
 type Props = {

@@ -1,11 +1,10 @@
 import React, { useState } from "react";
 
-import "./StreamElement.css";
+import "./StreamElement.scss";
 import portrait1 from "../../assets/images/projectstream/esko-user.png";
 import portrait2 from "../../assets/images/projectstream/timo-user.png";
 import optionalImg1 from "../../assets/images/projectstream/prima-building1.png";
 import optionalImg2 from "../../assets/images/projectstream/prima-building2.png";
-import StreamUpcoming from "./StreamUpcoming";
 import StreamEvent from "./StreamEvent";
 
 type Props = {
@@ -16,7 +15,6 @@ const StreamElement: React.FC<Props> = (props): JSX.Element => {
   const [id, setId] = useState(1 as number | string);
   return (
     <div id={id + ""} className="projectEventStreamContainer">
-      <StreamUpcoming />
       <div className="projectEventStreamMain">
         <StreamEvent userImage={portrait1} eventString="Share something with ABB..." />
         <StreamEvent

@@ -3,7 +3,7 @@ import "regenerator-runtime/runtime";
 
 import ImageBrowser from "../../components/ImageBrowser/ImageBrowser";
 
-import "./ImageList.css";
+import "./ImageList.scss";
 
 interface Props {
   dataSource: string;

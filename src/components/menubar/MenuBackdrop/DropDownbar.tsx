@@ -1,6 +1,6 @@
 import React from "react";
 
-import "./DropDownBar.css";
+import "./DropDownBar.scss";
 
 const DropDownBar: React.FC = (): JSX.Element => (
   <nav className="dropdown">

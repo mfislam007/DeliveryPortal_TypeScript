@@ -5,7 +5,7 @@ import usersIcon from "../../assets/images/project-card/users-icon.png";
 import tagsIcon from "../../assets/images/project-card/tag-icon.png";
 import filesIcon from "../../assets/images/project-card/files-icon.png";
 import phIcon from "../../assets/images/project-card/ph-icon.png";
-import "./ProjectCard.css";
+import "./ProjectCard.scss";
 
 type Props = {
   id: number | string;

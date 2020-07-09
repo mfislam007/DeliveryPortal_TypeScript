@@ -1,6 +1,6 @@
 import React from "react";
 
-import "./MenuBackdrop.css";
+import "./MenuBackdrop.scss";
 
 type Props = {
   onClick: React.MouseEventHandler<HTMLElement>;

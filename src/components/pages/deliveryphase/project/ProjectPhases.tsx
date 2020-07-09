@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 
-import "../DeliveryPhaseIndex.css";
+import "../DeliveryPhaseIndex.scss";
 import { PhaseColors } from "../../../../constants/WidgetColors";
 import ImageList from "../../../../containers/ImageList/ImageList";
 import TimeLine from "../../../time-line/TimeLine";
