@@ -51,7 +51,7 @@ stages:
           #########################
           # Production build test #
           #########################
-          - script: yarn build-production
+          - script: yarn production-build
             displayName: "Build production"
             condition: succeeded()
 
