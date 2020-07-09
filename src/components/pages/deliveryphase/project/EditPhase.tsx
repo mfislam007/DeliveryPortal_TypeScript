@@ -1,13 +1,11 @@
 import React from "react";
 import "date-fns";
 import TextField from "@material-ui/core/TextField";
-import { makeStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
 import DateFnsUtils from "@date-io/date-fns";
 import { MuiPickersUtilsProvider, KeyboardDatePicker } from "@material-ui/pickers";
 import Modal from "@material-ui/core/Modal";
-import { fetchDocument } from "tripledoc";
-import PhaseContainerStub from "./PhaseContainerStub";
+import { updatePhaseDates } from "./PhaseController";
 interface Props {
   phase: string;
   start: Date;
@@ -20,7 +18,6 @@ interface Props {
  */
 
 const EditPhase: React.FC<Props> = (props): JSX.Element => {
-  console.log("here");
   const [startDate, setStartDate] = React.useState(props.start);
   const [endDate, setEndDate] = React.useState(props.end);
   const [open, setOpen] = React.useState(props.open);
@@ -47,20 +44,8 @@ const EditPhase: React.FC<Props> = (props): JSX.Element => {
     phase["https://schema.org/endTime"] = endDate;
     console.log(JSON.stringify(phase));
     localStorage.setItem("phase", JSON.stringify(phase));
-    addPhaseDates(props.phase, startDate, endDate);
-    // <PhaseContainerStub identifier={props.phase} startTime={startDate} endTime={endDate} />;
-    alert("Saved to localStorage with name phase :" + localStorage.getItem("phase"));
+    updatePhaseDates(props.phase, startDate, endDate);
     setOpen(false);
-  }
-
-  async function addPhaseDates(webId: string, start: Date, end: Date) {
-    const profileDoc = await fetchDocument(webId + "/action.ttl");
-    const profile = profileDoc.getSubject(webId);
-    profile.addString("https://schema.org/Project#address", "Wolffintie 30");
-    profile.setDateTime("https://schema.org/startTime", start);
-    profile.setDateTime("https://schema.org/endTime", end);
-    //https://vincenttunru.gitlab.io/tripledoc/docs/cheatsheet#tripledoc-3 document has error should be like:
-    await profileDoc.save();
   }
 
   function rand() {
@@ -84,7 +69,6 @@ const EditPhase: React.FC<Props> = (props): JSX.Element => {
 
   return (
     <div>
-      <h3>Edit phase</h3>
       <Modal
         open={open}
         onClose={handleClose}
