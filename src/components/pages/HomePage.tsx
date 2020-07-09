@@ -11,21 +11,26 @@ import "./Homepage.scss";
 const HomePage: React.FC = (): JSX.Element => {
   let history = useHistory();
 
-  const handleOnClick = (event: MouseEvent<HTMLImageElement>) => {
-    const id = event.currentTarget.id;
-    history.push("/" + id);
-  };
-
   return (
     <div className="homePage">
       <Grid container direction="column" justify="center" alignItems="center">
         <Paper elevation={10}>
-          <IconButton color="primary" id="salesphase" onClick={handleOnClick}>
+          <IconButton
+            color="primary"
+            onClick={() => {
+              history.push("/salesphase");
+            }}
+          >
             <EuroIcon fontSize="large" />
           </IconButton>
         </Paper>
         <Paper elevation={10}>
-          <IconButton color="primary" id="deliveryportal" onClick={handleOnClick}>
+          <IconButton
+            color="primary"
+            onClick={() => {
+              history.push("/deliveryportal");
+            }}
+          >
             <LocalShippingIcon fontSize="large" />
           </IconButton>
         </Paper>
