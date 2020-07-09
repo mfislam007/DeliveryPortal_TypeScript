@@ -28,8 +28,8 @@ export async function removePhaseDates(webId: string, start: Date, end: Date) {
 }
 
 /** Returns the asked value for a property */
-export async function getPhaseDate(webId: string, date: string) {
+export async function getPhaseDate(webId: string, property: string) {
   const profileDoc = await fetchDocument(webId + "/action.ttl");
   const profile = profileDoc.getSubject(webId);
-  return profile.getDateTime(date);
+  return profile.getDateTime(property);
 }
