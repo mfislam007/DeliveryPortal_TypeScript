@@ -27,7 +27,6 @@ const DeliveryPhaseIndex: React.FC<Props> = props => {
 
   return (
     <div>
-      <MenuBar />
       <div className="deliveryPortalProjectsContainer">{nameCards}</div>
     </div>
   );
