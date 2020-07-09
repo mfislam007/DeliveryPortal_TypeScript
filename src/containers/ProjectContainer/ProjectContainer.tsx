@@ -12,13 +12,11 @@ interface Props {
 const ProjectContainer: React.FC<Props> = (props): JSX.Element => {
   const saveLocation = `https://ekseli.dev.inrupt.net/private/dp2/cases/${props.project["https://schema.org/Project#name"]}/project.ttl`;
 
-  /*
-  A check needs to be added to see if the saveLocation already exists
-  and give an error if it does so previous data doesn't get overwritten.
-  */
   async function addProject(saveLocation: string) {
+    // BUG (Niko) [A check needs to be added to see if the saveLocation already exists, and give an error if it does, so previous data doesn't get overwritten.]
     const newDocument = await createDocument(saveLocation);
     await newDocument.save();
+
     const profileDoc = await fetchDocument(saveLocation);
     const profile = profileDoc.getSubject(saveLocation);
     profile.addString(
