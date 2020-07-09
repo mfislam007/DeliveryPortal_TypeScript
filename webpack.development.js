@@ -3,11 +3,19 @@
  */
 
 const path = require("path");
-const common = require("./webpack.common");
 const merge = require("webpack-merge");
+const { HotModuleReplacementPlugin } = require("webpack");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 
+const common = require("./webpack.common");
+
 module.exports = merge(common, {
+  // Enable sourcemaps for debugging webpack's output.
+  // 'inline-source-map' also works with `awesome-typescript-loader`
+  devtool: "source-map",
+
+  entry: ["webpack-hot-middleware/client", path.resolve(__dirname, "src/index.tsx")],
+
   mode: "development",
 
   module: {
@@ -39,7 +47,13 @@ module.exports = merge(common, {
     filename: "[name].bundle.js",
   },
 
+  performance: {
+    hints: false,
+  },
+
   plugins: [
+    new HotModuleReplacementPlugin(),
+
     // Auto-generates the `index.html` based on the existing template
     // with the up-to-date JS bundle import
     new HtmlWebpackPlugin({
@@ -67,4 +81,6 @@ module.exports = merge(common, {
       scriptLoading: "defer",
     }),
   ],
+
+  stats: "errors-only",
 });
