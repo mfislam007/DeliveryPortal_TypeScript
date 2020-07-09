@@ -5,16 +5,22 @@
  */
 
 const path = require("path");
-const common = require("./webpack.common");
 const merge = require("webpack-merge");
-const webpack = require("webpack");
+const { ProvidePlugin } = require("webpack");
 const TerserPlugin = require("terser-webpack-plugin");
-const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const OptimizeCssAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const { CleanWebpackPlugin } = require("clean-webpack-plugin");
+
+const common = require("./webpack.common");
 
 module.exports = merge(common, {
+  entry: {
+    app: path.resolve(__dirname, "src/index.tsx"),
+    vendor: ["react", "react-dom"],
+  },
+
   mode: "production",
 
   module: {
@@ -106,7 +112,7 @@ module.exports = merge(common, {
 
     // Initializes `react` and `react-dom` in `window` object in
     // order to simulate client caching
-    new webpack.ProvidePlugin({
+    new ProvidePlugin({
       "window.React": "react",
       "window.ReactDOM": "react-dom",
     }),

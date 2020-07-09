@@ -4,30 +4,11 @@
  */
 
 const path = require("path");
-const { CheckerPlugin } = require("awesome-typescript-loader");
 const LodashModuleReplacementPlugin = require("lodash-webpack-plugin");
 
 module.exports = {
-  // Webpack data caching
   cache: {
     type: "memory",
-  },
-
-  // `webpack-dev-server` settings
-  devServer: {
-    contentBase: path.join(__dirname, "dist"),
-    compress: true,
-    port: 8080,
-    historyApiFallback: true,
-  },
-
-  // Enable sourcemaps for debugging webpack's output.
-  // 'inline-source-map' also works with `awesome-typescript-loader`
-  devtool: "source-map",
-
-  entry: {
-    app: path.resolve(__dirname, "src/index.tsx"),
-    vendor: ["react", "react-dom"],
   },
 
   module: {
@@ -84,9 +65,6 @@ module.exports = {
   },
 
   plugins: [
-    // Typescript checker
-    new CheckerPlugin(),
-
     new LodashModuleReplacementPlugin({
       collections: true,
       paths: true,
