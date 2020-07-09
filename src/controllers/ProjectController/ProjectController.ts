@@ -1,16 +1,25 @@
 import { fetchDocument, createDocument } from "tripledoc";
 
+import data from "../../../settings.json";
+
 export async function addProject(projectName: string, customerName: string, managerName: string) {
   const saveLocation = `https://ekseli.dev.inrupt.net/private/dp2/cases/${projectName}/project.ttl`;
+  const casesFile = "https://ekseli.dev.inrupt.net/private/dp2/cases/cases.ttl";
+
   // BUG (Niko) [A check needs to be added to see if the saveLocation already exists, and give an error if it does, so previous data doesn't get overwritten.]
-  const newDocument = await createDocument(saveLocation);
+  const newDocument = createDocument(saveLocation);
   await newDocument.save();
 
-  const profileDoc = await fetchDocument(saveLocation);
-  const profile = profileDoc.getSubject(saveLocation);
-  profile.addString("https://schema.org/Project#name", projectName);
-  profile.addString("https://schema.org/Organization#name", customerName);
-  profile.addString("https://schema.org/Person#name", managerName);
+  let profileDoc = await fetchDocument(saveLocation);
+  let profile = profileDoc.getSubject(saveLocation);
+  profile.addString(data.solid.write.projectName, projectName);
+  profile.addString(data.solid.write.customerName, customerName);
+  profile.addString(data.solid.write.managerName, managerName);
+  await profileDoc.save();
+
+  profileDoc = await fetchDocument(casesFile);
+  profile = profileDoc.getSubject(casesFile);
+  profile.addString(data.solid.write.projectName, projectName);
   await profileDoc.save();
 }
 
@@ -22,8 +31,8 @@ export async function updateProject(
   const saveLocation = `https://ekseli.dev.inrupt.net/private/dp2/cases/${projectName}/project.ttl`;
   const profileDoc = await fetchDocument(saveLocation);
   const profile = profileDoc.getSubject(saveLocation);
-  profile.setString("https://schema.org/Project#name", projectName);
-  profile.setString("https://schema.org/Organization#name", customerName);
-  profile.setString("https://schema.org/Person#name", managerName);
+  profile.setString(data.solid.write.projectName, projectName);
+  profile.setString(data.solid.write.customerName, customerName);
+  profile.setString(data.solid.write.managerName, managerName);
   await profileDoc.save();
 }
