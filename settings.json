@@ -1,9 +1,12 @@
 {
   "solid": {
     "write": {
-      "projectName": "https://schema.org/Project#name ",
-      "customerName": "https://schema.org/Organization#name ",
-      "managerName": "https://schema.org/Person#name "
+      "projectName": "https://schema.org/Project#name",
+      "customerName": "https://schema.org/Organization#name",
+      "managerName": "https://schema.org/Person#name"
+    },
+    "locations": {
+      "casesFile": "https://ekseli.dev.inrupt.net/private/dp2/cases/cases.ttl"
     }
   }
 }

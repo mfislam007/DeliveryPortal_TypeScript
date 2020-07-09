@@ -4,7 +4,6 @@ import data from "../../../settings.json";
 
 export async function addProject(projectName: string, customerName: string, managerName: string) {
   const saveLocation = `https://ekseli.dev.inrupt.net/private/dp2/cases/${projectName}/project.ttl`;
-  const casesFile = "https://ekseli.dev.inrupt.net/private/dp2/cases/cases.ttl";
 
   // BUG (Niko) [A check needs to be added to see if the saveLocation already exists, and give an error if it does, so previous data doesn't get overwritten.]
   const newDocument = createDocument(saveLocation);
@@ -17,8 +16,8 @@ export async function addProject(projectName: string, customerName: string, mana
   profile.addString(data.solid.write.managerName, managerName);
   await profileDoc.save();
 
-  profileDoc = await fetchDocument(casesFile);
-  profile = profileDoc.getSubject(casesFile);
+  profileDoc = await fetchDocument(data.solid.locations.casesFile);
+  profile = profileDoc.getSubject(data.solid.locations.casesFile);
   profile.addString(data.solid.write.projectName, projectName);
   await profileDoc.save();
 }
