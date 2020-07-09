@@ -10,7 +10,7 @@ const App: React.FC = (): JSX.Element => {
   return (
     <div className="App">
       <EditPhase
-        phase="https://ekseli.dev.inrupt.net/private/dp2/cases/ProjectABC/Preinstallation"
+        phase="https://ekseli.dev.inrupt.net/private/dp2/cases/ProjectABC/Installation"
         start={new Date(2021, 7, 1, 9, 0, 0)}
         end={new Date(2021, 8, 15, 13, 0)}
         open={true}

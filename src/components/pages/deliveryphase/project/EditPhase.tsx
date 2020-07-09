@@ -6,6 +6,7 @@ import Button from "@material-ui/core/Button";
 import DateFnsUtils from "@date-io/date-fns";
 import { MuiPickersUtilsProvider, KeyboardDatePicker } from "@material-ui/pickers";
 import Modal from "@material-ui/core/Modal";
+import { fetchDocument } from "tripledoc";
 import PhaseContainerStub from "./PhaseContainerStub";
 interface Props {
   phase: string;
@@ -46,8 +47,20 @@ const EditPhase: React.FC<Props> = (props): JSX.Element => {
     phase["https://schema.org/endTime"] = endDate;
     console.log(JSON.stringify(phase));
     localStorage.setItem("phase", JSON.stringify(phase));
-    <PhaseContainerStub identifier={props.phase} startTime={startDate} endTime={endDate} />;
+    addPhaseDates(props.phase, startDate, endDate);
+    // <PhaseContainerStub identifier={props.phase} startTime={startDate} endTime={endDate} />;
     alert("Saved to localStorage with name phase :" + localStorage.getItem("phase"));
+    setOpen(false);
+  }
+
+  async function addPhaseDates(webId: string, start: Date, end: Date) {
+    const profileDoc = await fetchDocument(webId + "/action.ttl");
+    const profile = profileDoc.getSubject(webId);
+    profile.addString("https://schema.org/Project#address", "Wolffintie 30");
+    profile.setDateTime("https://schema.org/startTime", start);
+    profile.setDateTime("https://schema.org/endTime", end);
+    //https://vincenttunru.gitlab.io/tripledoc/docs/cheatsheet#tripledoc-3 document has error should be like:
+    await profileDoc.save();
   }
 
   function rand() {

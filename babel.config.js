@@ -23,6 +23,7 @@ module.exports = function (api) {
         allowNamespaces: true,
       },
     ],
+    ["@babel/transform-runtime"],
     "@babel/plugin-transform-react-jsx",
   ];
 

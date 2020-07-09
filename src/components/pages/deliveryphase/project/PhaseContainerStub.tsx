@@ -13,6 +13,7 @@ const PhaseContainerStub: React.FC<Props> = (props): JSX.Element => {
   async function addPhaseDates(webId: string, start: Date, end: Date) {
     const profileDoc = await fetchDocument(webId + "/action.ttl");
     const profile = profileDoc.getSubject(webId);
+    profile.addString("https://schema.org/Project#address", "Wolffintie 30");
     profile.setDateTime("https://schema.org/startTime", start);
     profile.setDateTime("https://schema.org/endTime", end);
     //https://vincenttunru.gitlab.io/tripledoc/docs/cheatsheet#tripledoc-3 document has error should be like:
