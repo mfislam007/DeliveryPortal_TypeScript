@@ -2,7 +2,6 @@ import React from "react";
 
 import "./DeliveryPhaseIndex.scss";
 import ProjectCard from "../../list-items/ProjectCard";
-import MenuBar from "../../menubar/MenuBar";
 
 interface Props {
   projectNames: string[];
