@@ -3,6 +3,7 @@ import { fetchDocument } from "tripledoc";
 /** Updates given phase start and end dates */
 export async function updatePhaseDates(webId: string, start: Date, end: Date) {
   const profileDoc = await fetchDocument(webId + "/action.ttl");
+  console.log("PhaseCOntroller: " + webId + "/action.ttl");
   const profile = profileDoc.getSubject(webId);
   profile.setDateTime("https://schema.org/startTime", start);
   profile.setDateTime("https://schema.org/endTime", end);

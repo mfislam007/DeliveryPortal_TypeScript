@@ -15,7 +15,7 @@ interface Props {
   start: Date;
   end: Date;
   open: boolean;
-  toggle: (event: React.MouseEvent<HTMLButtonElement>) => void;
+  disable: (event: React.MouseEvent<HTMLButtonElement>) => void;
 }
 /**This modal component is used to adjust phase start and end time and finally to save the changed to the POD where the phase data locates.
  * @See https://github.com/mui-org/material-ui-pickers/issues/1440 for date-fns iise, needed to use older version of @date-io/date-fns in package.json
@@ -37,7 +37,8 @@ const EditPhase: React.FC<Props> = (props): JSX.Element => {
     getPhaseDate(phase, "https://schema.org/endTime").then(result => {
       setEndDate(result);
     });
-  }, []);
+    setOpen(props.open);
+  }, [props]);
 
   const useStyles = makeStyles(theme => ({
     paper: {
@@ -68,12 +69,16 @@ const EditPhase: React.FC<Props> = (props): JSX.Element => {
    * TODO: Update later to use POD for data storage.
    */
   function save(): void {
-    let phase: any = {};
-    phase["https://schema.org/identifier"] = props.phase;
-    phase["https://schema.org/startTime"] = startDate;
-    phase["https://schema.org/endTime"] = endDate;
-    console.log(JSON.stringify(phase));
-    localStorage.setItem("phase", JSON.stringify(phase));
+    //save to localStorage
+    let phaseCache: any = {};
+    phaseCache["https://schema.org/identifier"] = props.phase;
+    phaseCache["https://schema.org/startTime"] = startDate;
+    phaseCache["https://schema.org/endTime"] = endDate;
+    localStorage.setItem("phase", JSON.stringify(phaseCache));
+    console.log(localStorage.getItem("phase"));
+    //save to POD
+    updatePhaseDates(phase, startDate, endDate);
+    setOpen(false);
   }
 
   function rand() {
@@ -92,13 +97,14 @@ const EditPhase: React.FC<Props> = (props): JSX.Element => {
   }
 
   const handleClose = () => {
+    console.log("Modal closed");
     //setOpen(false);
   };
 
   return (
     <div>
       <Modal
-        open={props.open}
+        open={open}
         onClose={handleClose}
         aria-labelledby="simple-modal-title"
         aria-describedby="simple-modal-description"
@@ -134,9 +140,9 @@ const EditPhase: React.FC<Props> = (props): JSX.Element => {
             />
           </MuiPickersUtilsProvider>
           <div>
-            <Button variant="contained" color="primary">
+            {/* <Button variant="contained" color="primary">
               Cancel
-            </Button>
+            </Button> */}
             <Button variant="contained" color="primary" onClick={save}>
               Save
             </Button>
