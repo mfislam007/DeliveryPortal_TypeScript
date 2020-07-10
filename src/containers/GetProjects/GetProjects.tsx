@@ -6,7 +6,7 @@ import DeliveryPhaseIndex from "../../components/pages/deliveryphase/DeliveryPha
 
 const GetProjects: React.FC = (): JSX.Element => {
   const [names, setNames] = useState([] as string[]);
-  const [webID, setWebID] = useState();
+  const [webID, setWebID] = useState<String>();
   const webId = `https://timojkankaanpaa.dev.inrupt.net/private/dp/cases/cases.ttl`;
 
   React.useEffect(() => {
