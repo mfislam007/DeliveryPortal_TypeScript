@@ -1,27 +1,55 @@
 import React from "react";
 import { Route, useHistory } from "react-router";
+import { Link } from "react-router-dom";
+
 import PersonIcon from "@material-ui/icons/Person";
 import HomeIcon from "@material-ui/icons/Home";
 import AddIcon from "@material-ui/icons/Add";
 import IconButton from "@material-ui/core/IconButton";
+import MenuIcon from "@material-ui/icons/Menu";
+import ListItem from "@material-ui/core/ListItem";
+import Drawer from "@material-ui/core/Drawer";
+import ListItemIcon from "@material-ui/core/ListItem";
+import ListItemText from "@material-ui/core/ListItemText";
 
 import "./Toolbar.scss";
-import DrawerToggleButton from "../SideDrawer/DrawerToggleButton";
 import ToolbarProjectPageLinks from "./ToolbarProjectPageLinks";
 
-type Props = {
-  onClick: React.MouseEventHandler<HTMLElement>;
-  show: boolean;
-};
-
-const Toolbar: React.FC<Props> = (props): JSX.Element => {
+const Toolbar: React.FC = (): JSX.Element => {
   let history = useHistory();
+  const [state, setState] = React.useState({
+    left: false,
+  });
+
+  const toggleDrawer = (open: boolean) => (event: React.KeyboardEvent | React.MouseEvent) => {
+    setState({ ...state, left: open });
+  };
 
   return (
     <header className="toolbar">
       <nav className="toolbar-navigation">
-        <div className="toolbar-toggle-button">
-          <DrawerToggleButton onClick={props.onClick} />
+        <div>
+          <React.Fragment>
+            <IconButton aria-label="menu" color="inherit" onClick={toggleDrawer(true)}>
+              <MenuIcon fontSize="large" />
+            </IconButton>
+            <Drawer open={state["left"]} onClose={toggleDrawer(false)}>
+              <div role="presentation" onClick={toggleDrawer(false)}>
+                <ListItem button>
+                  <ListItemIcon>
+                    <Link to="/deliveryportal" className="link">
+                      <ListItemText primary="Delivery Portals" />
+                    </Link>
+                  </ListItemIcon>
+                </ListItem>
+                <ListItem button>
+                  <ListItemIcon>
+                    <ListItemText primary="Settings" />
+                  </ListItemIcon>
+                </ListItem>
+              </div>
+            </Drawer>
+          </React.Fragment>
         </div>
         <div className="toolbar-logo">
           <a href="/">ABB's Delivery Portal</a>

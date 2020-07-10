@@ -78,15 +78,6 @@
   text-decoration: none;
 }
 
-.toolbar-toggle-button {
-  top: 21px;
-  left: 28px;
-  width: 23px;
-  height: 21px;
-  /* UI Properties */
-  opacity: 1;
-}
-
 .toolbar-project {
   top: 26px;
   left: 301px;
@@ -113,15 +104,9 @@
   padding: 6px 0;
 }
 
-.button {
-  top: 60px;
-  width: 120px;
-  height: 25px;
-  justify-content: center;
-  margin-top: 0px;
-  margin-left: 20px;
-  border-color: black;
-  background: white;
+.link {
+  text-decoration: inherit;
+  color: inherit;
 }
 
 @media (max-width: 768px) {
@@ -132,11 +117,6 @@
 }
 
 @media (min-width: 769px) {
-  .toolbar-toggle-button {
-    display: flex;
-    margin-top: 20px;
-  }
-
   .toolbar-logo {
     margin-left: 20px;
   }
