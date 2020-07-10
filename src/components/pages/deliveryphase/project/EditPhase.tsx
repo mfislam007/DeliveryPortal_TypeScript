@@ -15,7 +15,7 @@ interface Props {
   start: Date;
   end: Date;
   open: boolean;
-  disable: (event: React.MouseEvent<HTMLButtonElement>) => void;
+  toggle: (event: React.MouseEvent<HTMLButtonElement>) => void;
 }
 /**This modal component is used to adjust phase start and end time and finally to save the changed to the POD where the phase data locates.
  * @See https://github.com/mui-org/material-ui-pickers/issues/1440 for date-fns iise, needed to use older version of @date-io/date-fns in package.json
@@ -98,7 +98,8 @@ const EditPhase: React.FC<Props> = (props): JSX.Element => {
 
   const handleClose = () => {
     console.log("Modal closed");
-    //setOpen(false);
+    setOpen(false);
+    props.toggle;
   };
 
   return (
@@ -140,9 +141,9 @@ const EditPhase: React.FC<Props> = (props): JSX.Element => {
             />
           </MuiPickersUtilsProvider>
           <div>
-            {/* <Button variant="contained" color="primary">
+            <Button variant="contained" color="primary" onClick={handleClose}>
               Cancel
-            </Button> */}
+            </Button>
             <Button variant="contained" color="primary" onClick={save}>
               Save
             </Button>

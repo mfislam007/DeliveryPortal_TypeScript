@@ -58,6 +58,10 @@ const PhaseWidgetCard: React.FC<Props> = (props): JSX.Element => {
     setDialogOpen(false);
   };
 
+  const toggleEditDates = (): void => {
+    setDialogOpen(false);
+  };
+
   return (
     <div className="PhaseWidgetCardMain">
       <div className="PhaseWidgetCardTextContainer">
@@ -71,7 +75,7 @@ const PhaseWidgetCard: React.FC<Props> = (props): JSX.Element => {
         <div className="PhaseWidgetCardOptions" onClick={enableEditDates}>
           <img src={optionsIcon} alt="options"></img>
           <EditPhase
-            disable={disableEditDates}
+            toggle={toggleEditDates}
             open={dialogOpen}
             phase={url}
             start={null}
