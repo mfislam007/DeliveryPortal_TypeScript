@@ -6,14 +6,24 @@ import DeliveryPhaseIndex from "../../components/pages/deliveryphase/DeliveryPha
 
 const GetProjects: React.FC = (): JSX.Element => {
   const [names, setNames] = useState([] as string[]);
-  const [webID, setWebID] = useState<String>();
-  const webId = `https://timojkankaanpaa.dev.inrupt.net/private/dp/cases/cases.ttl`;
+  const [pod, setPod] = useState<string>();
+  const [url, setUrl] = useState<string>(
+    "https://timojkankaanpaa.dev.inrupt.net/private/dp/cases/cases.ttl"
+  );
 
   React.useEffect(() => {
     getWebId().then(result => {
-      setWebID(result);
+      if (result != null) {
+        result = result.substring(0, result.indexOf("/profile"));
+        //setUrl(result + "/private/dp/cases/cases.ttl");
+        console.log("URL:" + url);
+        setPod(result);
+      } else {
+        console.log("webID null using Timo's POD");
+        setUrl("https://timojkankaanpaa.dev.inrupt.net/private/dp/cases/cases.ttl");
+      }
     });
-  }, [webID]);
+  }, []);
 
   async function getWebId() {
     /* 1. Check if we've already got the user's WebID and access to their Pod: */
@@ -22,8 +32,6 @@ const GetProjects: React.FC = (): JSX.Element => {
       return session.webId;
     }
   }
-
-  console.log("Web id is :" + webID);
 
   async function getProjectNames(webId: string) {
     const profileDoc = await fetchDocument(webId);
@@ -34,7 +42,7 @@ const GetProjects: React.FC = (): JSX.Element => {
 
   useEffect(() => {
     (async () => {
-      await getProjectNames(webId);
+      await getProjectNames(url);
     })();
   }, []);
 
