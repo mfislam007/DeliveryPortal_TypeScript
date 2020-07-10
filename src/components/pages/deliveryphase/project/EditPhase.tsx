@@ -2,17 +2,20 @@ import React from "react";
 import "date-fns";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
+import { makeStyles } from "@material-ui/core/styles";
 import DateFnsUtils from "@date-io/date-fns";
 import { MuiPickersUtilsProvider, KeyboardDatePicker } from "@material-ui/pickers";
 import Modal from "@material-ui/core/Modal";
 import { updatePhaseDates } from "../../../../controllers/ProjectController/PhaseController";
 import { getPhaseDate } from "../../../../controllers/ProjectController/PhaseController";
+import DrawerToggleButton from "../../../menubar/SideDrawer/DrawerToggleButton";
 
 interface Props {
   phase: string;
   start: Date;
   end: Date;
   open: boolean;
+  toggle: (event: React.MouseEvent<HTMLButtonElement>) => void;
 }
 /**This modal component is used to adjust phase start and end time and finally to save the changed to the POD where the phase data locates.
  * @See https://github.com/mui-org/material-ui-pickers/issues/1440 for date-fns iise, needed to use older version of @date-io/date-fns in package.json
@@ -20,25 +23,35 @@ interface Props {
  */
 
 const EditPhase: React.FC<Props> = (props): JSX.Element => {
+  const [phase, setPhase] = React.useState(props.phase);
   const [startDate, setStartDate] = React.useState(props.start);
   const [endDate, setEndDate] = React.useState(props.end);
   const [open, setOpen] = React.useState(props.open);
+  const [modalStyle] = React.useState(getModalStyle);
 
   /**Before editing the dates, fetching the dates from POD to make sure using latest values */
   React.useEffect(() => {
-    getPhaseDate(
-      "https://ekseli.dev.inrupt.net/private/dp2/cases/ProjectABC/Installation",
-      "https://schema.org/startTime"
-    ).then(result => {
+    getPhaseDate(phase, "https://schema.org/startTime").then(result => {
       setStartDate(result);
     });
-    getPhaseDate(
-      "https://ekseli.dev.inrupt.net/private/dp2/cases/ProjectABC/Installation",
-      "https://schema.org/endTime"
-    ).then(result => {
+    getPhaseDate(phase, "https://schema.org/endTime").then(result => {
       setEndDate(result);
     });
   }, []);
+
+  const useStyles = makeStyles(theme => ({
+    paper: {
+      position: "absolute",
+      width: 400,
+      backgroundColor: theme.palette.background.paper,
+      border: "2px solid #000",
+      boxShadow: theme.shadows[5],
+      padding: theme.spacing(2, 4, 3),
+    },
+  }));
+
+  const classes = useStyles();
+
   function handleDateChange(date: Date): void {
     setStartDate(date);
   }
@@ -61,8 +74,6 @@ const EditPhase: React.FC<Props> = (props): JSX.Element => {
     phase["https://schema.org/endTime"] = endDate;
     console.log(JSON.stringify(phase));
     localStorage.setItem("phase", JSON.stringify(phase));
-    updatePhaseDates(props.phase, startDate, endDate);
-    setOpen(false);
   }
 
   function rand() {
@@ -88,11 +99,11 @@ const EditPhase: React.FC<Props> = (props): JSX.Element => {
     <div>
       <Modal
         open={open}
-        onClose={handleClose}
+        onClose={props.toggle}
         aria-labelledby="simple-modal-title"
         aria-describedby="simple-modal-description"
       >
-        <div>
+        <div style={modalStyle} className={classes.paper}>
           <TextField id="phase" value={parsePhaseName(props.phase)} label="Phase" />
           <MuiPickersUtilsProvider utils={DateFnsUtils}>
             <KeyboardDatePicker

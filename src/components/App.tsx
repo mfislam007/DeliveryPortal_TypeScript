@@ -1,16 +1,17 @@
 import React from "react";
+import { BrowserRouter as Router } from "react-router-dom";
+
 import "./App.scss";
-import EditPhase from "./pages/deliveryphase/project/EditPhase";
+import HomePageSwitch from "./navigation/HomePageSwitch";
+import MenuBar from "./menubar/MenuBar";
 
 const App: React.FC = (): JSX.Element => {
   return (
     <div className="App">
-      <EditPhase
-        phase="https://ekseli.dev.inrupt.net/private/dp2/cases/ProjectABC/Installation"
-        start={null}
-        end={null}
-        open={true}
-      />
+      <Router>
+        <MenuBar />
+        <HomePageSwitch />
+      </Router>
     </div>
   );
 };

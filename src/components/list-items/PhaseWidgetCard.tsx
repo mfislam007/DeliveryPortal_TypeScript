@@ -19,18 +19,20 @@ const PhaseWidgetCard: React.FC<Props> = (props): JSX.Element => {
   const [timeframe, setTimeframe] = useState("");
   const [completion, setCompletion] = useState({ tasksCompleted: 0, totalTasks: 0 });
   const [phaseColor, setPhaseColor] = useState("#6da4cd");
+  const [dialogOpen, setDialogOpen] = useState(false);
+  //TODO: change the hard coded webid
+  const [url, setUrl] = useState(
+    "https://ekseli.dev.inrupt.net/private/dp2/cases/ProjectABC/" + props.label
+  );
 
   useEffect(() => {
     setLabel(props.label);
-
     if (props.timeframe !== undefined) {
       setTimeframe(props.timeframe);
     }
-
     if (props.completion !== undefined) {
       setCompletion(props.completion);
     }
-
     if (props.phaseColor !== undefined) {
       setPhaseColor(props.phaseColor);
     }
@@ -48,13 +50,13 @@ const PhaseWidgetCard: React.FC<Props> = (props): JSX.Element => {
     }
   };
 
-  const handleOnClick = (): void => {
-    let label2 = "https://ekseli.dev.inrupt.net/private/dp2/cases/ProjectABC/" + label;
-    <EditPhase phase={label2} start={null} end={null} open={true} />;
+  const toggleEditDates = (): void => {
+    setDialogOpen(!dialogOpen);
+    console.log("Click ok " + url + " " + dialogOpen);
   };
 
   return (
-    <div className="PhaseWidgetCardMain" onClick={handleOnClick}>
+    <div className="PhaseWidgetCardMain">
       <div className="PhaseWidgetCardTextContainer">
         <div>
           <div className="PhaseWidgetCardTextLabel">{label}</div>
@@ -63,8 +65,9 @@ const PhaseWidgetCard: React.FC<Props> = (props): JSX.Element => {
         <div className="PhaseWidgetCardTextDetails">See Details</div>
       </div>
       <div className="PhaseWidgetCardMisc">
-        <div className="PhaseWidgetCardOptions">
+        <div className="PhaseWidgetCardOptions" onClick={toggleEditDates}>
           <img src={optionsIcon} alt="options"></img>
+          <EditPhase toggle={toggleEditDates} open={true} phase={url} start={null} end={null} />
         </div>
         {showCompletion()}
       </div>
