@@ -14,6 +14,14 @@ type Props = {
   tags?: { id: number; name: string }[];
 };
 
+function parsePhaseName(url: string): string {
+  if (url.lastIndexOf("/") == null) return url;
+  else {
+    url = url.substring(0, url.length - 1);
+    return url.substring(url.lastIndexOf("/") + 1, url.length);
+  }
+}
+
 const ProjectCard: React.FC<Props> = (props): JSX.Element => {
   const [owner, setOwner] = useState("");
   const [title, setTitle] = useState("");
@@ -26,7 +34,6 @@ const ProjectCard: React.FC<Props> = (props): JSX.Element => {
     setOwner(props.owner);
     setTitle(props.title);
     setId(encodeURIComponent(props.id));
-
     if (props.tags) {
       setTagsElement(
         props.tags.map(tag => (
@@ -45,7 +52,7 @@ const ProjectCard: React.FC<Props> = (props): JSX.Element => {
   return (
     <div className="projectCardContainer" onClick={handleOnClick}>
       <div className="projectCardTitle">
-        <div className="cardTitle">{title}</div>
+        <div className="cardTitle">{parsePhaseName(title)}</div>
       </div>
       <div className="projectCard">
         <div className="cardOwner">{owner}</div>
