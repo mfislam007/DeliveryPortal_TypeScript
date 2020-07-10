@@ -48,12 +48,10 @@ const webpackHotMiddleware = require("webpack-hot-middleware")(compiler, {
   reload: true,
   autoConnect: true,
 });
-const staticMiddleware = express.static(path.join(__dirname, "dist"));
 
 server
   .use(webpackDevMiddleware)
   .use(webpackHotMiddleware)
-  .use(staticMiddleware)
   .get("*", (req, res) => {
     latestRequestPath = req.path;
     res.sendFile(path.resolve(compiler.outputPath, "index.html"));
