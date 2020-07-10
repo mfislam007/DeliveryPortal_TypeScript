@@ -11,6 +11,7 @@ import ListItem from "@material-ui/core/ListItem";
 import Drawer from "@material-ui/core/Drawer";
 import ListItemIcon from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
+import Typography from "@material-ui/core/Typography";
 
 import "./Toolbar.scss";
 import ToolbarProjectPageLinks from "./ToolbarProjectPageLinks";
@@ -51,16 +52,12 @@ const Toolbar: React.FC = (): JSX.Element => {
             </Drawer>
           </React.Fragment>
         </div>
-        <div className="toolbar-logo">
-          <a href="/">ABB's Delivery Portal</a>
-        </div>
-        <div>
-          <button className="toolbar-project"> R&amp;D Project </button>
-        </div>
+        <Typography variant="h6" className="toolbar-logo">
+          ABB's Delivery Portal
+        </Typography>
         <div className="spacer" />
         <Route path="/deliveryportal/projectid=:id" component={ToolbarProjectPageLinks}></Route>
         <div className="spacer" />
-
         <div className="toolbar-navigation-items-2">
           <ul>
             <li>
