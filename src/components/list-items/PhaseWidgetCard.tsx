@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 
 import "./PhaseWidgetCard.scss";
-import optionsIcon from "../../assets/images/commonicons/options-icon.png";
+import MoreVertIcon from "@material-ui/icons/MoreVert";
 
 type Props = {
   label: string;
@@ -58,7 +58,7 @@ const PhaseWidgetCard: React.FC<Props> = (props): JSX.Element => {
       </div>
       <div className="PhaseWidgetCardMisc">
         <div className="PhaseWidgetCardOptions">
-          <img src={optionsIcon} alt="options"></img>
+          <MoreVertIcon />
         </div>
         {showCompletion()}
       </div>

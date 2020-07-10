@@ -12,12 +12,12 @@ const ProjectUsers: React.FC = (): JSX.Element => {
         <h2>Admins</h2>
         <hr />
         <UserInfoBar name="John Smith" company="Company A" />
-        <UserInfoBar name="Jane Doe" company="Company B" />
-        <UserInfoBar name="Adam Lambert" company="Company C" />
+        <UserInfoBar name="Jane Doe" company="Company A" />
+        <UserInfoBar name="Adam Lambert" company="Company B" />
         <h2>Users</h2>
         <hr />
-        <UserInfoBar name="Jane Smith" company="ABB" />
-        <UserInfoBar name="John Doe" company="ABB" />
+        <UserInfoBar name="Jane Smith" company="Company A" />
+        <UserInfoBar name="John Doe" company="Company A" />
       </div>
     </div>
   );

@@ -1,8 +1,6 @@
 import React, { useState } from "react";
 
 import "./StreamElement.scss";
-import portrait1 from "../../assets/images/projectstream/esko-user.png";
-import portrait2 from "../../assets/images/projectstream/timo-user.png";
 import optionalImg1 from "../../assets/images/projectstream/prima-building1.png";
 import optionalImg2 from "../../assets/images/projectstream/prima-building2.png";
 import StreamEvent from "./StreamEvent";
@@ -16,15 +14,13 @@ const StreamElement: React.FC<Props> = (props): JSX.Element => {
   return (
     <div id={id + ""} className="projectEventStreamContainer">
       <div className="projectEventStreamMain">
-        <StreamEvent userImage={portrait1} eventString="Share something with ABB..." />
+        <StreamEvent eventString="Share something with ABB..." />
         <StreamEvent
-          userImage={portrait1}
           eventString="John Smith updated checklist."
           date="25.5.2020 15:35"
           optionalImage={optionalImg1}
         />
         <StreamEvent
-          userImage={portrait2}
           eventString="Jane Doe added a new task."
           date="22.5.2020 15:15"
           optionalImage={optionalImg2}
