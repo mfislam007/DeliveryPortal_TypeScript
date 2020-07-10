@@ -52,7 +52,7 @@ const EditPhase: React.FC<Props> = (props): JSX.Element => {
 
   const classes = useStyles();
 
-  function handleDateChange(date: Date): void {
+  function handleStartDateChange(date: Date): void {
     setStartDate(date);
   }
 
@@ -92,19 +92,19 @@ const EditPhase: React.FC<Props> = (props): JSX.Element => {
   }
 
   const handleClose = () => {
-    setOpen(false);
+    //setOpen(false);
   };
 
   return (
     <div>
       <Modal
-        open={open}
-        onClose={props.toggle}
+        open={props.open}
+        onClose={handleClose}
         aria-labelledby="simple-modal-title"
         aria-describedby="simple-modal-description"
       >
         <div style={modalStyle} className={classes.paper}>
-          <TextField id="phase" value={parsePhaseName(props.phase)} label="Phase" />
+          <TextField id="phase" disabled value={parsePhaseName(props.phase)} label="Phase" />
           <MuiPickersUtilsProvider utils={DateFnsUtils}>
             <KeyboardDatePicker
               disableToolbar
@@ -114,7 +114,7 @@ const EditPhase: React.FC<Props> = (props): JSX.Element => {
               id="https://schema.org/startTime"
               label="Start date"
               value={startDate}
-              onChange={handleDateChange}
+              onChange={handleStartDateChange}
               KeyboardButtonProps={{
                 "aria-label": "change date",
               }}

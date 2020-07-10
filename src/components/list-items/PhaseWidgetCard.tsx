@@ -52,7 +52,6 @@ const PhaseWidgetCard: React.FC<Props> = (props): JSX.Element => {
 
   const toggleEditDates = (): void => {
     setDialogOpen(!dialogOpen);
-    console.log("Click ok " + url + " " + dialogOpen);
   };
 
   return (
@@ -67,7 +66,13 @@ const PhaseWidgetCard: React.FC<Props> = (props): JSX.Element => {
       <div className="PhaseWidgetCardMisc">
         <div className="PhaseWidgetCardOptions" onClick={toggleEditDates}>
           <img src={optionsIcon} alt="options"></img>
-          <EditPhase toggle={toggleEditDates} open={true} phase={url} start={null} end={null} />
+          <EditPhase
+            toggle={toggleEditDates}
+            open={dialogOpen}
+            phase={url}
+            start={null}
+            end={null}
+          />
         </div>
         {showCompletion()}
       </div>
