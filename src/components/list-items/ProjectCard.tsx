@@ -1,10 +1,15 @@
 import React, { useState, useEffect } from "react";
 import { useRouteMatch, useHistory } from "react-router-dom";
 
-import usersIcon from "../../assets/images/project-card/users-icon.png";
-import tagsIcon from "../../assets/images/project-card/tag-icon.png";
-import filesIcon from "../../assets/images/project-card/files-icon.png";
-import phIcon from "../../assets/images/project-card/ph-icon.png";
+import Card from "@material-ui/core/Card";
+import CardActionArea from "@material-ui/core/CardActionArea";
+import CardActions from "@material-ui/core/CardActions";
+import CardContent from "@material-ui/core/CardContent";
+import CardMedia from "@material-ui/core/CardMedia";
+import Tooltip from "@material-ui/core/Tooltip";
+import Typography from "@material-ui/core/Typography";
+import LocalOfferIcon from "@material-ui/icons/LocalOffer";
+
 import "./ProjectCard.scss";
 
 type Props = {
@@ -43,25 +48,32 @@ const ProjectCard: React.FC<Props> = (props): JSX.Element => {
   };
 
   return (
-    <div className="projectCardContainer" onClick={handleOnClick}>
-      <div className="projectCardTitle">
-        <div className="cardTitle">{title}</div>
-      </div>
-      <div className="projectCard">
-        <div className="cardOwner">{owner}</div>
-      </div>
-      <div className="projectCardFooter">
-        <div className="cardTags">
-          <img src={tagsIcon} alt="tag icon" width="16" height="14" />
-          Tags
-          <span className="cardTagsTooltip">{tagsElement}</span>
-        </div>
-        <img src={usersIcon} alt="users" />
-        <img src={filesIcon} alt="files" />
-      </div>
-      <div className="cardImage">
-        <img src={phIcon} alt="card" />
-      </div>
+    <div className="project-card-container" onClick={handleOnClick}>
+      <Card>
+        <CardActionArea>
+          <CardMedia
+            component="img"
+            alt="Project"
+            width="300"
+            height="240"
+            image="https://ekseli.dev.inrupt.net/private/dp2/cases/ProjectBCD/Pictures/PSBB_Showroom_PSR_view.jpg"
+            title="Project"
+          />
+          <CardContent>
+            <Typography gutterBottom variant="h5" component="h2">
+              {title}
+            </Typography>
+            <Typography variant="body2" color="textSecondary" component="p">
+              {owner}
+            </Typography>
+          </CardContent>
+        </CardActionArea>
+        <CardActions>
+          <Tooltip title={tagsElement}>
+            <LocalOfferIcon fontSize="small" />
+          </Tooltip>
+        </CardActions>
+      </Card>
     </div>
   );
 };

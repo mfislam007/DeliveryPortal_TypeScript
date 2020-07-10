@@ -26,7 +26,7 @@ const DeliveryPhaseIndex: React.FC<Props> = props => {
 
   return (
     <div>
-      <div className="deliveryPortalProjectsContainer">{nameCards}</div>
+      <div className="projects-container">{nameCards}</div>
     </div>
   );
 };
