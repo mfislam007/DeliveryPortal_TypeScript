@@ -25,7 +25,7 @@ const ProjectCard: React.FC<Props> = (props): JSX.Element => {
   useEffect(() => {
     setOwner(props.owner);
     setTitle(props.title);
-    setId(props.id);
+    setId(encodeURIComponent(props.id));
 
     if (props.tags) {
       setTagsElement(

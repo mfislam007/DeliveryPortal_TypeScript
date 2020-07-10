@@ -7,7 +7,9 @@ import DeliveryPhaseIndex from "../../components/pages/deliveryphase/project/Pro
 const GetProjects: React.FC = (): JSX.Element => {
   const [names, setNames] = useState([] as string[]);
   const { id } = useParams();
-  const webId = `https://ekseli.dev.inrupt.net/private/dp2/cases/${id}/project.ttl`;
+  const decodedId = decodeURIComponent(id);
+  console.log(decodedId);
+  const webId = `${decodedId}/project.ttl`;
 
   async function getPhaseNames(webId: string) {
     const profileDoc = await fetchDocument(webId);
