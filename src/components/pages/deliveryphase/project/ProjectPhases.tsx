@@ -5,6 +5,8 @@ import { PhaseColors } from "../../../../constants/WidgetColors";
 import ImageList from "../../../../containers/ImageList/ImageList";
 import TimeLine from "../../../time-line/TimeLine";
 import PhaseWidgetCard from "../../../list-items/PhaseWidgetCard";
+import { Button } from "@material-ui/core";
+import AddIcon from "@material-ui/icons/Add";
 
 interface Props {
   projectPhases: string[];
@@ -30,7 +32,14 @@ const ProjectPhases: React.FC<Props> = (props): JSX.Element => {
         <ImageList
           dataSource={"https://ekseli.dev.inrupt.net/private/dp2/cases/ProjectBCD/Pictures/"}
         />
-        <div className="project-phase-card-section">{PhaseCards}</div>
+        <div className="project-phase-card-section">
+          {PhaseCards}
+          <div about="the task will be here">
+            <Button color="primary" size="large" startIcon={<AddIcon />}>
+              Add task
+            </Button>
+          </div>
+        </div>
       </div>
     </div>
   );
