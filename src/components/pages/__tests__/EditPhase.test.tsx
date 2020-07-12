@@ -18,15 +18,16 @@ describe('Testing EditPhase component")', () => {
     toggle: jest.fn(),
   };
 
+  beforeAll(() => {
+    shallow = createShallow();
+    render = createMount();
+  });
+
   it("UI has three divs", () => {
     const wrapper = shallow(<EditPhase {...props} />);
     expect(wrapper.find("div")).toHaveLength(3);
   });
 
-  beforeAll(() => {
-    shallow = createShallow();
-    render = createMount();
-  });
   //https://stackoverflow.com/questions/50916374/material-ui-enzyme-testing-component
   it("Can render EditPhase", () => {
     act(() => {
