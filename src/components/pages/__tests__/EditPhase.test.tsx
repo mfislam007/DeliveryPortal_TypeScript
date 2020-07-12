@@ -31,15 +31,7 @@ describe('Testing EditPhase component")', () => {
   it("Can render EditPhase", () => {
     act(() => {
       //act need to be used when state of app changes permanantly
-      const wrapper2 = render(
-        <EditPhase
-          phase="https://ekseli.dev.inrupt.net/private/dp2/cases/ProjectABC/Installation/"
-          start={new Date(2020, 1, 1)}
-          end={new Date(2020, 2, 2)}
-          open={true}
-          toggle={jest.fn()}
-        />
-      );
+      const wrapper2 = render(<EditPhase {...props} />);
       expect(wrapper2.find("EditPhase")).toHaveLength(1);
     });
   });
