@@ -5,8 +5,7 @@ import { PhaseColors } from "../../../../constants/WidgetColors";
 import ImageList from "../../../../containers/ImageList/ImageList";
 import TimeLine from "../../../time-line/TimeLine";
 import PhaseWidgetCard from "../../../list-items/PhaseWidgetCard";
-import { Button } from "@material-ui/core";
-import AddIcon from "@material-ui/icons/Add";
+import AddTask from "./AddTask";
 
 interface Props {
   projectPhases: string[];
@@ -35,9 +34,7 @@ const ProjectPhases: React.FC<Props> = (props): JSX.Element => {
         <div className="project-phase-card-section">
           {PhaseCards}
           <div about="the task will be here">
-            <Button color="primary" size="large" startIcon={<AddIcon />}>
-              Add task
-            </Button>
+            <AddTask parent="temp"></AddTask>
           </div>
         </div>
       </div>

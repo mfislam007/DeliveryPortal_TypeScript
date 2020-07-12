@@ -24,8 +24,10 @@ describe('Testing EditPhase component")', () => {
   });
 
   it("UI has three divs", () => {
-    const wrapper = shallow(<EditPhase {...props} />);
-    expect(wrapper.find("div")).toHaveLength(3);
+    act(() => {
+      const wrapper = shallow(<EditPhase {...props} />);
+      expect(wrapper.find("div")).toHaveLength(3);
+    });
   });
 
   //https://stackoverflow.com/questions/50916374/material-ui-enzyme-testing-component
