@@ -5,7 +5,7 @@ import { MuiPickersUtilsProvider, KeyboardDatePicker } from "@material-ui/picker
 import EditPhase from "../deliveryphase/project/EditPhase";
 
 configure({ adapter: new Adapter() });
-describe('Testing AddProject component")', () => {
+describe('Testing EditPhase component")', () => {
   it("UI has three divs", () => {
     const wrapper = shallow(
       <EditPhase
