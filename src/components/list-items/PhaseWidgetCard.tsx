@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import "./PhaseWidgetCard.scss";
 import optionsIcon from "../../assets/images/commonicons/options-icon.png";
 import EditPhase from "../pages/deliveryphase/project/EditPhase";
+import AddTask from "../pages/deliveryphase/project/AddTask";
 
 type Props = {
   label: string;
@@ -11,6 +12,7 @@ type Props = {
     tasksCompleted: number;
     totalTasks: number;
   };
+  addTaskLink: string;
   phaseColor?: string;
 };
 
@@ -20,6 +22,7 @@ const PhaseWidgetCard: React.FC<Props> = (props): JSX.Element => {
   const [completion, setCompletion] = useState({ tasksCompleted: 0, totalTasks: 0 });
   const [phaseColor, setPhaseColor] = useState("#6da4cd");
   const [dialogOpen, setDialogOpen] = useState(false);
+  const [taskOpen, setTaskOpen] = useState(false);
   //TODO: change the hard coded webid
   const [url, setUrl] = useState(
     "https://ekseli.dev.inrupt.net/private/dp2/cases/ProjectABC/" + props.label
@@ -50,6 +53,10 @@ const PhaseWidgetCard: React.FC<Props> = (props): JSX.Element => {
     }
   };
 
+  const addTask = () => {
+    setTaskOpen(true);
+  };
+
   const enableEditDates = (): void => {
     setDialogOpen(true);
   };
@@ -63,7 +70,7 @@ const PhaseWidgetCard: React.FC<Props> = (props): JSX.Element => {
   };
 
   return (
-    <div className="PhaseWidgetCardMain">
+    <div className="PhaseWidgetCardMain" onClick={addTask}>
       <div className="PhaseWidgetCardTextContainer">
         <div>
           <div className="PhaseWidgetCardTextLabel">{label}</div>
@@ -83,6 +90,7 @@ const PhaseWidgetCard: React.FC<Props> = (props): JSX.Element => {
           />
         </div>
         {showCompletion()}
+        <AddTask open={false} url={null} parent={url} />
       </div>
     </div>
   );

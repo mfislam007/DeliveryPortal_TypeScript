@@ -17,6 +17,7 @@ import DateFnsUtils from "@date-io/date-fns";
 interface Props {
   parent: string | null; //when adding
   url: string | null; //when editing
+  open: boolen;
 }
 
 /** Dialog to enter data for a new task */
@@ -24,7 +25,9 @@ const AddTask: React.FC<Props> = (props): JSX.Element => {
   //creatinf demo task
   const [task, setTask] = useState<Task>(new Task());
   const [mode, setMode] = useState<number>(1); //0=add, 1=update
-
+  const [open, setOpen] = React.useState(props.open);
+  const [type, setType] = React.useState("Task");
+  const [status, setStatus] = React.useState("New");
   useEffect(() => {
     let url = "";
     if (props.parent != null) {
@@ -52,9 +55,6 @@ const AddTask: React.FC<Props> = (props): JSX.Element => {
     });
   }, []);
 
-  const [open, setOpen] = React.useState(false);
-  const [type, setType] = React.useState("Task");
-  const [status, setStatus] = React.useState("New");
   const handleChange = (event: any) => {
     setType(event.target.value);
   };

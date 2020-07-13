@@ -19,6 +19,7 @@ const ProjectPhases: React.FC<Props> = (props): JSX.Element => {
       timeframe="May 10 - June 11"
       completion={{ tasksCompleted: 5, totalTasks: 5 }}
       phaseColor={PhaseColors[index]}
+      addTaskLink={"https://ekseli.dev.inrupt.net/private/dp2/cases/ProjectABC/" + name + "/"}
     />
   ));
 
@@ -31,15 +32,7 @@ const ProjectPhases: React.FC<Props> = (props): JSX.Element => {
         <ImageList
           dataSource={"https://ekseli.dev.inrupt.net/private/dp2/cases/ProjectBCD/Pictures/"}
         />
-        <div className="project-phase-card-section">
-          {PhaseCards}
-          <div about="the task will be here">
-            <AddTask
-              parent={null}
-              url="https://ekseli.dev.inrupt.net/private/dp2/cases/ProjectABC/Installation/Task2"
-            ></AddTask>
-          </div>
-        </div>
+        <div className="project-phase-card-section">{PhaseCards}</div>
       </div>
     </div>
   );
