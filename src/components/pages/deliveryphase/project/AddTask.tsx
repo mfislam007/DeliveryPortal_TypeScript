@@ -79,7 +79,7 @@ const AddTask: React.FC<Props> = (props): JSX.Element => {
         Add a task
       </Button>
       <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
-        <DialogTitle id="form-dialog-title">Add a task for {props.parent}</DialogTitle>
+        <DialogTitle id="form-dialog-title">Add a task</DialogTitle>
         <DialogContent>
           {/* <DialogContentText>
             Add a task to be carried out during this {props.parent} phase
