@@ -10,28 +10,44 @@ import AddIcon from "@material-ui/icons/Add";
 import Select from "@material-ui/core/Select";
 import MenuItem from "@material-ui/core/MenuItem";
 import Task from "../../../../entity/Task";
-import { updateTask, getTask } from "../../../../controllers/TaskController";
+import { updateTask, getTask, createTask } from "../../../../controllers/TaskController";
 import { MuiPickersUtilsProvider, KeyboardDatePicker } from "@material-ui/pickers";
 import DateFnsUtils from "@date-io/date-fns";
 
 interface Props {
-  parent: string;
+  parent: string | null; //when adding
+  url: string | null; //when editing
 }
 
 /** Dialog to enter data for a new task */
 const AddTask: React.FC<Props> = (props): JSX.Element => {
   //creatinf demo task
   const [task, setTask] = useState<Task>(new Task());
+  const [mode, setMode] = useState<number>(1); //0=add, 1=update
 
   useEffect(() => {
-    const webId = "https://ekseli.dev.inrupt.net/private/dp2/cases/ProjectABC/Installation/Task2";
+    let url = "";
+    if (props.parent != null) {
+      setMode(0);
+      url = "https://ekseli.dev.inrupt.net/private/dp2/cases/ProjectABC/Installation/Task2";
+    } else if (props.url != null) {
+      setMode(1);
+      url = props.url;
+    }
     const task2 = new Task();
     task2.name = "Example task";
-    task2.description = "New description";
+    task2.description = "New description2";
     task2.actionStatusType = "In progress";
     task.endTime = new Date("2020.09.01");
-    updateTask(webId, task2);
-    getTask(webId).then(result => {
+    if (mode == 0) {
+      //need to create a folder here
+      //and action.ttl -file there
+      createTask(url + task.name, task2);
+    } else if (mode == 1) {
+      updateTask(url, task2);
+    }
+
+    getTask(url).then(result => {
       setTask(result);
     });
   }, []);
@@ -131,7 +147,7 @@ const AddTask: React.FC<Props> = (props): JSX.Element => {
               variant="inline"
               format="yyyy-MM-dd"
               margin="normal"
-              id="https://schema.org/andTime"
+              id="https://schema.org/endTime"
               label="Start date"
               value={task.endTime}
               onChange={handleEndDateChange}
