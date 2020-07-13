@@ -18,7 +18,7 @@ export async function createTask(webId: string, task: Task) {
   //creating folder with task name and action.ttl there
   const newDocument = createDocument(webId + task.name + "/action.ttl");
   await newDocument.save();
-  const profileDoc = await fetchDocument(webId + +task.name + "/action.ttl");
+  const profileDoc = await fetchDocument(webId + task.name + "/action.ttl");
   const profile = profileDoc.getSubject(webId);
   profile.setString("https://schema.org/Action#name", task.name);
   profile.setString("https://schema.org/Action#description", task.description);

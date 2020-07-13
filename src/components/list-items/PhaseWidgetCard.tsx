@@ -90,7 +90,10 @@ const PhaseWidgetCard: React.FC<Props> = (props): JSX.Element => {
           />
         </div>
         {showCompletion()}
-        <AddTask open={false} url={null} parent={url} />
+        <AddTask
+          open={false}
+          url="https://ekseli.dev.inrupt.net/private/dp2/cases/ProjectABC/Installation/"
+        />
       </div>
     </div>
   );

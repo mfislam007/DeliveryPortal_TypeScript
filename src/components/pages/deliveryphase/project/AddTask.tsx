@@ -13,10 +13,10 @@ import Task from "../../../../entity/Task";
 import { updateTask, getTask, createTask } from "../../../../controllers/TaskController";
 import { MuiPickersUtilsProvider, KeyboardDatePicker } from "@material-ui/pickers";
 import DateFnsUtils from "@date-io/date-fns";
+import { datePickerDefaultProps } from "@material-ui/pickers/constants/prop-types";
 
 interface Props {
-  parent: string | null; //when adding
-  url: string | null; //when editing
+  url: string; //when editing
   open: boolean;
 }
 
@@ -24,36 +24,33 @@ interface Props {
 const AddTask: React.FC<Props> = (props): JSX.Element => {
   //creatinf demo task
   const [task, setTask] = useState<Task>(new Task());
-  const [mode, setMode] = useState<number>(1); //0=add, 1=update
-  const [open, setOpen] = React.useState(props.open);
-  const [type, setType] = React.useState("Task");
-  const [status, setStatus] = React.useState("New");
+  const [open, setOpen] = useState(props.open);
+  const [type, setType] = useState("Task");
+  const [status, setStatus] = useState("New");
+  const [url, setUrl] = useState();
   useEffect(() => {
-    let url = "";
-    if (props.parent != null) {
-      setMode(0);
-      url = "https://ekseli.dev.inrupt.net/private/dp2/cases/ProjectABC/Installation/Task2";
-    } else if (props.url != null) {
-      setMode(1);
-      url = props.url;
-    }
-    const task2 = new Task();
-    task2.name = "Example task";
-    task2.description = "New description2";
-    task2.actionStatusType = "In progress";
-    task.endTime = new Date("2020.09.01");
-    if (mode == 0) {
-      //need to create a folder here
-      //and action.ttl -file there
-      createTask(url + task.name, task2);
-    } else if (mode == 1) {
-      updateTask(url, task2);
-    }
-
+    //set default endTime fro a task fro one month further
+    let newDate = new Date();
+    newDate.setDate(newDate.getDate() + 30);
+    let newTask = { ...task };
+    newTask.endTime = newDate;
+    setTask(newTask);
+    setUrl(props.url);
     getTask(url).then(result => {
       setTask(result);
     });
   }, []);
+
+  const save = () => {
+    const task2 = new Task();
+    task2.name = "TaskX";
+    task2.description = "New description2";
+    task2.actionStatusType = "In progress";
+    alert(task.endTime);
+    task2.endTime = task.endTime;
+    createTask(url, task2);
+    setOpen(false);
+  };
 
   const handleChange = (event: any) => {
     setType(event.target.value);
@@ -73,6 +70,7 @@ const AddTask: React.FC<Props> = (props): JSX.Element => {
     let atask = { ...task };
     atask.endTime = date;
     setTask(atask);
+    console.log(JSON.stringify(task));
   }
 
   return (
@@ -161,7 +159,7 @@ const AddTask: React.FC<Props> = (props): JSX.Element => {
           <Button onClick={handleClose} color="primary">
             Cancel
           </Button>
-          <Button onClick={handleClose} color="primary">
+          <Button onClick={save} color="primary">
             Save
           </Button>
         </DialogActions>
