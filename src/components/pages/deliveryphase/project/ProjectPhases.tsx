@@ -34,7 +34,10 @@ const ProjectPhases: React.FC<Props> = (props): JSX.Element => {
         <div className="project-phase-card-section">
           {PhaseCards}
           <div about="the task will be here">
-            <AddTask url="https://ekseli.dev.inrupt.net/private/dp2/cases/ProjectABC/Installation/Task2"></AddTask>
+            <AddTask
+              parent={null}
+              url="https://ekseli.dev.inrupt.net/private/dp2/cases/ProjectABC/Installation/Task2"
+            ></AddTask>
           </div>
         </div>
       </div>
