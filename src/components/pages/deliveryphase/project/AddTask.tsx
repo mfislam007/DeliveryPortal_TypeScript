@@ -133,7 +133,7 @@ const AddTask: React.FC<Props> = (props): JSX.Element => {
               margin="normal"
               id="https://schema.org/andTime"
               label="Start date"
-              value={task.endDate}
+              value={task.endTime}
               onChange={handleEndDateChange}
               KeyboardButtonProps={{
                 "aria-label": "change date",
