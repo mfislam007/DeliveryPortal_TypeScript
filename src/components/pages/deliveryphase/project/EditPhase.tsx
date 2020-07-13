@@ -112,34 +112,36 @@ const EditPhase: React.FC<Props> = (props): JSX.Element => {
       >
         <div style={modalStyle} className={classes.paper}>
           <TextField id="phase" disabled value={parsePhaseName(props.phase)} label="Phase" />
-          <MuiPickersUtilsProvider utils={DateFnsUtils}>
-            <KeyboardDatePicker
-              disableToolbar
-              variant="inline"
-              format="yyyy-MM-dd"
-              margin="normal"
-              id="https://schema.org/startTime"
-              label="Start date"
-              value={startDate}
-              onChange={handleStartDateChange}
-              KeyboardButtonProps={{
-                "aria-label": "change date",
-              }}
-            />
-            <KeyboardDatePicker
-              disableToolbar
-              variant="inline"
-              format="yyyy-MM-dd"
-              margin="normal"
-              id="https://schema.org/endTime"
-              label="End date"
-              value={endDate}
-              onChange={handleEndDateChange}
-              KeyboardButtonProps={{
-                "aria-label": "change date",
-              }}
-            />
-          </MuiPickersUtilsProvider>
+          <p>
+            <MuiPickersUtilsProvider utils={DateFnsUtils}>
+              <KeyboardDatePicker
+                disableToolbar
+                variant="inline"
+                format="yyyy-MM-dd"
+                margin="normal"
+                id="https://schema.org/startTime"
+                label="Start date"
+                value={startDate}
+                onChange={handleStartDateChange}
+                KeyboardButtonProps={{
+                  "aria-label": "change date",
+                }}
+              />
+              <KeyboardDatePicker
+                disableToolbar
+                variant="inline"
+                format="yyyy-MM-dd"
+                margin="normal"
+                id="https://schema.org/endTime"
+                label="End date"
+                value={endDate}
+                onChange={handleEndDateChange}
+                KeyboardButtonProps={{
+                  "aria-label": "change date",
+                }}
+              />
+            </MuiPickersUtilsProvider>
+          </p>
           <div>
             <Button variant="contained" color="primary" onClick={handleClose}>
               Cancel

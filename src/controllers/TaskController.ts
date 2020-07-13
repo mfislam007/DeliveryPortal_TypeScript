@@ -9,6 +9,7 @@ export async function updateTask(webId: string, task: Task) {
   profile.setString("https://schema.org/Action#name", task.name);
   profile.setString("https://schema.org/Action#description", task.description);
   profile.setString("https://schema.org/ActionStatusType", task.actionStatusType);
+  profile.setDateTime("https://schema.org/endTime", task.endTime);
   const result = await profileDoc.save();
 }
 
@@ -20,5 +21,6 @@ export async function getTask(webId: string) {
   task.name = profile.getString("https://schema.org/Action#name");
   task.description = profile.getString("https://schema.org/Action#description");
   task.actionStatusType = profile.getString("https://schema.org/ActionStatusType");
+  task.endTime = profile.getDateTime("https://schema.org/endTime");
   return task;
 }

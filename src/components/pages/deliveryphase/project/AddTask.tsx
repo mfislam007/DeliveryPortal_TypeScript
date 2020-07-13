@@ -11,6 +11,8 @@ import Select from "@material-ui/core/Select";
 import MenuItem from "@material-ui/core/MenuItem";
 import Task from "../../../../entity/Task";
 import { updateTask, getTask } from "../../../../controllers/TaskController";
+import { MuiPickersUtilsProvider, KeyboardDatePicker } from "@material-ui/pickers";
+import DateFnsUtils from "@date-io/date-fns";
 
 interface Props {
   parent: string;
@@ -27,6 +29,7 @@ const AddTask: React.FC<Props> = (props): JSX.Element => {
     task2.name = "Example task";
     task2.description = "New description";
     task2.actionStatusType = "In progress";
+    task.endTime = new Date("2020.09.01");
     updateTask(webId, task2);
     getTask(webId).then(result => {
       setTask(result);
@@ -49,6 +52,12 @@ const AddTask: React.FC<Props> = (props): JSX.Element => {
   const handleClose = () => {
     setOpen(false);
   };
+
+  function handleEndDateChange(date: Date): void {
+    let atask = { ...task };
+    atask.endTime = date;
+    setTask(atask);
+  }
 
   return (
     <div>
@@ -78,7 +87,7 @@ const AddTask: React.FC<Props> = (props): JSX.Element => {
             type="text"
             fullWidth
           />
-          <TextField
+          {/* <TextField
             margin="dense"
             id="responsibility"
             label="Responsibility organization"
@@ -91,7 +100,7 @@ const AddTask: React.FC<Props> = (props): JSX.Element => {
             label="Responsibility person"
             type="text"
             fullWidth
-          />
+          /> */}
           <p>
             <Select
               labelId="demo-simple-select-label"
@@ -116,7 +125,21 @@ const AddTask: React.FC<Props> = (props): JSX.Element => {
             <MenuItem value="Resolved">Resolved</MenuItem>
             <MenuItem value="Rejected">Rejected</MenuItem>
           </Select>
-          <TextField margin="dense" id="deadline" label="Deadline" type="Date" fullWidth />
+          <MuiPickersUtilsProvider utils={DateFnsUtils}>
+            <KeyboardDatePicker
+              disableToolbar
+              variant="inline"
+              format="yyyy-MM-dd"
+              margin="normal"
+              id="https://schema.org/andTime"
+              label="Start date"
+              value={task.endDate}
+              onChange={handleEndDateChange}
+              KeyboardButtonProps={{
+                "aria-label": "change date",
+              }}
+            />
+          </MuiPickersUtilsProvider>
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose} color="primary">
@@ -126,6 +149,9 @@ const AddTask: React.FC<Props> = (props): JSX.Element => {
             Save
           </Button>
         </DialogActions>
+        <a href="https://ekseli.dev.inrupt.net/private/dp2/cases/ProjectABC/Installation/Task2/action.ttl">
+          Task POD link
+        </a>
       </Dialog>
     </div>
   );
