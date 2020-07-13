@@ -34,7 +34,7 @@ const ProjectPhases: React.FC<Props> = (props): JSX.Element => {
         <div className="project-phase-card-section">
           {PhaseCards}
           <div about="the task will be here">
-            <AddTask parent="temp"></AddTask>
+            <AddTask parent="Installation(test)"></AddTask>
           </div>
         </div>
       </div>
