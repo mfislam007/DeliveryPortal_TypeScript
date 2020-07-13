@@ -1,12 +1,15 @@
 class Task {
-  constructor(public _name: string) {
-    this.name = _name;
-  }
+  constructor() {}
+
   name: string;
+  description: string;
+  actionStatusType: string;
 }
 
 interface Task {
   name: string;
+  description: string;
+  actionStatusType: string;
 }
 
 //empty export to get rid of TS error

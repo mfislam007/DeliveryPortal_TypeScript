@@ -23,6 +23,11 @@ const AddTask: React.FC<Props> = (props): JSX.Element => {
 
   useEffect(() => {
     const webId = "https://ekseli.dev.inrupt.net/private/dp2/cases/ProjectABC/Installation/Task2";
+    const task2 = new Task();
+    task2.name = "Example task";
+    task2.description = "New description";
+    task2.actionStatusType = "In progress";
+    updateTask(webId, task2);
     getTask(webId).then(result => {
       setTask(result);
     });
@@ -60,12 +65,19 @@ const AddTask: React.FC<Props> = (props): JSX.Element => {
             autoFocus
             margin="dense"
             value={task.name}
-            id="name"
+            id="https://schema.org/Action#name"
             label="Name"
             type="text"
             fullWidth
           />
-          <TextField margin="dense" id="name" label="Description" type="text" fullWidth />
+          <TextField
+            margin="dense"
+            id="https://schema.org/Action#description"
+            value={task.description}
+            label="Description"
+            type="text"
+            fullWidth
+          />
           <TextField
             margin="dense"
             id="responsibility"
@@ -84,7 +96,6 @@ const AddTask: React.FC<Props> = (props): JSX.Element => {
             <Select
               labelId="demo-simple-select-label"
               id="demo-simple-select"
-              value={type}
               onChange={handleChange}
             >
               <MenuItem value="Task">Task</MenuItem>
@@ -97,11 +108,11 @@ const AddTask: React.FC<Props> = (props): JSX.Element => {
           <Select
             labelId="demo-simple-select-label"
             id="demo-simple-select"
-            value={status}
+            value={task.actionStatusType}
             onChange={handleChange}
           >
             <MenuItem value="New">New</MenuItem>
-            <MenuItem value="Active">Active</MenuItem>
+            <MenuItem value="In progress">In progress</MenuItem>
             <MenuItem value="Resolved">Resolved</MenuItem>
             <MenuItem value="Rejected">Rejected</MenuItem>
           </Select>
