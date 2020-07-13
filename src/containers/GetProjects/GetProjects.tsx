@@ -12,7 +12,7 @@ const GetProjects: React.FC = (): JSX.Element => {
     const profile = profileDoc.getSubject(webId);
     setNames(profile.getAllStrings("https://schema.org/Project#name"));
   }
-
+  //
   useEffect(() => {
     (async () => {
       await getProjectNames(webId);
