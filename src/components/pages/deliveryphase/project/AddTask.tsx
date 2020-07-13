@@ -42,13 +42,7 @@ const AddTask: React.FC<Props> = (props): JSX.Element => {
   }, []);
 
   const save = () => {
-    const task2 = new Task();
-    task2.name = "TaskX";
-    task2.description = "New description2";
-    task2.actionStatusType = "In progress";
-    alert(task.endTime);
-    task2.endTime = task.endTime;
-    createTask(url, task2);
+    createTask(url, task);
     setOpen(false);
   };
 
@@ -70,7 +64,24 @@ const AddTask: React.FC<Props> = (props): JSX.Element => {
     let atask = { ...task };
     atask.endTime = date;
     setTask(atask);
-    console.log(JSON.stringify(task));
+  }
+
+  function handleChangeName(event: any): void {
+    let atask = { ...task };
+    atask.name = event.target.value;
+    setTask(atask);
+  }
+
+  function handleDescriptionChange(event: any): void {
+    let atask = { ...task };
+    atask.description = event.target.value;
+    setTask(atask);
+  }
+
+  function handleTypeChange(event: any): void {
+    let atask = { ...task };
+    atask.actionStatusType = event.target.value;
+    setTask(atask);
   }
 
   return (
@@ -89,6 +100,7 @@ const AddTask: React.FC<Props> = (props): JSX.Element => {
             margin="dense"
             value={task.name}
             id="https://schema.org/Action#name"
+            onChange={handleChangeName}
             label="Name"
             type="text"
             fullWidth
@@ -97,6 +109,7 @@ const AddTask: React.FC<Props> = (props): JSX.Element => {
             margin="dense"
             id="https://schema.org/Action#description"
             value={task.description}
+            onChange={handleDescriptionChange}
             label="Description"
             type="text"
             fullWidth
@@ -115,11 +128,12 @@ const AddTask: React.FC<Props> = (props): JSX.Element => {
             type="text"
             fullWidth
           /> */}
-          <p>
+          {/* <p>
             <Select
               labelId="demo-simple-select-label"
               id="demo-simple-select"
-              onChange={handleChange}
+              onChange={handleTypeChange}
+              value={task.type}
             >
               <MenuItem value="Task">Task</MenuItem>
               <MenuItem value="Course">Course link</MenuItem>
@@ -127,12 +141,12 @@ const AddTask: React.FC<Props> = (props): JSX.Element => {
               <MenuItem value="Milestone">Milestone</MenuItem>
               <MenuItem value="Check list">Check list</MenuItem>
             </Select>
-          </p>
+          </p> */}
           <Select
             labelId="demo-simple-select-label"
             id="demo-simple-select"
             value={task.actionStatusType}
-            onChange={handleChange}
+            onChange={handleTypeChange}
           >
             <MenuItem value="New">New</MenuItem>
             <MenuItem value="In progress">In progress</MenuItem>
