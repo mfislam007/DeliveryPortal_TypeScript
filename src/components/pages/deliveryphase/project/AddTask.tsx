@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import Dialog from "@material-ui/core/Dialog";
@@ -9,6 +9,8 @@ import DialogTitle from "@material-ui/core/DialogTitle";
 import AddIcon from "@material-ui/icons/Add";
 import Select from "@material-ui/core/Select";
 import MenuItem from "@material-ui/core/MenuItem";
+import Task from "../../../../entity/Task";
+import { updateTask, getTask } from "../../../../controllers/TaskController";
 
 interface Props {
   parent: string;
@@ -16,6 +18,16 @@ interface Props {
 
 /** Dialog to enter data for a new task */
 const AddTask: React.FC<Props> = (props): JSX.Element => {
+  //creatinf demo task
+  const [task, setTask] = useState<Task>(new Task(""));
+
+  useEffect(() => {
+    const webId = "https://ekseli.dev.inrupt.net/private/dp2/cases/ProjectABC/Installation/Task2";
+    getTask(webId).then(result => {
+      setTask(result);
+    });
+  }, []);
+
   const [open, setOpen] = React.useState(false);
   const [type, setType] = React.useState("Task");
   const [status, setStatus] = React.useState("New");
@@ -44,7 +56,15 @@ const AddTask: React.FC<Props> = (props): JSX.Element => {
           {/* <DialogContentText>
             Add a task to be carried out during this {props.parent} phase
           </DialogContentText> */}
-          <TextField autoFocus margin="dense" id="name" label="Name" type="text" fullWidth />
+          <TextField
+            autoFocus
+            margin="dense"
+            value={task.name}
+            id="name"
+            label="Name"
+            type="text"
+            fullWidth
+          />
           <TextField margin="dense" id="name" label="Description" type="text" fullWidth />
           <TextField
             margin="dense"
