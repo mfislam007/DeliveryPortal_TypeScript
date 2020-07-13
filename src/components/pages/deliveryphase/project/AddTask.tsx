@@ -17,7 +17,7 @@ import DateFnsUtils from "@date-io/date-fns";
 interface Props {
   parent: string | null; //when adding
   url: string | null; //when editing
-  open: boolen;
+  open: boolean;
 }
 
 /** Dialog to enter data for a new task */
