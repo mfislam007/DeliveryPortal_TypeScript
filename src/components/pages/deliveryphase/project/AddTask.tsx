@@ -16,7 +16,7 @@ import DateFnsUtils from "@date-io/date-fns";
 import { datePickerDefaultProps } from "@material-ui/pickers/constants/prop-types";
 
 interface Props {
-  url: string; //when editing
+  url: string;
   open: boolean;
 }
 
@@ -27,7 +27,7 @@ const AddTask: React.FC<Props> = (props): JSX.Element => {
   const [open, setOpen] = useState(props.open);
   const [type, setType] = useState("Task");
   const [status, setStatus] = useState("New");
-  const [url, setUrl] = useState();
+  const [url, setUrl] = useState<string>();
   useEffect(() => {
     //set default endTime fro a task fro one month further
     let newDate = new Date();
