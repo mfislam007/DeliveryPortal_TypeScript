@@ -19,7 +19,7 @@ interface Props {
 /** Dialog to enter data for a new task */
 const AddTask: React.FC<Props> = (props): JSX.Element => {
   //creatinf demo task
-  const [task, setTask] = useState<Task>(new Task(""));
+  const [task, setTask] = useState<Task>(new Task());
 
   useEffect(() => {
     const webId = "https://ekseli.dev.inrupt.net/private/dp2/cases/ProjectABC/Installation/Task2";
