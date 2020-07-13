@@ -16,7 +16,7 @@ export async function updateTask(webId: string, task: Task) {
 export async function getTask(webId: string) {
   const profileDoc = await fetchDocument(webId + "/action.ttl");
   const profile = profileDoc.getSubject(webId);
-  const task = new Task("");
+  const task = new Task();
   task.name = profile.getString("https://schema.org/Action#name");
   task.description = profile.getString("https://schema.org/Action#description");
   task.actionStatusType = profile.getString("https://schema.org/ActionStatusType");
