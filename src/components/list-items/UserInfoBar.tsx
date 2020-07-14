@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
+import AccountCircleIcon from "@material-ui/icons/AccountCircle";
+import MoreVertIcon from "@material-ui/icons/MoreVert";
 
-import moreOptions from "../../assets/images/commonicons/options-icon.png";
-import defaultPortrait from "../../assets/images/commonicons/portrait-icon.png";
 import "./UserInfoBar.scss";
 
 type Props = {
@@ -18,6 +18,7 @@ const UserInfoBar: React.FC<Props> = (props): JSX.Element => {
   useEffect(() => {
     setName(props.name);
     setCompany(props.company);
+
     if (props.portrait !== undefined) {
       setPortrait(props.portrait);
     }
@@ -26,17 +27,16 @@ const UserInfoBar: React.FC<Props> = (props): JSX.Element => {
   return (
     <div className="userInfoBarContainer">
       <div className="userInfoBarPortrait">
-        <img
-          src={portrait === undefined ? defaultPortrait : portrait}
-          alt="portrait"
-          width={30}
-          height={30}
-        />
+        {portrait === undefined ? (
+          <AccountCircleIcon fontSize="large" />
+        ) : (
+          <img src={portrait} alt="portrait" width={30} height={30} />
+        )}
       </div>
       <div className="userInfoBarName">{name}</div>
       <div className="userInfoBarCompany">{company}</div>
       <div className="userInfoBarSettingsImg">
-        <img src={moreOptions} alt="settings" width={25} height={25} />
+        <MoreVertIcon />
       </div>
     </div>
   );

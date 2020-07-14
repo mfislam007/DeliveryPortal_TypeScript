@@ -1,9 +1,9 @@
 import React from "react";
 
-import optionsIcon from "../../assets/images/commonicons/options-icon.png";
+import AccountCircleIcon from "@material-ui/icons/AccountCircle";
+import MoreVertIcon from "@material-ui/icons/MoreVert";
 
 type Props = {
-  userImage: string;
   eventString: string;
   date?: string | Date;
   optionalImage?: string;
@@ -12,13 +12,15 @@ type Props = {
 const StreamEvent: React.FC<Props> = (props): JSX.Element => {
   return (
     <div className="streamEventElement">
-      <img src={props.userImage} alt="user"></img>
+      <AccountCircleIcon fontSize="large" />
       <div className="streamEventData">
         <div>{props.eventString}</div>
-        {props.date !== undefined && <div>{props.date}</div>}
+        {props.date !== undefined && (
+          <div>{typeof props.date === "string" ? props.date : props.date.toLocaleString()}</div>
+        )}
         {props.optionalImage !== undefined && <img src={props.optionalImage} alt="optional" />}
       </div>
-      <img src={optionsIcon} alt="options" className="options"></img>
+      <MoreVertIcon />
     </div>
   );
 };

@@ -9,7 +9,7 @@ interface Props {
 
 const DeliveryPhaseIndex: React.FC<Props> = props => {
   /**
-   * loop here names array and create ProjectCards for them
+   * Loop here names array and create ProjectCards for them
    */
   const nameCards = props.projectNames.map((name, index) => (
     <ProjectCard
@@ -26,8 +26,7 @@ const DeliveryPhaseIndex: React.FC<Props> = props => {
 
   return (
     <div>
-      <h3>Delivery Portals</h3>
-      <div className="deliveryPortalProjectsContainer">{nameCards}</div>
+      <div className="projects-container">{nameCards}</div>
     </div>
   );
 };

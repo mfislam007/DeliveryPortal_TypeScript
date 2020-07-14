@@ -1,54 +1,84 @@
 import React from "react";
 import { Route, useHistory } from "react-router";
+import { Link } from "react-router-dom";
+import PersonIcon from "@material-ui/icons/Person";
+import HomeIcon from "@material-ui/icons/Home";
+import AddIcon from "@material-ui/icons/Add";
+import IconButton from "@material-ui/core/IconButton";
+import MenuIcon from "@material-ui/icons/Menu";
+import ListItem from "@material-ui/core/ListItem";
+import Drawer from "@material-ui/core/Drawer";
+import ListItemIcon from "@material-ui/core/ListItem";
+import ListItemText from "@material-ui/core/ListItemText";
+import Typography from "@material-ui/core/Typography";
 
 import "./Toolbar.scss";
-import DrawerToggleButton from "../SideDrawer/DrawerToggleButton";
 import ToolbarProjectPageLinks from "./ToolbarProjectPageLinks";
-import profile from "../../../assets/images/menubar/profile.png";
-import home from "../../../assets/images/menubar/home.png";
-import plusIcon from "../../../assets/images/menubar/plus-icon.png";
 
-type Props = {
-  onClick: React.MouseEventHandler<HTMLElement>;
-  show: boolean;
-};
-
-const Toolbar: React.FC<Props> = (props): JSX.Element => {
+const Toolbar: React.FC = (): JSX.Element => {
   let history = useHistory();
+  const [state, setState] = React.useState({
+    left: false,
+  });
+
+  const toggleDrawer = (open: boolean) => (event: React.KeyboardEvent | React.MouseEvent) => {
+    setState({ ...state, left: open });
+  };
 
   return (
     <header className="toolbar">
       <nav className="toolbar-navigation">
-        <div className="toolbar-toggle-button">
-          <DrawerToggleButton onClick={props.onClick} />
-        </div>
-        <div className="toolbar-logo">
-          <a href="/">ABB's Delivery Portal</a>
-        </div>
         <div>
-          <button className="toolbar-project"> R&amp;D Project </button>
+          <React.Fragment>
+            <IconButton aria-label="menu" color="inherit" onClick={toggleDrawer(true)}>
+              <MenuIcon fontSize="large" />
+            </IconButton>
+            <Drawer open={state["left"]} onClose={toggleDrawer(false)}>
+              <div role="presentation" onClick={toggleDrawer(false)}>
+                <ListItem button>
+                  <ListItemIcon>
+                    <Link to="/deliveryportal" className="link">
+                      <ListItemText primary="Delivery Portals" />
+                    </Link>
+                  </ListItemIcon>
+                </ListItem>
+                <ListItem button>
+                  <ListItemIcon>
+                    <ListItemText primary="Settings" />
+                  </ListItemIcon>
+                </ListItem>
+              </div>
+            </Drawer>
+          </React.Fragment>
         </div>
+        <Typography variant="h6" className="toolbar-logo">
+          ABB's Delivery Portal
+        </Typography>
         <div className="spacer" />
         <Route path="/deliveryportal/projectid=:id" component={ToolbarProjectPageLinks}></Route>
         <div className="spacer" />
-
         <div className="toolbar-navigation-items-2">
           <ul>
             <li>
-              <img
-                src={home}
-                alt="home"
-                className="home-icon"
+              <IconButton
+                aria-label="add project"
+                color="inherit"
                 onClick={() => {
                   history.push("");
                 }}
-              />
+              >
+                <HomeIcon fontSize="default" />
+              </IconButton>
             </li>
             <li>
-              <img src={plusIcon} alt="plus" className={"plus-icon"} />
+              <IconButton color="inherit">
+                <AddIcon fontSize="default" />
+              </IconButton>
             </li>
             <li>
-              <img src={profile} alt="profile" className="profile-image" />
+              <IconButton color="inherit">
+                <PersonIcon fontSize="default" />
+              </IconButton>
             </li>
           </ul>
         </div>

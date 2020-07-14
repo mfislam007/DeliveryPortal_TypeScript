@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
+import MoreVertIcon from "@material-ui/icons/MoreVert";
 
 import "./PhaseWidgetCard.scss";
-import optionsIcon from "../../assets/images/commonicons/options-icon.png";
 
 type Props = {
   label: string;
-  timeframe?: string;
+  timeFrame?: string;
   completion?: {
     tasksCompleted: number;
     totalTasks: number;
@@ -15,15 +15,15 @@ type Props = {
 
 const PhaseWidgetCard: React.FC<Props> = (props): JSX.Element => {
   const [label, setLabel] = useState("");
-  const [timeframe, setTimeframe] = useState("");
+  const [timeFrame, setTimeFrame] = useState("");
   const [completion, setCompletion] = useState({ tasksCompleted: 0, totalTasks: 0 });
   const [phaseColor, setPhaseColor] = useState("#6da4cd");
 
   useEffect(() => {
     setLabel(props.label);
 
-    if (props.timeframe !== undefined) {
-      setTimeframe(props.timeframe);
+    if (props.timeFrame !== undefined) {
+      setTimeFrame(props.timeFrame);
     }
 
     if (props.completion !== undefined) {
@@ -35,16 +35,14 @@ const PhaseWidgetCard: React.FC<Props> = (props): JSX.Element => {
     }
   }, [props]);
 
-  const showCompletion = () => {
-    if (props.completion !== undefined) {
-      return (
-        <div className="PhaseWidgetCardCompletion" style={{ color: phaseColor }}>
-          {completion.tasksCompleted}/{completion.totalTasks}
-        </div>
-      );
-    } else {
-      return <div />;
-    }
+  const showCompletion = (): JSX.Element => {
+    return props.completion !== undefined ? (
+      <div className="PhaseWidgetCardCompletion" style={{ color: phaseColor }}>
+        {completion.tasksCompleted}/{completion.totalTasks}
+      </div>
+    ) : (
+      <div />
+    );
   };
 
   return (
@@ -52,13 +50,13 @@ const PhaseWidgetCard: React.FC<Props> = (props): JSX.Element => {
       <div className="PhaseWidgetCardTextContainer">
         <div>
           <div className="PhaseWidgetCardTextLabel">{label}</div>
-          <div className="PhaseWidgetCardTextTimeframe">{timeframe}</div>
+          <div className="PhaseWidgetCardTextTimeFrame">{timeFrame}</div>
         </div>
         <div className="PhaseWidgetCardTextDetails">See Details</div>
       </div>
       <div className="PhaseWidgetCardMisc">
         <div className="PhaseWidgetCardOptions">
-          <img src={optionsIcon} alt="options"></img>
+          <MoreVertIcon />
         </div>
         {showCompletion()}
       </div>
