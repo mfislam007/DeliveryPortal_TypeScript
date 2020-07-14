@@ -1,0 +1,16 @@
+.project-card-container {
+  max-width: 345px;
+  height: 100%;
+  padding: 20px;
+  margin: 20px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.project-card-container > div {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 19px;
+  text-align: start;
+  cursor: pointer;
+}

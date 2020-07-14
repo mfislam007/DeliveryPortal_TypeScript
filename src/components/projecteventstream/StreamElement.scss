@@ -1,0 +1,75 @@
+@import "../../styles/variables.scss";
+
+.projectEventStreamContainer {
+  display: flex;
+  flex-flow: row nowrap;
+  width: 100%;
+  height: 100%;
+  margin-top: 75px;
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: $background-color-delivery-portal;
+}
+
+.projectStreamEventUpcomingMain {
+  display: flex;
+  flex-flow: column;
+  min-width: 200px;
+  width: 200px;
+  min-height: 200px;
+  max-height: 600px;
+  height: 200px;
+  background: #ffffff 0% 0% no-repeat padding-box;
+  box-shadow: 0px 2px 2px #00000029;
+  border: 1px solid #d6d6d6;
+  border-radius: 20px;
+  opacity: 1;
+  padding: 20px;
+}
+
+.projectStreamEventUpcomingMain > h3 {
+  margin-top: 3px;
+}
+.projectStreamEventUpcomingMain > p {
+  height: 70%;
+}
+
+.projectStreamEventUpcomingMain > img {
+  align-self: flex-end;
+  justify-self: end;
+  max-width: 32px;
+  max-height: 32px;
+  object-fit: contain;
+}
+
+.streamEventElement {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  margin: 0px 15px 15px 15px;
+  padding: 15px;
+  width: 800px;
+  max-width: 954px;
+  min-height: 60px;
+
+  background: #ffffff 0% 0% no-repeat padding-box;
+  box-shadow: 0px 2px 2px #00000029;
+  border-radius: 20px;
+  opacity: 1;
+}
+
+.streamEventElement > img {
+  display: block;
+  max-width: 40px;
+  max-height: 40px;
+  object-fit: contain;
+  width: auto;
+  height: auto;
+}
+
+.streamEventElement > img.options {
+  justify-content: end;
+}
+
+.streamEventData {
+  width: 88%;
+}

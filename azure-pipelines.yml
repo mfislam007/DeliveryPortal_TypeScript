@@ -1,32 +1,72 @@
 trigger:
   - master
+  - dev
+  - test
 
-pool:
-  vmImage: "ubuntu-latest"
+stages:
+  - stage: Main
+    jobs:
+      - job: Main
+        pool:
+          vmImage: "ubuntu-latest"
+        variables:
+          - group: Deployment
+        timeoutInMinutes: 10
+        steps:
+          ##########################
+          # Installation for tests #
+          ##########################
+          - task: NodeTool@0
+            inputs:
+              versionSpec: "12.x"
+            displayName: "Install Node.js"
 
-steps:
-  - task: NodeTool@0
-    inputs:
-      versionSpec: "12.x"
-    displayName: "Install Node.js"
+          - script: yarn install
+            displayName: "Install dependencies"
+            condition: succeeded()
 
-  - script: yarn install
-    displayName: "yarn install"
+          #################################################
+          # Programmer defined tests and result reporting #
+          #################################################
+          - script: yarn test
+            displayName: "Run tests"
+            condition: succeeded()
 
-  - script: yarn test
-    displayName: "yarn test"
+          - task: PublishTestResults@2
+            displayName: "Publish test results"
+            condition: succeededOrFailed()
+            inputs:
+              testRunner: JUnit
+              testResultsFiles: "./.jest/coverage/test-results.xml"
 
-  - task: PublishTestResults@2
-    condition: succeededOrFailed()
-    inputs:
-      testRunner: JUnit
-      testResultsFiles: "./.jest/coverage/test-results.xml"
+          - task: PublishCodeCoverageResults@1
+            displayName: "Publish code coverage results"
+            condition: succeededOrFailed()
+            inputs:
+              codeCoverageTool: Cobertura
+              summaryFileLocation: "$(System.DefaultWorkingDirectory)/.jest/coverage/clover.xml"
+              reportDirectory: "$(System.DefaultWorkingDirectory)/.jest/coverage/lcov-report"
 
-  - task: PublishCodeCoverageResults@1
-    inputs:
-      codeCoverageTool: Cobertura
-      summaryFileLocation: "$(System.DefaultWorkingDirectory)/.jest/coverage/clover.xml"
-      reportDirectory: "$(System.DefaultWorkingDirectory)/.jest/coverage/lcov-report"
+          #########################
+          # Production build test #
+          #########################
+          - script: yarn production-build
+            displayName: "Build production"
+            condition: succeeded()
 
-  - script: yarn build
-    displayName: "yarn build"
+          ###############################
+          # Installation for deployment #
+          ###############################
+          - script: |
+              sudo apt-get update -qy
+              sudo apt-get install -y ruby-dev
+              sudo gem install dpl
+            displayName: "Install dpl"
+            condition: succeeded()
+
+          ########################
+          # Deployment to Heroku #
+          ########################
+          - script: sudo dpl --provider=heroku --app=$(HEROKU_APP_NAME_DELIVERY_PORTAL_FRONTEND_REACT) --api-key=$(HEROKU_API_KEY) --skip_cleanup
+            displayName: "Deploy to Heroku"
+            condition: succeeded()

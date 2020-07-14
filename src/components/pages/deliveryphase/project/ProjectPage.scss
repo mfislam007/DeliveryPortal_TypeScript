@@ -1,0 +1,44 @@
+/* Project users page */
+.projectUsersContainer {
+  display: flex;
+  justify-content: center;
+  margin-top: 75px;
+  background-color: #dce2f0;
+  height: 100%;
+}
+
+.usersElement {
+  width: 50vw;
+  min-width: 600px;
+}
+
+.usersElement > h1,
+.usersElement > h2,
+.usersElement > h3 {
+  margin-bottom: 3px;
+}
+
+/* Project phases page */
+
+.project-phase-page-main {
+  display: flex;
+  background-color: #dce2f0;
+}
+
+.project-phase-first-section {
+  height: 100%;
+  width: 350px;
+  position: fixed;
+  top: 75px;
+}
+
+.project-phase-second-section {
+  margin-left: 380px;
+}
+
+.project-phase-card-section {
+  display: flex;
+  flex-flow: row wrap;
+  justify-self: center;
+  max-width: 1300px;
+}
