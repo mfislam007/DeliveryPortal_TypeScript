@@ -4,7 +4,7 @@ interface Props {
 }
 
 const ProjectContainer: React.FC<Props> = (props): JSX.Element => {
-  return <div> timo {props.project.name}</div>;
+  return <div>{props.project.name}</div>;
 };
 
 export default ProjectContainer;

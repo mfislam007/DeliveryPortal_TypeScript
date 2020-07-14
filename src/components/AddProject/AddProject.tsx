@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Modal from "react-modal";
-import "./AddProject.css";
+import "./AddProject.scss";
 import ProjectContainer from "./ProjectContainer";
 
 const AddProject: React.FC = (): JSX.Element => {
