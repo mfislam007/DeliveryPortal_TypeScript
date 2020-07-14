@@ -1,94 +1,50 @@
-import React, { MouseEvent } from "react";
+import React from "react";
 import { useHistory } from "react-router-dom";
+import LocalShippingIcon from "@material-ui/icons/LocalShipping";
+import EuroIcon from "@material-ui/icons/Euro";
+import IconButton from "@material-ui/core/IconButton";
+import Grid from "@material-ui/core/Grid";
+import Paper from "@material-ui/core/Paper";
+import Typography from "@material-ui/core/Typography";
 
 import "./Homepage.scss";
-import salesphase from "../../assets/images/homepage/salesphase.png";
-import instructions from "../../assets/images/homepage/instructions.png";
-import delivery from "../../assets/images/homepage/delivery.png";
-import projectmanagement from "../../assets/images/homepage/projectmanagement.png";
-import performance from "../../assets/images/homepage/performance.png";
-import cloudmanufacturing from "../../assets/images/homepage/cloudmanufacturing.png";
 
 const HomePage: React.FC = (): JSX.Element => {
-  const imgWidth = 300;
-  const imgHeigth = 300;
   let history = useHistory();
 
-  const handleOnClick = (event: MouseEvent<HTMLImageElement>) => {
-    const id = event.currentTarget.id;
-    history.push("/" + id);
-  };
-
   return (
-    <div className="homePageTable">
-      <table>
-        <tbody>
-          <tr>
-            <td>
-              <img
-                src={salesphase}
-                alt="Sales Phase"
-                width={imgWidth}
-                height={imgHeigth}
-                id="salesphase"
-                onClick={handleOnClick}
-              ></img>
-            </td>
-            <td>
-              <img
-                src={instructions}
-                alt="Installation Instructions"
-                width={imgWidth}
-                height={imgHeigth}
-                id="installation"
-                onClick={handleOnClick}
-              ></img>
-            </td>
-            <td>
-              <img
-                src={delivery}
-                alt="Delivery Phase"
-                width={imgWidth}
-                height={imgHeigth}
-                id="deliveryportal"
-                onClick={handleOnClick}
-              ></img>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <img
-                src={projectmanagement}
-                alt="Project Management"
-                width={imgWidth}
-                height={imgHeigth}
-                id="projectmanagement"
-                onClick={handleOnClick}
-              ></img>
-            </td>
-            <td>
-              <img
-                src={performance}
-                alt="Device Performance"
-                width={imgWidth}
-                height={imgHeigth}
-                id="deviceperformance"
-                onClick={handleOnClick}
-              ></img>
-            </td>
-            <td>
-              <img
-                src={cloudmanufacturing}
-                alt="Cloud Manufacturing"
-                width={imgWidth}
-                height={imgHeigth}
-                id="cloudmanufacturing"
-                onClick={handleOnClick}
-              ></img>
-            </td>
-          </tr>
-        </tbody>
-      </table>
+    <div>
+      <Typography variant="h2">Customer Portal</Typography>
+      <Grid container direction="row" justify="space-between" alignItems="flex-start">
+        <Grid
+          className="paper-grid"
+          container
+          direction="column"
+          justify="center"
+          alignItems="flex-end"
+        >
+          <Paper className="paper" elevation={20}>
+            <IconButton
+              color="primary"
+              onClick={() => {
+                history.push("/salesphase");
+              }}
+            >
+              <EuroIcon fontSize="large" />
+            </IconButton>
+          </Paper>
+          <Paper className="paper" elevation={20}>
+            <IconButton
+              color="primary"
+              onClick={() => {
+                history.push("/deliveryportal");
+              }}
+            >
+              <LocalShippingIcon fontSize="large" />
+            </IconButton>
+          </Paper>
+        </Grid>
+      </Grid>
     </div>
   );
 };
