@@ -8,11 +8,9 @@ type Props = {
 };
 
 const DropDownButton: React.FC<Props> = (props): JSX.Element => (
-  <div>
-    <button className="plus-icon" onClick={props.onClick}>
-      <img src={plusIcon} alt="plus" className="plus-icon" />
-    </button>
-  </div>
+  <button className="plus-icon" onClick={props.onClick}>
+    <img src={plusIcon} alt="plus" className="plus-icon" />
+  </button>
 );
 
 export default DropDownButton;

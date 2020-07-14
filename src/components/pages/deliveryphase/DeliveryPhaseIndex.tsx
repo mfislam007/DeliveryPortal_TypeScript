@@ -30,4 +30,5 @@ const DeliveryPhaseIndex: React.FC<Props> = props => {
     </div>
   );
 };
+
 export default DeliveryPhaseIndex;

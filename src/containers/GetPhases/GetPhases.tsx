@@ -12,7 +12,6 @@ const GetProjects: React.FC = (): JSX.Element => {
   async function getPhaseNames(webId: string) {
     const profileDoc = await fetchDocument(webId);
     const profile = profileDoc.getSubject(webId);
-    console.log(JSON.stringify(profile.getAllStrings("https://schema.org/Action#name")));
     setNames(profile.getAllStrings("https://schema.org/Action#name"));
   }
 

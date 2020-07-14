@@ -45,7 +45,7 @@ export default function OppositeContentTimeline() {
             <TimelineConnector />
           </TimelineSeparator>
           <TimelineContent>
-            <Typography color="textSecondary">Milestone #1</Typography>
+            <Typography color="textSecondary">Milestone &#35;1</Typography>
           </TimelineContent>
         </TimelineItem>
         <TimelineItem>
@@ -69,7 +69,7 @@ export default function OppositeContentTimeline() {
             <TimelineConnector />
           </TimelineSeparator>
           <TimelineContent>
-            <Typography color="textSecondary">Checkpoint #1</Typography>
+            <Typography color="textSecondary">Checkpoint &#35;1</Typography>
           </TimelineContent>
         </TimelineItem>
         <TimelineItem>
@@ -93,7 +93,7 @@ export default function OppositeContentTimeline() {
             <TimelineConnector />
           </TimelineSeparator>
           <TimelineContent>
-            <Typography color="textSecondary">Milestone #2</Typography>
+            <Typography color="textSecondary">Milestone &#35;2</Typography>
           </TimelineContent>
         </TimelineItem>
         <TimelineItem>
@@ -117,12 +117,12 @@ export default function OppositeContentTimeline() {
             <TimelineConnector />
           </TimelineSeparator>
           <TimelineContent>
-            <Typography color="textSecondary">Milestone #3</Typography>
+            <Typography color="textSecondary">Milestone &#35;3</Typography>
           </TimelineContent>
         </TimelineItem>
         <TimelineItem>
           <TimelineOppositeContent>
-            <Typography color="textSecondary">Checkpoint #2</Typography>
+            <Typography color="textSecondary">Checkpoint &#35;2</Typography>
           </TimelineOppositeContent>
           <TimelineSeparator>
             <TimelineDot />

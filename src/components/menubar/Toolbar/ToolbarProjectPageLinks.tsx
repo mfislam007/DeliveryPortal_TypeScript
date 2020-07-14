@@ -3,6 +3,7 @@ import { useRouteMatch, Link } from "react-router-dom";
 
 const ToolbarProjectPageLinks: React.FC = (): JSX.Element => {
   const { url } = useRouteMatch();
+
   return (
     <div className="toolbar-navigation-items">
       <ul>
