@@ -12,7 +12,7 @@ const RenderPhases: React.FC<Props> = (props): JSX.Element => {
     <PhaseWidgetCard
       key={index}
       label={name}
-      timeFrame="May 10 - June 11"
+      timeframe="May 10 - June 11"
       completion={{ tasksCompleted: 5, totalTasks: 5 }}
       phaseColor={PhaseColors[index]}
     />
