@@ -12,7 +12,7 @@ type Props = {
 const StreamElement: React.FC<Props> = (props): JSX.Element => {
   const [id, setId] = useState(1 as number | string);
   return (
-    <div id={id + ""} className="projectEventStreamContainer">
+    <div id={id.toString + ""} className="projectEventStreamContainer">
       <div className="projectEventStreamMain">
         <StreamEvent eventString="Share something with ABB..." />
         <StreamEvent

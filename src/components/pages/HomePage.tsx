@@ -1,6 +1,5 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
-
 import LocalShippingIcon from "@material-ui/icons/LocalShipping";
 import EuroIcon from "@material-ui/icons/Euro";
 import IconButton from "@material-ui/core/IconButton";

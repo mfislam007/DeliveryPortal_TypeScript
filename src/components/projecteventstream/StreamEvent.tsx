@@ -15,7 +15,9 @@ const StreamEvent: React.FC<Props> = (props): JSX.Element => {
       <AccountCircleIcon fontSize="large" />
       <div className="streamEventData">
         <div>{props.eventString}</div>
-        {props.date !== undefined && <div>{props.date}</div>}
+        {props.date !== undefined && (
+          <div>{typeof props.date === "string" ? props.date : props.date.toLocaleString()}</div>
+        )}
         {props.optionalImage !== undefined && <img src={props.optionalImage} alt="optional" />}
       </div>
       <MoreVertIcon />

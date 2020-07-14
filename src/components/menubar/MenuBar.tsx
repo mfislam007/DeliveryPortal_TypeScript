@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import Toolbar from "./Toolbar/Toolbar";
 
 const MenuBar: React.FC = (): JSX.Element => {
-  const [sideDrawerOpen, setSideDrawerOpen] = useState(false as boolean);
+  const [sideDrawerOpen, setSideDrawerOpen] = useState(false);
 
   const drawerToggleClickHandler = () => {
     setSideDrawerOpen(!sideDrawerOpen);

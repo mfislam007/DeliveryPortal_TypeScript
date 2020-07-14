@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import AccountCircleIcon from "@material-ui/icons/AccountCircle";
-
 import MoreVertIcon from "@material-ui/icons/MoreVert";
+
 import "./UserInfoBar.scss";
 
 type Props = {
@@ -18,6 +18,7 @@ const UserInfoBar: React.FC<Props> = (props): JSX.Element => {
   useEffect(() => {
     setName(props.name);
     setCompany(props.company);
+
     if (props.portrait !== undefined) {
       setPortrait(props.portrait);
     }

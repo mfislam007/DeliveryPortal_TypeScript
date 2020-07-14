@@ -6,6 +6,7 @@ import UserInfoBar from "../../../list-items/UserInfoBar";
 
 const ProjectUsers: React.FC = (): JSX.Element => {
   const { id } = useParams();
+
   return (
     <div id={id} className="projectUsersContainer">
       <div className="usersElement">
