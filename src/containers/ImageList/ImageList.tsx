@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import "regenerator-runtime/runtime";
 
 import ImageBrowser from "../../components/ImageBrowser/ImageBrowser";
-
 import "./ImageList.scss";
 
 interface Props {
