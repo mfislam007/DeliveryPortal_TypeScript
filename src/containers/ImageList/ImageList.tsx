@@ -4,9 +4,9 @@ import "regenerator-runtime/runtime";
 import ImageBrowser from "../../components/ImageBrowser/ImageBrowser";
 import "./ImageList.scss";
 
-interface Props {
+type Props = {
   dataSource: string;
-}
+};
 
 const ImageList: React.FC<Props> = (props): JSX.Element => {
   const { default: data } = require("@solid/query-ldflex");

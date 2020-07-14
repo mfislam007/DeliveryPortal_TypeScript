@@ -1,26 +1,11 @@
 import React from "react";
 
 import "../DeliveryPhaseIndex.scss";
-import { PhaseColors } from "../../../../constants/WidgetColors";
 import ImageList from "../../../../containers/ImageList/ImageList";
 import TimeLine from "../../../time-line/TimeLine";
-import PhaseWidgetCard from "../../../list-items/PhaseWidgetCard";
+import GetPhases from "../../../../containers/GetPhases/GetPhases";
 
-interface Props {
-  projectPhases: string[];
-}
-
-const ProjectPhases: React.FC<Props> = (props): JSX.Element => {
-  const PhaseCards = props.projectPhases.map((name, index) => (
-    <PhaseWidgetCard
-      key={index}
-      label={name}
-      timeFrame="May 10 - June 11"
-      completion={{ tasksCompleted: 5, totalTasks: 5 }}
-      phaseColor={PhaseColors[index]}
-    />
-  ));
-
+const ProjectPhases: React.FC = (): JSX.Element => {
   return (
     <div className="project-phase-page-main">
       <div className="project-phase-first-section">
@@ -30,7 +15,7 @@ const ProjectPhases: React.FC<Props> = (props): JSX.Element => {
         <ImageList
           dataSource={"https://ekseli.dev.inrupt.net/private/dp2/cases/ProjectBCD/Pictures/"}
         />
-        <div className="project-phase-card-section">{PhaseCards}</div>
+        <GetPhases />
       </div>
     </div>
   );
