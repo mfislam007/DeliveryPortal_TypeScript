@@ -15,7 +15,7 @@ import { MuiPickersUtilsProvider, KeyboardDatePicker } from "@material-ui/picker
 import DateFnsUtils from "@date-io/date-fns";
 import { datePickerDefaultProps } from "@material-ui/pickers/constants/prop-types";
 import data from "../../.../../../../../settings.json";
-import TaskMenu from "./TaskMenu";
+import CustomizedMenus from "./CustomizedMenus";
 
 interface Props {
   url: string;
@@ -44,6 +44,7 @@ const AddTask: React.FC<Props> = (props): JSX.Element => {
     });
   }, []);
 
+  const testUrl = url + "/" + task.name + "/action.ttl";
   const save = () => {
     createTask(url, task);
     setOpen(false);
@@ -114,7 +115,7 @@ const AddTask: React.FC<Props> = (props): JSX.Element => {
             type="text"
             fullWidth
           />
-          <TaskMenu />
+          <CustomizedMenus />
           <Select
             labelId="demo-simple-select-label"
             id="demo-simple-select"
@@ -150,11 +151,7 @@ const AddTask: React.FC<Props> = (props): JSX.Element => {
             Save
           </Button>
         </DialogActions>
-        {data.debug && (
-          <a href="https://ekseli.dev.inrupt.net/private/dp2/cases/ProjectABC/Installation/Task2/action.ttl">
-            Task POD link
-          </a>
-        )}
+        {data.debug && <a href={testUrl}>Task POD link</a>}
       </Dialog>
     </div>
   );

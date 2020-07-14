@@ -40,12 +40,11 @@ const StyledMenuItem = withStyles(theme => ({
   },
 }))(MenuItem);
 
-export default function TaskMenu() {
+export default function CustomizedMenus() {
   const [anchorEl, setAnchorEl] = React.useState(null);
 
   const handleClick = event => {
     setAnchorEl(event.currentTarget);
-    console.log(JSON.stringify(anchorEl));
   };
 
   const handleClose = () => {
@@ -61,7 +60,7 @@ export default function TaskMenu() {
         color="primary"
         onClick={handleClick}
       >
-        Add
+        Open Menu
       </Button>
       <StyledMenu
         id="customized-menu"
@@ -74,19 +73,19 @@ export default function TaskMenu() {
           <ListItemIcon>
             <SendIcon fontSize="small" />
           </ListItemIcon>
-          <ListItemText primary="Course" />
+          <ListItemText primary="Sent mail" />
         </StyledMenuItem>
         <StyledMenuItem>
           <ListItemIcon>
             <DraftsIcon fontSize="small" />
           </ListItemIcon>
-          <ListItemText primary="Milestone" />
+          <ListItemText primary="Drafts" />
         </StyledMenuItem>
         <StyledMenuItem>
           <ListItemIcon>
             <InboxIcon fontSize="small" />
           </ListItemIcon>
-          <ListItemText primary="Check list" />
+          <ListItemText primary="Inbox" />
         </StyledMenuItem>
       </StyledMenu>
     </div>
