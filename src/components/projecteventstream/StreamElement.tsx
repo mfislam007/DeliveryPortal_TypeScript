@@ -10,10 +10,11 @@ type Props = {
 };
 
 const StreamElement: React.FC<Props> = (props): JSX.Element => {
-  const [id, setId] = useState(1 as number | string);
+  const [id, setId] = useState(1);
 
+  //  WARNING  (Roman Bezusiak) [ `id={id.toString()}` is quite ambiguous id naming, do we need it here? ]
   return (
-    <div id={id.toString + ""} className="projectEventStreamContainer">
+    <div id={id.toString()} className="projectEventStreamContainer">
       <div className="projectEventStreamMain">
         <StreamEvent eventString="Share something with ABB..." />
         <StreamEvent
