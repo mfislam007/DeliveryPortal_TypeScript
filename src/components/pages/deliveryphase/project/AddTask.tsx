@@ -34,6 +34,7 @@ const AddTask: React.FC<Props> = (props): JSX.Element => {
     let newDate = new Date();
     newDate.setDate(newDate.getDate() + 30);
     let newTask = { ...task };
+    newTask.actionStatusType = "New";
     newTask.endTime = newDate;
     setTask(newTask);
     setUrl(props.url);
@@ -93,9 +94,6 @@ const AddTask: React.FC<Props> = (props): JSX.Element => {
       <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
         <DialogTitle id="form-dialog-title">Add a task</DialogTitle>
         <DialogContent>
-          {/* <DialogContentText>
-            Add a task to be carried out during this {props.parent} phase
-          </DialogContentText> */}
           <TextField
             autoFocus
             margin="dense"
@@ -115,34 +113,6 @@ const AddTask: React.FC<Props> = (props): JSX.Element => {
             type="text"
             fullWidth
           />
-          {/* <TextField
-            margin="dense"
-            id="responsibility"
-            label="Responsibility organization"
-            type="text"
-            fullWidth
-          />
-          <TextField
-            margin="dense"
-            id="person"
-            label="Responsibility person"
-            type="text"
-            fullWidth
-          /> */}
-          {/* <p>
-            <Select
-              labelId="demo-simple-select-label"
-              id="demo-simple-select"
-              onChange={handleTypeChange}
-              value={task.type}
-            >
-              <MenuItem value="Task">Task</MenuItem>
-              <MenuItem value="Course">Course link</MenuItem>
-              <MenuItem value="File upload">File upload</MenuItem>
-              <MenuItem value="Milestone">Milestone</MenuItem>
-              <MenuItem value="Check list">Check list</MenuItem>
-            </Select>
-          </p> */}
           <Select
             labelId="demo-simple-select-label"
             id="demo-simple-select"
