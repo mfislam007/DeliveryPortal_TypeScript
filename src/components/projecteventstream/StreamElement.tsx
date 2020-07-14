@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 
 import "./StreamElement.scss";
-import optionalImg1 from "../../assets/images/projectstream/prima-building1.png";
-import optionalImg2 from "../../assets/images/projectstream/prima-building2.png";
+import optionalImg1 from "../../assets/images/projectstream/prima-building-1.png";
+import optionalImg2 from "../../assets/images/projectstream/prima-building-2.png";
 import StreamEvent from "./StreamEvent";
 
 type Props = {
