@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { fetchDocument } from "tripledoc";
+import CircularProgress from "@material-ui/core/CircularProgress";
 
 import data from "../../../settings.json";
 import RenderProjects from "../../components/RenderProjects/RenderProjects";
-import LoadingSpinner from "../../components/LoadingSpinner/LoadingSpinner";
-import "../../components/LoadingSpinner/LoadingSpinner.scss";
+import "./GetProjects.scss";
 
 const GetProjects: React.FC = (): JSX.Element => {
   const [projectNames, setProjectNames] = useState([] as string[]);
@@ -41,11 +41,14 @@ const GetProjects: React.FC = (): JSX.Element => {
   return (
     <div>
       {loading ? (
-        <LoadingSpinner />
+        <div className="progress-wrapper">
+          <CircularProgress size="100" />
+        </div>
       ) : (
         <RenderProjects projectNames={projectNames} managerNames={managerNames} />
       )}
     </div>
   );
 };
+
 export default GetProjects;
