@@ -3,7 +3,10 @@
     "write": {
       "projectName": "https://schema.org/Project#name",
       "customerName": "https://schema.org/Organization#name",
-      "managerName": "https://schema.org/Person#name"
+      "managerName": "https://schema.org/Person#name",
+      "phaseName": "https://schema.org/Action#name",
+      "startTime": "https://schema.org/startTime",
+      "endTime": "https://schema.org/endTime"
     },
     "locations": {
       "casesFile": "https://ekseli.dev.inrupt.net/private/dp2/cases/cases.ttl"

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import MoreVertIcon from "@material-ui/icons/MoreVert";
 
 import "./PhaseWidgetCard.scss";
 import optionsIcon from "../../assets/images/commonicons/options-icon.png";
@@ -7,7 +8,7 @@ import AddTask from "../pages/deliveryphase/project/AddTask";
 
 type Props = {
   label: string;
-  timeframe?: string;
+  timeframe: string;
   completion?: {
     tasksCompleted: number;
     totalTasks: number;
@@ -17,7 +18,7 @@ type Props = {
 
 const PhaseWidgetCard: React.FC<Props> = (props): JSX.Element => {
   const [label, setLabel] = useState("");
-  const [timeframe, setTimeframe] = useState("");
+  const [timeFrame, setTimeFrame] = useState("");
   const [completion, setCompletion] = useState({ tasksCompleted: 0, totalTasks: 0 });
   const [phaseColor, setPhaseColor] = useState("#6da4cd");
   const [dialogOpen, setDialogOpen] = useState(false);
@@ -30,7 +31,7 @@ const PhaseWidgetCard: React.FC<Props> = (props): JSX.Element => {
   useEffect(() => {
     setLabel(props.label);
     if (props.timeframe !== undefined) {
-      setTimeframe(props.timeframe);
+      setTimeFrame(props.timeframe);
     }
     if (props.completion !== undefined) {
       setCompletion(props.completion);
@@ -40,16 +41,14 @@ const PhaseWidgetCard: React.FC<Props> = (props): JSX.Element => {
     }
   }, [props]);
 
-  const showCompletion = () => {
-    if (props.completion !== undefined) {
-      return (
-        <div className="PhaseWidgetCardCompletion" style={{ color: phaseColor }}>
-          {completion.tasksCompleted}/{completion.totalTasks}
-        </div>
-      );
-    } else {
-      return <div />;
-    }
+  const showCompletion = (): JSX.Element => {
+    return props.completion !== undefined ? (
+      <div className="PhaseWidgetCardCompletion" style={{ color: phaseColor }}>
+        {completion.tasksCompleted}/{completion.totalTasks}
+      </div>
+    ) : (
+      <div />
+    );
   };
 
   const addTask = () => {
@@ -73,7 +72,7 @@ const PhaseWidgetCard: React.FC<Props> = (props): JSX.Element => {
       <div className="PhaseWidgetCardTextContainer">
         <div>
           <div className="PhaseWidgetCardTextLabel">{label}</div>
-          <div className="PhaseWidgetCardTextTimeframe">{timeframe}</div>
+          <div className="PhaseWidgetCardTextTimeFrame">{timeFrame}</div>
         </div>
         <div className="PhaseWidgetCardTextDetails">See Details</div>
       </div>
@@ -87,12 +86,15 @@ const PhaseWidgetCard: React.FC<Props> = (props): JSX.Element => {
             start={null}
             end={null}
           />
+          <div className="PhaseWidgetCardOptions">
+            <MoreVertIcon />
+          </div>
+          {showCompletion()}
+          <AddTask
+            open={false}
+            url={"https://ekseli.dev.inrupt.net/private/dp2/cases/ProjectABC/" + props.label + "/"}
+          />
         </div>
-        {showCompletion()}
-        <AddTask
-          open={false}
-          url={"https://ekseli.dev.inrupt.net/private/dp2/cases/ProjectABC/" + props.label + "/"}
-        />
       </div>
     </div>
   );

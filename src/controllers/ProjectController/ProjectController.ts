@@ -39,6 +39,7 @@ export async function updateProject(
   const saveLocation = `https://ekseli.dev.inrupt.net/private/dp2/cases/${projectName}/project.ttl`;
   const profileDoc = await fetchDocument(saveLocation);
   const profile = profileDoc.getSubject(saveLocation);
+
   profile.setString(data.solid.write.projectName, projectName);
   profile.setString(data.solid.write.customerName, customerName);
   profile.setString(data.solid.write.managerName, managerName);
