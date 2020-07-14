@@ -19,7 +19,6 @@ const ProjectPhases: React.FC<Props> = (props): JSX.Element => {
       timeframe="May 10 - June 11"
       completion={{ tasksCompleted: 5, totalTasks: 5 }}
       phaseColor={PhaseColors[index]}
-      addTaskLink={"https://ekseli.dev.inrupt.net/private/dp2/cases/ProjectABC/" + name + "/"}
     />
   ));
 
