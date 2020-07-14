@@ -30,4 +30,5 @@ const GetProjects: React.FC = (): JSX.Element => {
     </div>
   );
 };
+
 export default GetProjects;

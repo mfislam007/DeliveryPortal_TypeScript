@@ -2,10 +2,10 @@ import React from "react";
 
 import ProjectCard from "../list-items/ProjectCard";
 
-interface Props {
+type Props = {
   projectNames: string[];
   managerNames: string[];
-}
+};
 
 const RenderProjects: React.FC<Props> = props => {
   const nameCards = props.projectNames.map((name, index) => (
@@ -27,4 +27,5 @@ const RenderProjects: React.FC<Props> = props => {
     </div>
   );
 };
+
 export default RenderProjects;

@@ -3,9 +3,9 @@ import React from "react";
 import { PhaseColors } from "../../constants/WidgetColors";
 import PhaseWidgetCard from "../list-items/PhaseWidgetCard";
 
-interface Props {
+type Props = {
   projectPhases: string[];
-}
+};
 
 const RenderPhases: React.FC<Props> = (props): JSX.Element => {
   const PhaseCards = props.projectPhases.map((name, index) => (
@@ -20,4 +20,5 @@ const RenderPhases: React.FC<Props> = (props): JSX.Element => {
 
   return <div className="project-phase-card-section">{PhaseCards}</div>;
 };
+
 export default RenderPhases;
