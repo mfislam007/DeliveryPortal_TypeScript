@@ -8,5 +8,6 @@
     "locations": {
       "casesFile": "https://ekseli.dev.inrupt.net/private/dp2/cases/cases.ttl"
     }
-  }
+  },
+  "debug": true
 }

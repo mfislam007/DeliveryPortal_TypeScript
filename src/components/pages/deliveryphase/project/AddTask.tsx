@@ -14,6 +14,7 @@ import { updateTask, getTask, createTask } from "../../../../controllers/TaskCon
 import { MuiPickersUtilsProvider, KeyboardDatePicker } from "@material-ui/pickers";
 import DateFnsUtils from "@date-io/date-fns";
 import { datePickerDefaultProps } from "@material-ui/pickers/constants/prop-types";
+import data from "../../.../../../../../settings.json";
 
 interface Props {
   url: string;
@@ -177,9 +178,11 @@ const AddTask: React.FC<Props> = (props): JSX.Element => {
             Save
           </Button>
         </DialogActions>
-        <a href="https://ekseli.dev.inrupt.net/private/dp2/cases/ProjectABC/Installation/Task2/action.ttl">
-          Task POD link
-        </a>
+        {data.debug && (
+          <a href="https://ekseli.dev.inrupt.net/private/dp2/cases/ProjectABC/Installation/Task2/action.ttl">
+            Task POD link
+          </a>
+        )}
       </Dialog>
     </div>
   );
