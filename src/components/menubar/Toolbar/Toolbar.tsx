@@ -14,6 +14,7 @@ import Typography from "@material-ui/core/Typography";
 
 import "./Toolbar.scss";
 import ToolbarProjectPageLinks from "./ToolbarProjectPageLinks";
+import AddProject from "../../AddProject/AddProject";
 
 const Toolbar: React.FC = (): JSX.Element => {
   let history = useHistory();
@@ -71,9 +72,7 @@ const Toolbar: React.FC = (): JSX.Element => {
               </IconButton>
             </li>
             <li>
-              <IconButton color="inherit">
-                <AddIcon fontSize="default" />
-              </IconButton>
+              <AddProject />
             </li>
             <li>
               <IconButton color="inherit">
