@@ -15,6 +15,7 @@ import { MuiPickersUtilsProvider, KeyboardDatePicker } from "@material-ui/picker
 import DateFnsUtils from "@date-io/date-fns";
 import { datePickerDefaultProps } from "@material-ui/pickers/constants/prop-types";
 import data from "../../.../../../../../settings.json";
+import TaskMenu from "./TaskMenu";
 
 interface Props {
   url: string;
@@ -113,6 +114,7 @@ const AddTask: React.FC<Props> = (props): JSX.Element => {
             type="text"
             fullWidth
           />
+          <TaskMenu />
           <Select
             labelId="demo-simple-select-label"
             id="demo-simple-select"
