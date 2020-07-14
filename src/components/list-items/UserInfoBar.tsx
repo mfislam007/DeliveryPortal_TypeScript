@@ -13,24 +13,24 @@ type Props = {
 const UserInfoBar: React.FC<Props> = (props): JSX.Element => {
   const [name, setName] = useState("");
   const [company, setCompany] = useState("");
-  const [portrait, setPortrait] = useState(undefined as string);
+  const [portraitSrc, setPortraitSrc] = useState(undefined as string);
 
   useEffect(() => {
     setName(props.name);
     setCompany(props.company);
 
     if (props.portrait !== undefined) {
-      setPortrait(props.portrait);
+      setPortraitSrc(props.portrait);
     }
   }, [props]);
 
   return (
     <div className="userInfoBarContainer">
       <div className="userInfoBarPortrait">
-        {portrait === undefined ? (
+        {portraitSrc === undefined ? (
           <AccountCircleIcon fontSize="large" />
         ) : (
-          <img src={portrait} alt="portrait" width={30} height={30} />
+          <img src={portraitSrc} alt="portrait" width={30} height={30} />
         )}
       </div>
       <div className="userInfoBarName">{name}</div>

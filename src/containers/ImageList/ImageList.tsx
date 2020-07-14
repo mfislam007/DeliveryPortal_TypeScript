@@ -15,9 +15,11 @@ const ImageList: React.FC<Props> = (props): JSX.Element => {
 
   async function fetchImageURLs(img: { ldp_contains: string }) {
     let imageLinksBuffer: string[] = [];
+
     for await (const imageURL of img.ldp_contains) {
       imageLinksBuffer.push(imageURL as string);
     }
+
     setImages(imageLinksBuffer);
   }
 
