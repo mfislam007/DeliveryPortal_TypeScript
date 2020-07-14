@@ -12,7 +12,7 @@ import LocalOfferIcon from "@material-ui/icons/LocalOffer";
 import "./ProjectCard.scss";
 
 type Props = {
-  id: number | string;
+  id: number | string; //  NOTE  (Roman Bezusiak) [ Shouldn't it be just a `number`? ]
   title: string;
   owner: string;
   tags?: { id: number; name: string }[];
@@ -22,7 +22,7 @@ const ProjectCard: React.FC<Props> = (props): JSX.Element => {
   const [owner, setOwner] = useState("");
   const [title, setTitle] = useState("");
   const [id, setId] = useState(0 as number | string);
-  const [tagsElement, setTagsElement] = useState(undefined as JSX.Element[]);
+  const [tagElements, setTagElements] = useState(undefined as JSX.Element[]);
   const { path } = useRouteMatch();
   let history = useHistory();
 
@@ -32,7 +32,7 @@ const ProjectCard: React.FC<Props> = (props): JSX.Element => {
     setId(props.id);
 
     if (props.tags) {
-      setTagsElement(
+      setTagElements(
         props.tags.map(tag => (
           <div className="tagDiv" key={tag.id.toString()}>
             {tag.name}
@@ -68,7 +68,7 @@ const ProjectCard: React.FC<Props> = (props): JSX.Element => {
           </CardContent>
         </CardActionArea>
         <CardActions>
-          <Tooltip title={tagsElement}>
+          <Tooltip title={tagElements}>
             <LocalOfferIcon fontSize="small" />
           </Tooltip>
         </CardActions>
