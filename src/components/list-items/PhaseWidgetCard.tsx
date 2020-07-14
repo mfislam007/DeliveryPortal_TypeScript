@@ -12,7 +12,6 @@ type Props = {
     tasksCompleted: number;
     totalTasks: number;
   };
-  addTaskLink: string;
   phaseColor?: string;
 };
 
