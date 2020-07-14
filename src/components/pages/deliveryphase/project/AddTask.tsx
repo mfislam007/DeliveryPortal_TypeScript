@@ -15,7 +15,7 @@ import { MuiPickersUtilsProvider, KeyboardDatePicker } from "@material-ui/picker
 import DateFnsUtils from "@date-io/date-fns";
 import { datePickerDefaultProps } from "@material-ui/pickers/constants/prop-types";
 import data from "../../.../../../../../settings.json";
-import CustomizedMenus from "./CustomizedMenus";
+import FadeMenu from "./FadeMenu";
 
 interface Props {
   url: string;
@@ -44,7 +44,7 @@ const AddTask: React.FC<Props> = (props): JSX.Element => {
     });
   }, []);
 
-  const testUrl = url + "/" + task.name + "/action.ttl";
+  const testUrl = url + task.name + "/action.ttl";
   const save = () => {
     createTask(url, task);
     setOpen(false);
@@ -115,7 +115,7 @@ const AddTask: React.FC<Props> = (props): JSX.Element => {
             type="text"
             fullWidth
           />
-          <CustomizedMenus />
+          <FadeMenu />
           <Select
             labelId="demo-simple-select-label"
             id="demo-simple-select"
