@@ -1,10 +1,11 @@
 import { fetchDocument, createDocument } from "tripledoc";
 
-import Task from "../../entity/Task/Task";
-import data from "../../../settings.json";
+import Task from "../entities/Task";
+import data from "../../settings.json";
 
 /** Updates given task values of given phase */
 export async function updateTask(webId: string, newTask: Task, oldTask: Task) {
+  // BUG (Niko) [The tasks folder isn't renamed, so future reads of task data will fail]
   let profileDoc = await fetchDocument(webId + oldTask.name + "/action.ttl");
   let profile = profileDoc.getSubject(webId);
   profile.setString(data.solid.write.taskName, newTask.name);

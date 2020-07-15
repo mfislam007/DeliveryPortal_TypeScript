@@ -14,5 +14,4 @@ interface Task {
   endTime: Date;
 }
 
-//empty export to get rid of TS error
 export default Task;
