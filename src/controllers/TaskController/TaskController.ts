@@ -3,15 +3,19 @@ import { fetchDocument, createDocument } from "tripledoc";
 import Task from "../../entity/Task/Task";
 import data from "../../../settings.json";
 
-/** Updates given value */
-export async function updateTask(webId: string, task: Task) {
-  const profileDoc = await fetchDocument(webId + "/action.ttl");
-  console.log("TaskController: " + webId + "/action.ttl");
-  const profile = profileDoc.getSubject(webId);
-  profile.setString(data.solid.write.taskName, task.name);
-  profile.setString(data.solid.write.taskDescription, task.description);
-  profile.setString(data.solid.write.taskStatus, task.actionStatusType);
-  profile.setDateTime(data.solid.write.endTime, task.endTime);
+/** Updates given task values of given phase */
+export async function updateTask(webId: string, newTask: Task, oldTask: Task) {
+  let profileDoc = await fetchDocument(webId + oldTask.name + "/action.ttl");
+  let profile = profileDoc.getSubject(webId);
+  profile.setString(data.solid.write.taskName, newTask.name);
+  profile.setString(data.solid.write.taskDescription, newTask.description);
+  profile.setString(data.solid.write.taskStatus, newTask.actionStatusType);
+  profile.setDateTime(data.solid.write.endTime, newTask.endTime);
+  await profileDoc.save();
+  profileDoc = await fetchDocument(webId + "/action.ttl");
+  profile = profileDoc.getSubject(webId + "/action.ttl");
+  profile.removeString(data.solid.write.taskName, oldTask.name);
+  profile.addString(data.solid.write.taskName, newTask.name);
   await profileDoc.save();
 }
 
@@ -47,6 +51,29 @@ export async function getTask(webId: string, taskName: string) {
   return task;
 }
 
+/** Returns all task objects from the given phase */
+export async function getTasksOfPhase(webId: string) {
+  let tasks: Task[] = [];
+  getTaskNames(webId).then(arrayOfTaskNames => {
+    for (let i = 0; i < arrayOfTaskNames.length; i++) {
+      getTask(webId, arrayOfTaskNames[i]).then(task => {
+        tasks.push(task);
+      });
+    }
+  });
+  return tasks;
+}
+
+/** Deletes given taskname from given phase */
+export async function deleteTask(webId: string, taskName: string) {
+  // BUG (Niko) [This only deletes the reference to the task inside the phases action.ttl file, actual task folder remains]
+  const profileDoc = await fetchDocument(webId + "/action.ttl");
+  const profile = profileDoc.getSubject(webId + "/action.ttl");
+  profile.removeString(data.solid.write.taskName, taskName);
+  await profileDoc.save();
+}
+
+/** Returns all task names of given phase in an array */
 export async function getTaskNames(webId: string) {
   const profileDoc = await fetchDocument(webId + "/action.ttl");
   const profile = profileDoc.getSubject(webId + "/action.ttl");
