@@ -262,30 +262,6 @@ const AddProject: React.FC = (): JSX.Element => {
                 </Grid>
               </Grid>
             </div>
-            <div>
-              <Button
-                variant="text"
-                color="inherit"
-                className={classes.button}
-                startIcon={<CancelIcon />}
-                style={{ marginTop: 320, marginLeft: 1250 }}
-                onClick={handleClose}
-              >
-                Cancel
-              </Button>
-
-              <Button
-                type="submit"
-                variant="text"
-                color="inherit"
-                className={classes.button}
-                startIcon={<CreateIcon />}
-                style={{ marginTop: 320, marginLeft: 30 }}
-                disabled={!enabled}
-              >
-                Create
-              </Button>
-            </div>
           </form>
         </Dialog>
       </div>
