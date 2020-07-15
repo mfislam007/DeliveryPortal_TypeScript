@@ -9,8 +9,6 @@ import IconButton from "@material-ui/core/IconButton";
 import Typography from "@material-ui/core/Typography";
 import CloseIcon from "@material-ui/icons/Close";
 import Slide, { SlideProps } from "@material-ui/core/Slide";
-import CancelIcon from "@material-ui/icons/Cancel";
-import CreateIcon from "@material-ui/icons/Create";
 import AddIcon from "@material-ui/icons/Add";
 import TextField from "@material-ui/core/TextField";
 import Grid from "@material-ui/core/Grid";
@@ -147,7 +145,12 @@ const AddProject: React.FC = (): JSX.Element => {
           " are created "
       );
     }
-    addProject(project.projectName, project.customerName, project.managerName);
+    addProject(
+      project.projectName,
+      project.customerName,
+      project.managerName,
+      project.projectTemplate
+    );
     event.preventDefault();
     setOpen(false);
   };
