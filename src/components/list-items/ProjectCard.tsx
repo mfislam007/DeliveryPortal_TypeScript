@@ -13,7 +13,7 @@ import "./ProjectCard.scss";
 
 type Props = {
   id: number | string; //  NOTE  (Roman Bezusiak) [ Shouldn't it be just a `string`? ]
-  title: string;
+  title?: string;
   owner: string;
   tags?: { id: number; name: string }[];
 };

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import MoreVertIcon from "@material-ui/icons/MoreVert";
-
 import "./PhaseWidgetCard.scss";
+import EditPhase from "../pages/deliveryphase/project/EditPhase";
 
 type Props = {
   label: string;
@@ -18,10 +18,13 @@ const PhaseWidgetCard: React.FC<Props> = (props): JSX.Element => {
   const [timeFrame, setTimeFrame] = useState("");
   const [completion, setCompletion] = useState({ tasksCompleted: 0, totalTasks: 0 });
   const [phaseColor, setPhaseColor] = useState("#6da4cd");
-
+  const [dialogOpen, setDialogOpen] = useState(false);
+  const [myUrl, setMyUrl] = useState("");
   useEffect(() => {
     setLabel(props.label);
-
+    if (props.label !== undefined) {
+      setMyUrl("https://ekseli.dev.inrupt.net/private/dp2/cases/ProjectABC/" + props.label);
+    }
     if (props.timeFrame !== undefined) {
       setTimeFrame(props.timeFrame);
     }
@@ -45,6 +48,19 @@ const PhaseWidgetCard: React.FC<Props> = (props): JSX.Element => {
     );
   };
 
+  const enableEditDates = (): void => {
+    setDialogOpen(true);
+  };
+
+  const toggleEditDates = (): void => {
+    setDialogOpen(false);
+  };
+
+  /** To enable EditPhase to change the timeframe */
+  const setPhaseTimes = (times: string): void => {
+    setTimeFrame(times);
+  };
+
   return (
     <div className="PhaseWidgetCardMain">
       <div className="PhaseWidgetCardTextContainer">
@@ -55,8 +71,16 @@ const PhaseWidgetCard: React.FC<Props> = (props): JSX.Element => {
         <div className="PhaseWidgetCardTextDetails">See Details</div>
       </div>
       <div className="PhaseWidgetCardMisc">
-        <div className="PhaseWidgetCardOptions">
+        <div className="PhaseWidgetCardOptions" onClick={enableEditDates}>
           <MoreVertIcon />
+          <EditPhase
+            toggle={toggleEditDates}
+            open={dialogOpen}
+            phase={myUrl}
+            start={null}
+            end={null}
+            editTimes={setPhaseTimes}
+          />
         </div>
         {showCompletion()}
       </div>
