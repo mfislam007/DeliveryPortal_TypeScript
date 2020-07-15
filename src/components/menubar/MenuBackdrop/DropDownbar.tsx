@@ -3,7 +3,7 @@ import React from "react";
 import "./DropDownBar.scss";
 
 const DropDownBar: React.FC = (): JSX.Element => (
-  <nav className="dropdown">
+  <nav className="drop-down">
     <ul>
       <li>
         <a href="/">Join Delivery portal</a>

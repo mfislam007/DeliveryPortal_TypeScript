@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+
 import { makeStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
 import Dialog from "@material-ui/core/Dialog";
@@ -14,7 +15,6 @@ import AddIcon from "@material-ui/icons/Add";
 import TextField from "@material-ui/core/TextField";
 import Grid from "@material-ui/core/Grid";
 import AccountCircle from "@material-ui/icons/AccountCircle";
-
 import ViewListIcon from "@material-ui/icons/ViewList";
 
 import { addProject } from "../../controllers/ProjectController/ProjectController";
@@ -127,24 +127,25 @@ const AddProject: React.FC = (): JSX.Element => {
   };
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    alert(
-      " Project name: " +
-        project.projectName +
-        " and " +
-        " Customer name: " +
-        project.customerName +
-        " and " +
-        " ProjectManager name: " +
-        project.managerName +
-        " are created "
-    );
-    addProject(
-      project.projectName,
-      project.customerName,
-      project.managerName,
-      project.projectTemplate
-    );
+    {
+      alert(
+        " Project Name: " +
+          project.projectName +
+          " , " +
+          " Customer Name: " +
+          project.customerName +
+          " , " +
+          " ProjectManager Name: " +
+          project.managerName +
+          " , " +
+          " Project Template: " +
+          project.projectTemplate +
+          " are created "
+      );
+    }
+    addProject(project.projectName, project.customerName, project.managerName);
     event.preventDefault();
+    setOpen(false);
   };
 
   const enabled =
@@ -173,13 +174,15 @@ const AddProject: React.FC = (): JSX.Element => {
               <Typography variant="h6" className={classes.title}>
                 Add Delivery Project
               </Typography>
-              <Button autoFocus color="inherit" onClick={handleClose}>
-                save
-              </Button>
+              <div>
+                <Button autoFocus color="inherit" type="submit" form="my-form" disabled={!enabled}>
+                  save
+                </Button>
+              </div>
             </Toolbar>
           </AppBar>
 
-          <form noValidate autoComplete="off" onSubmit={handleSubmit}>
+          <form onSubmit={handleSubmit} id="my-form">
             <div>
               <Grid container spacing={1} alignItems="flex-end">
                 <Grid item>
