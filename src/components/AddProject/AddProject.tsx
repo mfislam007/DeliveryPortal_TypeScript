@@ -21,20 +21,24 @@ import { addProject } from "../../controllers/ProjectController/ProjectControlle
 
 const templates = [
   {
-    value: "Project A",
-    label: "Project A",
+    value: "Prima-Power Project",
+    label: "Prima-Power Project",
   },
   {
-    value: "Project B",
-    label: "Project B",
+    value: "Nokia Project",
+    label: "Nokia Project",
   },
   {
-    value: "Project C",
-    label: "Project C",
+    value: "Huawei project",
+    label: "Huawei project",
   },
   {
-    value: "Project D",
-    label: "Project D",
+    value: "Sony Project",
+    label: "Sony Project",
+  },
+  {
+    value: "ABB Project",
+    label: "SBB Project",
   },
 ];
 
@@ -69,7 +73,7 @@ const AddProject: React.FC = (): JSX.Element => {
     projectName: "",
     customerName: "",
     managerName: "",
-    projectTemplate: "",
+    projectTemplate: "Prima-Power Project",
   });
 
   useEffect(() => {
