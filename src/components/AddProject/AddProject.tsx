@@ -14,12 +14,35 @@ import AddIcon from "@material-ui/icons/Add";
 import TextField from "@material-ui/core/TextField";
 import Grid from "@material-ui/core/Grid";
 import AccountCircle from "@material-ui/icons/AccountCircle";
+
+import ViewListIcon from "@material-ui/icons/ViewList";
+
 import { addProject } from "../../controllers/ProjectController/ProjectController";
+
+const templates = [
+  {
+    value: "Project A",
+    label: "Project A",
+  },
+  {
+    value: "Project B",
+    label: "Project B",
+  },
+  {
+    value: "Project C",
+    label: "Project C",
+  },
+  {
+    value: "Project D",
+    label: "Project D",
+  },
+];
 
 type Props = {
   projectName: string;
   customerName: string;
   managerName: string;
+  projectTemplate: string;
 };
 
 const useStyles = makeStyles(theme => ({
@@ -46,6 +69,7 @@ const AddProject: React.FC = (): JSX.Element => {
     projectName: "",
     customerName: "",
     managerName: "",
+    projectTemplate: "",
   });
 
   useEffect(() => {
@@ -70,6 +94,7 @@ const AddProject: React.FC = (): JSX.Element => {
           projectName: event.currentTarget.value,
           customerName: project.customerName,
           managerName: project.managerName,
+          projectTemplate: project.projectTemplate,
         });
         break;
       case "customerName":
@@ -77,6 +102,7 @@ const AddProject: React.FC = (): JSX.Element => {
           projectName: project.projectName,
           customerName: event.currentTarget.value,
           managerName: project.managerName,
+          projectTemplate: project.projectTemplate,
         });
         break;
 
@@ -85,6 +111,16 @@ const AddProject: React.FC = (): JSX.Element => {
           projectName: project.projectName,
           customerName: project.customerName,
           managerName: event.currentTarget.value,
+          projectTemplate: project.projectTemplate,
+        });
+        break;
+
+      case "projectTemplate":
+        setProject({
+          projectName: project.projectName,
+          customerName: project.customerName,
+          managerName: project.projectName,
+          projectTemplate: event.currentTarget.value,
         });
         break;
     }
@@ -102,7 +138,12 @@ const AddProject: React.FC = (): JSX.Element => {
         project.managerName +
         " are created "
     );
-    addProject(project.projectName, project.customerName, project.managerName);
+    addProject(
+      project.projectName,
+      project.customerName,
+      project.managerName,
+      project.projectTemplate
+    );
     event.preventDefault();
   };
 
@@ -188,12 +229,39 @@ const AddProject: React.FC = (): JSX.Element => {
               </Grid>
             </div>
             <div>
+              <Grid container spacing={1} alignItems="flex-end">
+                <Grid item>
+                  <ViewListIcon style={{ marginTop: 20, marginLeft: 20 }} />
+                </Grid>
+                <Grid item xs={6}>
+                  <TextField
+                    id="projectTemplate"
+                    select
+                    label="Project Template"
+                    value={project.projectTemplate}
+                    onChange={onChangeProject}
+                    fullWidth
+                    style={{ marginTop: 20, marginLeft: 20 }}
+                    SelectProps={{
+                      native: true,
+                    }}
+                  >
+                    {templates.map(option => (
+                      <option key={option.value} value={option.value}>
+                        {option.label}
+                      </option>
+                    ))}
+                  </TextField>
+                </Grid>
+              </Grid>
+            </div>
+            <div>
               <Button
                 variant="text"
                 color="inherit"
                 className={classes.button}
                 startIcon={<CancelIcon />}
-                style={{ marginTop: 20, marginLeft: 70 }}
+                style={{ marginTop: 320, marginLeft: 1250 }}
                 onClick={handleClose}
               >
                 Cancel
@@ -205,7 +273,7 @@ const AddProject: React.FC = (): JSX.Element => {
                 color="inherit"
                 className={classes.button}
                 startIcon={<CreateIcon />}
-                style={{ marginTop: 20, marginLeft: 20 }}
+                style={{ marginTop: 320, marginLeft: 30 }}
                 disabled={!enabled}
               >
                 Create
