@@ -9,6 +9,7 @@
       "endTime": "https://schema.org/endTime"
     },
     "locations": {
+      "podRoot": "https://ekseli.dev.inrupt.net/private/dp2/cases/",
       "casesFile": "https://ekseli.dev.inrupt.net/private/dp2/cases/cases.ttl"
     }
   }

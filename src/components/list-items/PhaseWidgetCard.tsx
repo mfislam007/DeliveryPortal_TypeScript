@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import MoreVertIcon from "@material-ui/icons/MoreVert";
 import "./PhaseWidgetCard.scss";
 import EditPhase from "../pages/deliveryphase/project/EditPhase";
+import data from "../../../settings.json";
 
 type Props = {
   label: string;
@@ -15,6 +16,7 @@ type Props = {
 
 const PhaseWidgetCard: React.FC<Props> = (props): JSX.Element => {
   const [label, setLabel] = useState("");
+  const [project, setProject] = useState("ProjectABC");
   const [timeFrame, setTimeFrame] = useState("");
   const [completion, setCompletion] = useState({ tasksCompleted: 0, totalTasks: 0 });
   const [phaseColor, setPhaseColor] = useState("#6da4cd");
@@ -23,7 +25,7 @@ const PhaseWidgetCard: React.FC<Props> = (props): JSX.Element => {
   useEffect(() => {
     setLabel(props.label);
     if (props.label !== undefined) {
-      setMyUrl("https://ekseli.dev.inrupt.net/private/dp2/cases/ProjectABC/" + props.label);
+      setMyUrl(data.solid.locations.podRoot + project + "/" + props.label);
     }
     if (props.timeFrame !== undefined) {
       setTimeFrame(props.timeFrame);

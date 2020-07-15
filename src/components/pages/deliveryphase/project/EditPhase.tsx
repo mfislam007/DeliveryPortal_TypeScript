@@ -8,7 +8,6 @@ import { MuiPickersUtilsProvider, KeyboardDatePicker } from "@material-ui/picker
 import Modal from "@material-ui/core/Modal";
 import { updatePhaseDates } from "../../../../controllers/PhaseController";
 import { getPhaseDate } from "../../../../controllers/PhaseController";
-import { start } from "repl";
 
 interface Props {
   phase: string;
@@ -114,7 +113,6 @@ const EditPhase: React.FC<Props> = (props): JSX.Element => {
     phaseCache["https://schema.org/startTime"] = startDate;
     phaseCache["https://schema.org/endTime"] = endDate;
     localStorage.setItem("phase", JSON.stringify(phaseCache));
-    console.log(localStorage.getItem("phase"));
     updatePhaseDates(phase, startDate, endDate); //save to POD
     setOpen(false);
   }
@@ -135,7 +133,6 @@ const EditPhase: React.FC<Props> = (props): JSX.Element => {
   }
 
   const handleClose = () => {
-    console.log("Modal closed");
     setOpen(false);
     props.toggle;
   };
