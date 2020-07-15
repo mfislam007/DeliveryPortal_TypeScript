@@ -38,7 +38,7 @@ const EditPhase: React.FC<Props> = (props): JSX.Element => {
     getPhaseDate(phase, "https://schema.org/endTime").then(result => {
       setEndDate(result);
     });
-  }, [props]);
+  }, [props.open]);
 
   useEffect(() => {
     if (props.phase !== undefined) {
@@ -46,6 +46,10 @@ const EditPhase: React.FC<Props> = (props): JSX.Element => {
     }
     setOpen(props.open);
   }, [props.toggle]);
+
+  useEffect(() => {
+    fixTimes();
+  }, [startDate, endDate]);
 
   const useStyles = makeStyles(theme => ({
     paper: {
@@ -90,12 +94,10 @@ const EditPhase: React.FC<Props> = (props): JSX.Element => {
 
   function handleStartDateChange(date: Date): void {
     setStartDate(date);
-    fixTimes(); //Update to phase card
   }
 
   function handleEndDateChange(date: Date): void {
     setEndDate(date);
-    fixTimes(); //Update to phase card
   }
 
   function parsePhaseName(url: string): string {
