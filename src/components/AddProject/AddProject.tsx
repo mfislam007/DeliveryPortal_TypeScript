@@ -131,22 +131,6 @@ const AddProject: React.FC = (): JSX.Element => {
   };
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    {
-      alert(
-        " Project Name: " +
-          project.projectName +
-          " , " +
-          " Customer Name: " +
-          project.customerName +
-          " , " +
-          " ProjectManager Name: " +
-          project.managerName +
-          " , " +
-          " Project Template: " +
-          project.projectTemplate +
-          " are created "
-      );
-    }
     addProject(
       project.projectName,
       project.customerName,
