@@ -123,7 +123,7 @@ const AddProject: React.FC = (): JSX.Element => {
         setProject({
           projectName: project.projectName,
           customerName: project.customerName,
-          managerName: project.projectName,
+          managerName: project.managerName,
           projectTemplate: event.currentTarget.value,
         });
         break;
