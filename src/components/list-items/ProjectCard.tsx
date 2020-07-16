@@ -43,7 +43,7 @@ const ProjectCard: React.FC<Props> = (props): JSX.Element => {
   }, [props]);
 
   const handleOnClick = (): void => {
-    history.push(path + "projectid=" + id);
+    history.push(`${path}projectid=${id}`);
   };
 
   return (

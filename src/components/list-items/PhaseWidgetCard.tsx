@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import MoreVertIcon from "@material-ui/icons/MoreVert";
+
 import "./PhaseWidgetCard.scss";
 import EditPhase from "../pages/deliveryphase/project/EditPhase";
 import data from "../../../settings.json";
@@ -21,12 +22,12 @@ const PhaseWidgetCard: React.FC<Props> = (props): JSX.Element => {
   const [completion, setCompletion] = useState({ tasksCompleted: 0, totalTasks: 0 });
   const [phaseColor, setPhaseColor] = useState("#6da4cd");
   const [dialogOpen, setDialogOpen] = useState(false);
-  const [myUrl, setMyUrl] = useState("");
+  const [url, setUrl] = useState("");
 
   useEffect(() => {
     setLabel(props.label);
     if (props.label !== undefined) {
-      setMyUrl(data.solid.locations.podRoot + project + "/" + props.label);
+      setUrl(data.solid.locations.podRoot + project + "/" + props.label);
     }
     if (props.timeFrame !== undefined) {
       setTimeFrame(props.timeFrame);
@@ -79,7 +80,7 @@ const PhaseWidgetCard: React.FC<Props> = (props): JSX.Element => {
           <EditPhase
             toggle={toggleEditDates}
             open={dialogOpen}
-            phase={myUrl}
+            phase={url}
             start={null}
             end={null}
             editTimes={setPhaseTimes}
