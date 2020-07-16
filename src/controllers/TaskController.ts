@@ -59,7 +59,6 @@ export async function getTask(webId: string): Promise<Task> {
 /** Returns all task objects from the given phase */
 export async function getTasksOfPhase(webId: string): Promise<Task[]> {
   const taskNames = await getTaskNames(webId);
-  console.log(taskNames);
   let tasks: Task[] = new Array<Task>(taskNames.length);
 
   for (let i = 0; i < taskNames.length; i++) {
