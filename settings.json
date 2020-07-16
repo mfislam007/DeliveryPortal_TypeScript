@@ -6,7 +6,10 @@
       "managerName": "https://schema.org/Person#name",
       "phaseName": "https://schema.org/Action#name",
       "startTime": "https://schema.org/startTime",
-      "endTime": "https://schema.org/endTime"
+      "endTime": "https://schema.org/endTime",
+      "taskName": "https://schema.org/Action#name",
+      "taskDescription": "https://schema.org/Action#description",
+      "taskStatus": "https://schema.org/ActionStatusType"
     },
     "locations": {
       "casesFile": "https://ekseli.dev.inrupt.net/private/dp2/cases/cases.ttl",
