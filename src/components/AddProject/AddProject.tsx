@@ -14,6 +14,7 @@ import TextField from "@material-ui/core/TextField";
 import Grid from "@material-ui/core/Grid";
 import AccountCircle from "@material-ui/icons/AccountCircle";
 import ViewListIcon from "@material-ui/icons/ViewList";
+import { useHistory } from "react-router-dom";
 
 import { addProject } from "../../controllers/ProjectController/ProjectController";
 
@@ -36,7 +37,7 @@ const templates = [
   },
   {
     value: "ABB Project",
-    label: "SBB Project",
+    label: "ABB Project",
   },
 ];
 
@@ -65,6 +66,7 @@ const Transition = React.forwardRef<HTMLAnchorElement, SlideProps>(function Tran
 });
 
 const AddProject: React.FC = (): JSX.Element => {
+  let history = useHistory();
   const classes = useStyles();
   const [open, setOpen] = useState(false);
   const [project, setProject] = useState<Props>({
@@ -153,6 +155,7 @@ const AddProject: React.FC = (): JSX.Element => {
     );
     event.preventDefault();
     setOpen(false);
+    history.push("/deliveryportal");
   };
 
   const enabled =
