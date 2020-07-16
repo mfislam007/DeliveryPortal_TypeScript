@@ -5,6 +5,7 @@ import PhaseWidgetCard from "../list-items/PhaseWidgetCard";
 
 type Props = {
   projectPhases: string[];
+  getPhaseInfo: (phaseInfo: { label: string; color: string }) => void;
 };
 
 const RenderPhases: React.FC<Props> = (props): JSX.Element => {
@@ -15,6 +16,7 @@ const RenderPhases: React.FC<Props> = (props): JSX.Element => {
       timeFrame="May 10 - June 11"
       completion={{ tasksCompleted: 5, totalTasks: 5 }}
       phaseColor={PhaseColors[index]}
+      getPhaseInfo={props.getPhaseInfo}
     />
   ));
 
