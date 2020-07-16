@@ -41,8 +41,8 @@ export async function createTask(webId: string, task: Task) {
 }
 
 /** Returns the task object from requested container */
-export async function getTask(webId: string, taskName: string) {
-  const profileDoc = await fetchDocument(webId + taskName + "/action.ttl");
+export async function getTask(webId: string) {
+  const profileDoc = await fetchDocument(webId + "/action.ttl");
   const profile = profileDoc.getSubject(webId);
   const task = new Task();
   task.name = profile.getString(data.solid.write.taskName);
@@ -54,14 +54,13 @@ export async function getTask(webId: string, taskName: string) {
 
 /** Returns all task objects from the given phase */
 export async function getTasksOfPhase(webId: string) {
-  let tasks: Task[] = [];
-  getTaskNames(webId).then(arrayOfTaskNames => {
-    for (let i = 0; i < arrayOfTaskNames.length; i++) {
-      getTask(webId, arrayOfTaskNames[i]).then(task => {
-        tasks.push(task);
-      });
-    }
-  });
+  const taskNames = await getTaskNames(webId);
+  let tasks: Task[] = new Array<Task>(taskNames.length);
+  let taskBuffer: Task;
+  for (let i = 0; i < taskNames.length; i++) {
+    taskBuffer = await getTask(`${webId}/${taskNames[i]}`);
+    tasks[i] = taskBuffer;
+  }
   return tasks;
 }
 
