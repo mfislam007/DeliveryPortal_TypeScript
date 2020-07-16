@@ -4,7 +4,7 @@ import Task from "../entities/Task";
 import data from "../../settings.json";
 
 /** Updates given task values of given phase */
-export async function updateTask(webId: string, newTask: Task, oldTask: Task) {
+export async function updateTask(webId: string, newTask: Task, oldTask: Task): Promise<void> {
   // BUG (Niko) [The tasks folder isn't renamed, so future reads of task data will fail]
   let profileDoc = await fetchDocument(webId + oldTask.name + "/action.ttl");
   let profile = profileDoc.getSubject(webId);
@@ -13,6 +13,7 @@ export async function updateTask(webId: string, newTask: Task, oldTask: Task) {
   profile.setString(data.solid.write.taskStatus, newTask.actionStatusType);
   profile.setDateTime(data.solid.write.endTime, newTask.endTime);
   await profileDoc.save();
+
   profileDoc = await fetchDocument(webId + "/action.ttl");
   profile = profileDoc.getSubject(webId + "/action.ttl");
   profile.removeString(data.solid.write.taskName, oldTask.name);
@@ -21,11 +22,11 @@ export async function updateTask(webId: string, newTask: Task, oldTask: Task) {
 }
 
 /** Creates a new task, folder for it and action.ttl -file to store the details */
-export async function createTask(webId: string, task: Task) {
-  const testLocation = doesFileExist(webId + task.name + "/action.ttl");
-  if (testLocation === 404) {
+export async function createTask(webId: string, task: Task): Promise<void> {
+  if (!doesFileExist(webId + task.name + "/action.ttl")) {
     const newDocument = createDocument(webId + task.name + "/action.ttl");
     await newDocument.save();
+
     let profileDoc = await fetchDocument(webId + task.name + "/action.ttl");
     let profile = profileDoc.getSubject(webId);
     profile.addString(data.solid.write.taskName, task.name);
@@ -33,6 +34,7 @@ export async function createTask(webId: string, task: Task) {
     profile.addString(data.solid.write.taskStatus, task.actionStatusType);
     profile.addDateTime(data.solid.write.endTime, task.endTime);
     await profileDoc.save();
+
     profileDoc = await fetchDocument(webId + "/action.ttl");
     profile = profileDoc.getSubject(webId + "/action.ttl");
     profile.addString(data.solid.write.taskName, task.name);
@@ -41,31 +43,32 @@ export async function createTask(webId: string, task: Task) {
 }
 
 /** Returns the task object from requested container */
-export async function getTask(webId: string) {
+export async function getTask(webId: string): Promise<Task> {
   const profileDoc = await fetchDocument(webId + "/action.ttl");
   const profile = profileDoc.getSubject(webId);
-  const task = new Task();
-  task.name = profile.getString(data.solid.write.taskName);
-  task.description = profile.getString(data.solid.write.taskDescription);
-  task.actionStatusType = profile.getString(data.solid.write.taskStatus);
-  task.endTime = profile.getDateTime(data.solid.write.endTime);
-  return task;
+
+  return {
+    name: profile.getString(data.solid.write.taskName),
+    description: profile.getString(data.solid.write.taskDescription),
+    actionStatusType: profile.getString(data.solid.write.taskStatus),
+    endTime: profile.getDateTime(data.solid.write.endTime),
+  } as Task;
 }
 
 /** Returns all task objects from the given phase */
-export async function getTasksOfPhase(webId: string) {
+export async function getTasksOfPhase(webId: string): Promise<Task[]> {
   const taskNames = await getTaskNames(webId);
   let tasks: Task[] = new Array<Task>(taskNames.length);
-  let taskBuffer: Task;
+
   for (let i = 0; i < taskNames.length; i++) {
-    taskBuffer = await getTask(`${webId}/${taskNames[i]}`);
-    tasks[i] = taskBuffer;
+    tasks[i] = await getTask(`${webId}/${taskNames[i]}`);
   }
+
   return tasks;
 }
 
 /** Deletes given taskname from given phase */
-export async function deleteTask(webId: string, taskName: string) {
+export async function deleteTask(webId: string, taskName: string): Promise<void> {
   // BUG (Niko) [This only deletes the reference to the task inside the phases action.ttl file, actual task folder remains]
   const profileDoc = await fetchDocument(webId + "/action.ttl");
   const profile = profileDoc.getSubject(webId + "/action.ttl");
@@ -74,16 +77,18 @@ export async function deleteTask(webId: string, taskName: string) {
 }
 
 /** Returns all task names of given phase in an array */
-export async function getTaskNames(webId: string) {
+export async function getTaskNames(webId: string): Promise<string[]> {
   const profileDoc = await fetchDocument(webId + "/action.ttl");
   const profile = profileDoc.getSubject(webId + "/action.ttl");
+
   return profile.getAllStrings(data.solid.write.taskName);
 }
 
-function doesFileExist(urlToFile: string) {
+function doesFileExist(urlToFile: string): boolean {
   console.log(urlToFile);
   var xhr = new XMLHttpRequest();
   xhr.open("HEAD", urlToFile, false);
   xhr.send();
-  return xhr.status;
+
+  return xhr.status !== 404;
 }
