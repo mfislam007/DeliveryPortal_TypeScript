@@ -140,6 +140,7 @@ const AddProject: React.FC = (): JSX.Element => {
     event.preventDefault();
     setOpen(false);
     history.push("/deliveryportal");
+    window.location.reload(false);
   };
 
   const enabled =
