@@ -16,12 +16,13 @@ type Props = {
 
 const PhaseWidgetCard: React.FC<Props> = (props): JSX.Element => {
   const [label, setLabel] = useState("");
-  const [project, setProject] = useState("ProjectABC");
   const [timeFrame, setTimeFrame] = useState("");
+  const [project, setProject] = useState("ProjectABC");
   const [completion, setCompletion] = useState({ tasksCompleted: 0, totalTasks: 0 });
   const [phaseColor, setPhaseColor] = useState("#6da4cd");
   const [dialogOpen, setDialogOpen] = useState(false);
   const [myUrl, setMyUrl] = useState("");
+
   useEffect(() => {
     setLabel(props.label);
     if (props.label !== undefined) {

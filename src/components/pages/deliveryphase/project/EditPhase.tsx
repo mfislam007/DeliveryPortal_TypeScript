@@ -104,7 +104,7 @@ const EditPhase: React.FC<Props> = (props): JSX.Element => {
   }
 
   /** Will save phase dates to POD, at the moment uses localStorage
-   * TODO: Update later to use POD for data storage.
+   *
    */
   function save(): void {
     //save to localStorage
