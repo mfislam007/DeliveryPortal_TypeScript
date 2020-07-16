@@ -54,14 +54,13 @@ export async function getPhaseNames(webId: string) {
 
 /** returns an array of all phase objects in a project */
 export async function getPhasesForProject(webId: string) {
-  let phases: Phase[] = [];
-  getPhaseNames(webId).then(arrayOfPhaseNames => {
-    for (let i = 0; i < arrayOfPhaseNames.length; i++) {
-      getPhase(webId + "/" + arrayOfPhaseNames[i]).then(phase => {
-        phases.push(phase);
-      });
-    }
-  });
+  const phaseNames = await getPhaseNames(webId);
+  let phases: Phase[] = new Array<Phase>(phaseNames.length);
+  let phaseBuffer: Phase;
+  for (let i = 0; i < phaseNames.length; i++) {
+    phaseBuffer = await getPhase(`${webId}/${phaseNames[i]}`);
+    phases[i] = phaseBuffer;
+  }
   return phases;
 }
 
