@@ -1,10 +1,9 @@
-import React, { Component } from "react";
+import React from "react";
 import { configure } from "enzyme";
 import Adapter from "enzyme-adapter-react-16";
 import { act } from "react-dom/test-utils";
-import { MuiPickersUtilsProvider, KeyboardDatePicker } from "@material-ui/pickers";
 import EditPhase from "../deliveryphase/project/EditPhase";
-import { createRender, createShallow, createMount } from "@material-ui/core/test-utils";
+import { createShallow, createMount } from "@material-ui/core/test-utils";
 
 configure({ adapter: new Adapter() });
 describe('Testing EditPhase component")', () => {

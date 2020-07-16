@@ -8,7 +8,6 @@ import { MuiPickersUtilsProvider, KeyboardDatePicker } from "@material-ui/picker
 import Modal from "@material-ui/core/Modal";
 import { updatePhaseDates } from "../../../../controllers/ProjectController/PhaseController";
 import { getPhaseDate } from "../../../../controllers/ProjectController/PhaseController";
-import DrawerToggleButton from "../../../menubar/SideDrawer/DrawerToggleButton";
 
 interface Props {
   phase: string;
