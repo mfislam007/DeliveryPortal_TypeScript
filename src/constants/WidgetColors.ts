@@ -14,4 +14,11 @@ const PhaseColors: string[] = [
   "#F5F5DC", // beige
 ];
 
-export { PhaseColors };
+// NOTE (Antti Välimaa) [Colors for 3 phases of completion: new active and completed]
+const taskCompletionColors: string[] = [
+  "#ffcc99", // faded red
+  "#ffeb9c", // faded yellow
+  "#c6efce", // faded green
+];
+
+export { PhaseColors, taskCompletionColors };
