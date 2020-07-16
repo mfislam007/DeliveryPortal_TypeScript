@@ -4,6 +4,7 @@ import "../DeliveryPhaseIndex.scss";
 import ImageList from "../../../../containers/ImageList/ImageList";
 import TimeLine from "../../../time-line/TimeLine";
 import GetPhases from "../../../../containers/GetPhases/GetPhases";
+import GetPhaseTasks from "../../../../containers/GetPhaseTasks/GetPhaseTasks";
 
 const ProjectPhases: React.FC = (): JSX.Element => {
   return (
@@ -16,6 +17,7 @@ const ProjectPhases: React.FC = (): JSX.Element => {
           dataSource={"https://ekseli.dev.inrupt.net/private/dp2/cases/ProjectBCD/Pictures/"}
         />
         <GetPhases />
+        <GetPhaseTasks currentPhase={{ label: "prep", color: "pink" }} dataSource={undefined} />
       </div>
     </div>
   );

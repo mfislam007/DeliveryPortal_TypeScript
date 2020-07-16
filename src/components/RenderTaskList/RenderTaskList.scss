@@ -1,0 +1,70 @@
+.task-view-main {
+  margin: 3px;
+  width: 900px;
+  font-family: Arial, Helvetica, sans-serif;
+  .task-view-container {
+    display: flex;
+    flex-flow: column nowrap;
+    align-content: center;
+    width: 840px;
+    min-width: 80%;
+    border-radius: 20px 20px 20px 20px;
+    .task-view-header {
+      display: flex;
+      align-items: flex-end;
+      padding: 6px 12px 4px 12px;
+      height: 50px;
+      width: 100%;
+      font-size: x-large;
+      font-weight: 600;
+      background-color: white;
+      box-shadow: 4px 2px 2px #00000029;
+      border-radius: 20px 20px 0px 0px;
+      border-width: 0px 0px 1px 0px;
+      border-style: solid;
+      border-color: #d2e4f7;
+      > div {
+        padding-left: 16px;
+        padding-right: 16px;
+      }
+      .task-view-list-type {
+        text-align: start;
+        width: 260px;
+        max-width: 40%;
+      }
+      .task-view-shown-completion {
+        margin-right: auto;
+      }
+      .task-view-header-icons {
+        display: flex;
+        align-self: flex-end;
+        justify-content: space-between;
+        width: 88px;
+      }
+    }
+    .task-view-tasklist {
+      display: flex;
+      flex-flow: column nowrap;
+      padding: 6px 12px 4px 12px;
+      background-color: white;
+      width: 100%;
+      border-radius: 0px 0px 20px 20px;
+      box-shadow: 4px 2px 2px #00000029;
+      .MuiSelect-select {
+        width: 50%;
+        min-width: 120px;
+      }
+      .task-view-edit-tasks-button {
+        display: flex;
+        padding-top: 3px;
+        height: 60px;
+        align-content: center;
+        .MuiButton-root {
+          height: 36px;
+          background-color: lightgrey;
+          border-radius: 18px;
+        }
+      }
+    }
+  }
+}
