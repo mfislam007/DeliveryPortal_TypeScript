@@ -76,5 +76,5 @@ export async function getPhase(webId: string): Promise<Phase> {
     name: profile.getString(data.solid.write.phaseName),
     startTime: profile.getDateTime(data.solid.write.startTime),
     endTime: profile.getDateTime(data.solid.write.endTime),
-  };
+  } as Phase;
 }
