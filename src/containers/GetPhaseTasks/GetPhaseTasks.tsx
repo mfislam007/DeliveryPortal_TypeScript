@@ -1,6 +1,8 @@
 import React, { useState, useEffect, ChangeEvent, Fragment } from "react";
 
 import RenderTaskList from "../../components/RenderTaskList/RenderTaskList";
+import { getTasksOfPhase } from "../../controllers/TaskController";
+import Task from "../../entities/Task";
 
 type Props = {
   currentPhase: {
@@ -10,19 +12,26 @@ type Props = {
   dataSource?: string;
 };
 
+type TasklistItem = {
+  id: number;
+  taskLevel: string;
+  taskType: string;
+  taskAuthor: string;
+  completion: number;
+};
+
 const GetPhaseTasks: React.FC<Props> = (props): JSX.Element => {
   const [currentPhase, setCurrentPhase] = useState(undefined as string);
   const [phaseColor, setPhaseColor] = useState("#F5F5DC");
-  const [phaseTasks, setPhaseTasks] = useState(
-    [] as {
-      id: number;
-      taskLevel: string;
-      taskType: string;
-      taskAuthor: string;
-      completion: number;
-    }[]
-  );
+  const [phaseTasks, setPhaseTasks] = useState([] as TasklistItem[]);
+  const [tasks, setTasks] = useState([] as Task[]);
   const [dataSource, setDataSource] = useState(undefined as string);
+
+  function getTasks(webID: string) {
+    getTasksOfPhase(webID).then(result => {
+      setTasks(result);
+    });
+  }
 
   useEffect(() => {
     setCurrentPhase(props.currentPhase.label);
@@ -30,9 +39,24 @@ const GetPhaseTasks: React.FC<Props> = (props): JSX.Element => {
 
     if (props.dataSource !== undefined) {
       setDataSource(props.dataSource);
-      // TODO (Antti Välimaa) [Fetch from tasklist from POD for the current phase.]
+      getTasks(props.dataSource);
     }
   }, [props]);
+
+  useEffect(() => {
+    // NOTE (Antti Välimaa) [This useEffect is used to map the POD-data to fit the component.]
+    if (tasks.length !== 0) {
+      setPhaseTasks(
+        tasks.map((task, index) => ({
+          id: index,
+          taskLevel: "Task",
+          taskType: task.name,
+          taskAuthor: "Jane Doe",
+          completion: 0,
+        }))
+      );
+    }
+  }, [tasks]);
 
   const handleChange = (event: ChangeEvent<{ name?: string | undefined; value: unknown }>) => {
     const value = event.target.value;
