@@ -1,5 +1,6 @@
 import { fetchDocument, createDocument } from "tripledoc";
 
+import { doesFileExist } from "../util/controller";
 import Task from "../entities/Task";
 import data from "../../settings.json";
 
@@ -28,7 +29,7 @@ export async function createTask(webId: string, task: Task): Promise<void> {
     await newDocument.save();
 
     let profileDoc = await fetchDocument(webId + task.name + "/action.ttl");
-    let profile = profileDoc.getSubject(webId);
+    let profile = profileDoc.getSubject(webId + task.name + "/action.ttl");
     profile.addString(data.solid.write.taskName, task.name);
     profile.addString(data.solid.write.taskDescription, task.description);
     profile.addString(data.solid.write.taskStatus, task.actionStatusType);
@@ -45,7 +46,7 @@ export async function createTask(webId: string, task: Task): Promise<void> {
 /** Returns the task object from requested container */
 export async function getTask(webId: string): Promise<Task> {
   const profileDoc = await fetchDocument(webId + "/action.ttl");
-  const profile = profileDoc.getSubject(webId);
+  const profile = profileDoc.getSubject(webId + "/action.ttl");
 
   return {
     name: profile.getString(data.solid.write.taskName),
@@ -58,10 +59,11 @@ export async function getTask(webId: string): Promise<Task> {
 /** Returns all task objects from the given phase */
 export async function getTasksOfPhase(webId: string): Promise<Task[]> {
   const taskNames = await getTaskNames(webId);
+  console.log(taskNames);
   let tasks: Task[] = new Array<Task>(taskNames.length);
 
   for (let i = 0; i < taskNames.length; i++) {
-    tasks[i] = await getTask(`${webId}/${taskNames[i]}`);
+    tasks[i] = await getTask(`${webId}${taskNames[i]}`);
   }
 
   return tasks;
@@ -82,13 +84,4 @@ export async function getTaskNames(webId: string): Promise<string[]> {
   const profile = profileDoc.getSubject(webId + "/action.ttl");
 
   return profile.getAllStrings(data.solid.write.taskName);
-}
-
-function doesFileExist(urlToFile: string): boolean {
-  console.log(urlToFile);
-  var xhr = new XMLHttpRequest();
-  xhr.open("HEAD", urlToFile, false);
-  xhr.send();
-
-  return xhr.status !== 404;
 }
