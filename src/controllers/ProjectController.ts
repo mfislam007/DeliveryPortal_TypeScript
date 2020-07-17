@@ -3,7 +3,12 @@ import "regenerator-runtime/runtime";
 
 import data from "../../settings.json";
 
-export async function addProject(projectName: string, customerName: string, managerName: string) {
+export async function addProject(
+  projectName: string,
+  customerName: string,
+  managerName: string,
+  projectTemplate: string
+) {
   const saveLocation = `https://ekseli.dev.inrupt.net/private/dp2/cases/${projectName}/project.ttl`;
   const testLocation = doesFileExist(saveLocation);
 
@@ -20,6 +25,7 @@ export async function addProject(projectName: string, customerName: string, mana
     profile.addString(data.solid.write.projectName, projectName);
     profile.addString(data.solid.write.customerName, customerName);
     profile.addString(data.solid.write.managerName, managerName);
+    profile.addString(data.solid.write.projectTemplate, projectTemplate);
     await profileDoc.save();
   }
 }
@@ -34,7 +40,8 @@ function doesFileExist(urlToFile: string) {
 export async function updateProject(
   projectName: string,
   customerName: string,
-  managerName: string
+  managerName: string,
+  projectTemplate: string
 ) {
   const saveLocation = `https://ekseli.dev.inrupt.net/private/dp2/cases/${projectName}/project.ttl`;
   const profileDoc = await fetchDocument(saveLocation);
@@ -43,5 +50,6 @@ export async function updateProject(
   profile.setString(data.solid.write.projectName, projectName);
   profile.setString(data.solid.write.customerName, customerName);
   profile.setString(data.solid.write.managerName, managerName);
+  profile.setString(data.solid.write.projectTemplate, projectTemplate);
   await profileDoc.save();
 }

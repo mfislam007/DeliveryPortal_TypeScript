@@ -5,6 +5,7 @@
       "customerName": "https://schema.org/Organization#name",
       "managerName": "https://schema.org/Person#name",
       "phaseName": "https://schema.org/Action#name",
+      "projectTemplate": "https://schema.org/urlTemplate",
       "startTime": "https://schema.org/startTime",
       "endTime": "https://schema.org/endTime",
       "taskName": "https://schema.org/Action#name",
@@ -12,6 +13,7 @@
       "taskStatus": "https://schema.org/ActionStatusType"
     },
     "locations": {
+      "podRoot": "https://ekseli.dev.inrupt.net/private/dp2/cases",
       "casesFile": "https://ekseli.dev.inrupt.net/private/dp2/cases/cases.ttl",
       "projectABC": "https://ekseli.dev.inrupt.net/private/dp2/cases/ProjectABC"
     }

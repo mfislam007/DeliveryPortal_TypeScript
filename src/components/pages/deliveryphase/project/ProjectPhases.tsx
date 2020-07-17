@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import ImageList from "../../../../containers/ImageList/ImageList";
-import TimeLine from "../../../time-line/TimeLine";
+import TimeLine from "../../../Timeline/TimeLine";
 import GetPhases from "../../../../containers/GetPhases/GetPhases";
 import GetPhaseTasks from "../../../../containers/GetPhaseTasks/GetPhaseTasks";
 import { useParams } from "react-router-dom";
