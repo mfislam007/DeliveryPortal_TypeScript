@@ -1,17 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Testing for AddProject component Dialog buttons 1`] = `ShallowWrapper {}`;
-
 exports[`Testing for AddProject component Dialog exists 1`] = `ShallowWrapper {}`;
 
 exports[`Testing for AddProject component Dialog has buttons 1`] = `ShallowWrapper {}`;
 
 exports[`Testing for AddProject component Dialog has form 1`] = `ShallowWrapper {}`;
 
-exports[`Testing for AddProject component Dialog has four taxtfields 1`] = `ShallowWrapper {}`;
-
-exports[`Testing for AddProject component Dialog has one form 1`] = `ShallowWrapper {}`;
-
 exports[`Testing for AddProject component Dialog has taxtfields 1`] = `ShallowWrapper {}`;
-
-exports[`Testing for AddProject component Dialog has two buttons 1`] = `ShallowWrapper {}`;
