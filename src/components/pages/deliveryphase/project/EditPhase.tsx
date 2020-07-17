@@ -24,7 +24,6 @@ interface Props {
  * @See https://github.com/mui-org/material-ui-pickers/issues/1440 for date-fns use, needed to use older version of @date-io/date-fns in package.json
  *  FIX  (Timo Kankaanpää) [ App element is not defined. Please use `Modal.setAppElement(el)` or set `appElement={el}`. ]
  */
-
 const EditPhase: React.FC<Props> = (props): JSX.Element => {
   const [phase, setPhase] = useState("");
   const [startDate, setStartDate] = useState<Date>();
@@ -32,7 +31,9 @@ const EditPhase: React.FC<Props> = (props): JSX.Element => {
   const [open, setOpen] = useState(props.open);
   const [modalStyle, setModalStyle] = useState(getModalStyle);
 
-  /**Before editing the dates, fetching the dates from POD to make sure using latest values */
+  /**
+   * Before editing the dates, fetching the dates from POD to make sure using latest values
+   */
   useEffect(() => {
     getPhaseDate(phase, data.solid.write.startTime).then(result => {
       setStartDate(result);
@@ -44,9 +45,7 @@ const EditPhase: React.FC<Props> = (props): JSX.Element => {
   }, [props.open]);
 
   useEffect(() => {
-    if (props.phase !== undefined) {
-      setPhase(props.phase);
-    }
+    if (props.phase !== undefined) setPhase(props.phase);
     setOpen(props.open);
   }, [props.toggle]);
 
@@ -66,8 +65,11 @@ const EditPhase: React.FC<Props> = (props): JSX.Element => {
   }));
 
   const classes = useStyles();
-  /** To enable setting phase start and end date to phase card */
-  function fixTimes() {
+
+  /**
+   * To enable setting phase start and end date to phase card
+   */
+  function fixTimes(): void {
     const monthNames = [
       "Jan",
       "Feb",
@@ -82,16 +84,12 @@ const EditPhase: React.FC<Props> = (props): JSX.Element => {
       "Nov",
       "Dec",
     ];
-    if (startDate != null && endDate != null) {
-      const dateString =
-        monthNames[startDate.getMonth()] +
-        " " +
-        startDate.getDate() +
-        "-" +
-        monthNames[endDate.getMonth()] +
-        " " +
-        endDate.getDate();
-      props.editTimes(dateString);
+
+    if (startDate !== null && endDate !== null) {
+      props.editTimes(
+        `${monthNames[startDate.getMonth()]} ${startDate.getDate()}-` +
+          `${monthNames[endDate.getMonth()]} ${endDate.getDate()}`
+      );
     }
   }
 
@@ -107,25 +105,26 @@ const EditPhase: React.FC<Props> = (props): JSX.Element => {
     return url.substring(url.lastIndexOf("/") + 1, url.length);
   }
 
-  /** Will save phase dates to POD, at the moment uses localStorage
-   *
+  /**
+   * Will save phase dates to POD, at the moment uses localStorage
    */
   function save(): void {
-    //save to localStorage
     let phaseCache: any = {};
+
     phaseCache["https://schema.org/identifier"] = props.phase;
     phaseCache["https://schema.org/startTime"] = startDate;
     phaseCache["https://schema.org/endTime"] = endDate;
-    localStorage.setItem("phase", JSON.stringify(phaseCache));
-    updatePhaseDates(phase, startDate, endDate); //save to POD
+
+    localStorage.setItem("phase", JSON.stringify(phaseCache)); // Saving to localStorage
+    updatePhaseDates(phase, startDate, endDate); // Saving to the POD
     setOpen(false);
   }
 
-  function rand() {
+  function rand(): number {
     return Math.round(Math.random() * 20) - 10;
   }
 
-  function getModalStyle() {
+  function getModalStyle(): { [i: string]: string | number } {
     const top = 50 + rand();
     const left = 50 + rand();
 
@@ -136,10 +135,10 @@ const EditPhase: React.FC<Props> = (props): JSX.Element => {
     };
   }
 
-  const handleClose = () => {
+  function handleClose(event: React.MouseEvent<HTMLButtonElement>): void {
     setOpen(false);
-    props.toggle;
-  };
+    props.toggle(event);
+  }
 
   return (
     <div>
