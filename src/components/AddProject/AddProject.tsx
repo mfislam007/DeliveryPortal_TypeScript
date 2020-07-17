@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-
 import { makeStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
 import Dialog from "@material-ui/core/Dialog";
@@ -17,6 +16,7 @@ import ViewListIcon from "@material-ui/icons/ViewList";
 import { useHistory } from "react-router-dom";
 
 import { addProject } from "../../controllers/ProjectController";
+import "./AddProject.scss";
 
 const templates = [
   {
@@ -131,16 +131,20 @@ const AddProject: React.FC = (): JSX.Element => {
   };
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
     addProject(
       project.projectName,
       project.customerName,
       project.managerName,
       project.projectTemplate
-    );
-    event.preventDefault();
-    setOpen(false);
-    history.push("/deliveryportal");
-    window.location.reload(false);
+    ).then(result => {
+      setOpen(false);
+      if (window.location.pathname === "/deliveryportal") {
+        window.location.reload(true);
+      } else {
+        history.push("/deliveryportal");
+      }
+    });
   };
 
   const enabled =
@@ -150,12 +154,7 @@ const AddProject: React.FC = (): JSX.Element => {
 
   return (
     <div>
-      <IconButton
-        color="inherit"
-        aria-label="add to cart"
-        onClick={handleClickOpen}
-        style={{ marginTop: 0 }}
-      >
+      <IconButton color="inherit" aria-label="add to cart" onClick={handleClickOpen}>
         <AddIcon />
       </IconButton>
 
@@ -181,7 +180,7 @@ const AddProject: React.FC = (): JSX.Element => {
             <div>
               <Grid container spacing={1} alignItems="flex-end">
                 <Grid item>
-                  <AccountCircle style={{ marginTop: 20, marginLeft: 20 }} />
+                  <AccountCircle className="icon-image" />
                 </Grid>
                 <Grid item xs={6}>
                   <TextField
@@ -197,7 +196,7 @@ const AddProject: React.FC = (): JSX.Element => {
             <div>
               <Grid container spacing={1} alignItems="flex-end">
                 <Grid item>
-                  <AccountCircle style={{ marginTop: 20, marginLeft: 20 }} />
+                  <AccountCircle className="icon-image" />
                 </Grid>
                 <Grid item xs={6}>
                   <TextField
@@ -213,7 +212,7 @@ const AddProject: React.FC = (): JSX.Element => {
             <div>
               <Grid container spacing={1} alignItems="flex-end">
                 <Grid item>
-                  <AccountCircle style={{ marginTop: 20, marginLeft: 20 }} />
+                  <AccountCircle className="icon-image" />
                 </Grid>
                 <Grid item xs={6}>
                   <TextField
@@ -229,7 +228,7 @@ const AddProject: React.FC = (): JSX.Element => {
             <div>
               <Grid container spacing={1} alignItems="flex-end">
                 <Grid item>
-                  <ViewListIcon style={{ marginTop: 20, marginLeft: 20 }} />
+                  <ViewListIcon className="icon-image" />
                 </Grid>
                 <Grid item xs={6}>
                   <TextField
@@ -259,4 +258,5 @@ const AddProject: React.FC = (): JSX.Element => {
     </div>
   );
 };
+
 export default AddProject;
