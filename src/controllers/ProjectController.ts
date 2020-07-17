@@ -1,7 +1,7 @@
 import { fetchDocument, createDocument } from "tripledoc";
 import "regenerator-runtime/runtime";
 
-import data from "../../../settings.json";
+import data from "../../settings.json";
 
 export async function addProject(projectName: string, customerName: string, managerName: string) {
   const saveLocation = `https://ekseli.dev.inrupt.net/private/dp2/cases/${projectName}/project.ttl`;
