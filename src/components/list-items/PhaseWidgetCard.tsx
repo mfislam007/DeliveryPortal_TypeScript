@@ -26,20 +26,14 @@ const PhaseWidgetCard: React.FC<Props> = (props): JSX.Element => {
 
   useEffect(() => {
     setLabel(props.label);
+
     if (props.label !== undefined) {
-      setUrl(data.solid.locations.podRoot + project + "/" + props.label);
-    }
-    if (props.timeFrame !== undefined) {
-      setTimeFrame(props.timeFrame);
+      setUrl(`${data.solid.locations.podRoot}/${project}/${props.label}`);
     }
 
-    if (props.completion !== undefined) {
-      setCompletion(props.completion);
-    }
-
-    if (props.phaseColor !== undefined) {
-      setPhaseColor(props.phaseColor);
-    }
+    if (props.timeFrame !== undefined) setTimeFrame(props.timeFrame);
+    if (props.completion !== undefined) setCompletion(props.completion);
+    if (props.phaseColor !== undefined) setPhaseColor(props.phaseColor);
   }, [props]);
 
   const showCompletion = (): JSX.Element => {

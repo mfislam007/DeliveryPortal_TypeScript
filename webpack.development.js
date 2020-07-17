@@ -14,7 +14,10 @@ module.exports = merge(common, {
   // 'inline-source-map' also works with `awesome-typescript-loader`
   devtool: "source-map",
 
-  entry: ["webpack-hot-middleware/client", path.resolve(__dirname, "src/index.tsx")],
+  entry: [
+    "webpack-hot-middleware/client?path=/__webpack_hmr&timeout=20000&reload=true",
+    path.resolve(__dirname, "src/index.tsx"),
+  ],
 
   mode: "development",
 
@@ -81,6 +84,4 @@ module.exports = merge(common, {
       scriptLoading: "defer",
     }),
   ],
-
-  stats: "errors-only",
 });

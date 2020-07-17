@@ -3,12 +3,15 @@ import { createShallow, createMount } from "@material-ui/core/test-utils";
 import { act } from "react-dom/test-utils";
 import { configure } from "enzyme";
 import Adapter from "enzyme-adapter-react-16";
+
 import EditPhase from "../deliveryphase/project/EditPhase";
 
 configure({ adapter: new Adapter() });
-describe('Testing EditPhase component")', () => {
+
+describe("'EditPhase' component", () => {
   let render: any;
   let shallow: any;
+
   const props = {
     phase: "https://ekseli.dev.inrupt.net/private/dp2/cases/ProjectABC/Installation/",
     start: new Date(2020, 1, 1),
@@ -23,15 +26,19 @@ describe('Testing EditPhase component")', () => {
     render = createMount();
   });
 
-  it("UI has three divs", () => {
-    const wrapper = shallow(<EditPhase {...props} />);
-    expect(wrapper.find("div")).toHaveLength(3);
+  describe("Unit tests", () => {
+    it("has three 'div's", () => {
+      const wrapper = shallow(<EditPhase {...props} />);
+      expect(wrapper.find("div")).toHaveLength(3);
+    });
   });
 
-  it("Can render EditPhase", () => {
-    act(() => {
-      const wrapper2 = render(<EditPhase {...props} />);
-      expect(wrapper2.find("EditPhase")).toHaveLength(1);
+  describe("Integration tests", () => {
+    it("mounts in a full DOM", () => {
+      act(() => {
+        const wrapper = render(<EditPhase {...props} />);
+        expect(wrapper.find("EditPhase")).toHaveLength(1);
+      });
     });
   });
 });

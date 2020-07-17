@@ -7,10 +7,6 @@ const path = require("path");
 const LodashModuleReplacementPlugin = require("lodash-webpack-plugin");
 
 module.exports = {
-  cache: {
-    type: "memory",
-  },
-
   module: {
     rules: [
       // TS loading rule
