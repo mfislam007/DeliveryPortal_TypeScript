@@ -3,7 +3,6 @@
   display: flex;
   justify-content: center;
   margin-top: 75px;
-  background-color: #dce2f0;
   height: 100%;
 }
 
@@ -22,18 +21,27 @@
 
 .project-phase-page-main {
   display: flex;
-  background-color: #dce2f0;
+  top: 75px;
 }
 
 .project-phase-first-section {
   height: 100%;
-  width: 350px;
+  display: relative;
   position: fixed;
-  top: 75px;
+  left: 25px;
+  top: 85px;
+}
+
+.time-line {
+  display: flex;
+  position: relative;
+  list-style: none;
+  min-height: 70px;
+  left: -150px;
 }
 
 .project-phase-second-section {
-  margin-left: 380px;
+  margin-left: 400px;
 }
 
 .project-phase-card-section {
