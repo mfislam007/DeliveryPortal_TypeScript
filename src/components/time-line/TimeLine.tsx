@@ -38,11 +38,7 @@ const ContentTimeline: React.FC = (): JSX.Element => {
     </TimelineItem>
   ));
 
-  return (
-    <React.Fragment>
-      <Timeline>{listPhases}</Timeline>
-    </React.Fragment>
-  );
+  return <Timeline>{listPhases}</Timeline>;
 };
 
 export default ContentTimeline;
