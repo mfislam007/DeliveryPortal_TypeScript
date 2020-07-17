@@ -8,6 +8,7 @@ import { MuiPickersUtilsProvider, KeyboardDatePicker } from "@material-ui/picker
 import Modal from "@material-ui/core/Modal";
 import { updatePhaseDates } from "../../../../controllers/PhaseController";
 import { getPhaseDate } from "../../../../controllers/PhaseController";
+import data from "../../../../../settings.json";
 
 interface Props {
   phase: string;
@@ -17,11 +18,13 @@ interface Props {
   toggle: (event: React.MouseEvent<HTMLButtonElement>) => void;
   editTimes: (data: string) => void;
 }
+
 /**
  * This modal component is used to adjust phase start and end time and finally to save the changed to the POD where the phase data locates.
  * @See https://github.com/mui-org/material-ui-pickers/issues/1440 for date-fns use, needed to use older version of @date-io/date-fns in package.json
  *  FIX  (Timo Kankaanpää) [ App element is not defined. Please use `Modal.setAppElement(el)` or set `appElement={el}`. ]
  */
+
 const EditPhase: React.FC<Props> = (props): JSX.Element => {
   const [phase, setPhase] = useState("");
   const [startDate, setStartDate] = useState<Date>();
@@ -31,10 +34,11 @@ const EditPhase: React.FC<Props> = (props): JSX.Element => {
 
   /**Before editing the dates, fetching the dates from POD to make sure using latest values */
   useEffect(() => {
-    getPhaseDate(phase, "https://schema.org/startTime").then(result => {
+    getPhaseDate(phase, data.solid.write.startTime).then(result => {
       setStartDate(result);
     });
-    getPhaseDate(phase, "https://schema.org/endTime").then(result => {
+
+    getPhaseDate(phase, data.solid.write.endTime).then(result => {
       setEndDate(result);
     });
   }, [props.open]);
