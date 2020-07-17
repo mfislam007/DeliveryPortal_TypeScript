@@ -35,17 +35,14 @@ const EditPhase: React.FC<Props> = (props): JSX.Element => {
    * Before editing the dates, fetching the dates from POD to make sure using latest values
    */
   useEffect(() => {
-    getPhaseDate(phase, data.solid.write.startTime).then(result => {
-      setStartDate(result);
-    });
-
-    getPhaseDate(phase, data.solid.write.endTime).then(result => {
-      setEndDate(result);
-    });
+    (async () => {
+      setStartDate(await getPhaseDate(phase, data.solid.write.startTime));
+      setEndDate(await getPhaseDate(phase, data.solid.write.endTime));
+    })();
   }, [props.open]);
 
   useEffect(() => {
-    if (props.phase !== undefined) setPhase(props.phase);
+    setPhase(props.phase !== undefined ? props.phase : phase);
     setOpen(props.open);
   }, [props.toggle]);
 
@@ -116,7 +113,9 @@ const EditPhase: React.FC<Props> = (props): JSX.Element => {
     phaseCache["https://schema.org/endTime"] = endDate;
 
     localStorage.setItem("phase", JSON.stringify(phaseCache)); // Saving to localStorage
-    updatePhaseDates(phase, startDate, endDate); // Saving to the POD
+    (async () => {
+      await updatePhaseDates(phase, startDate, endDate); // Saving to the POD
+    })();
     setOpen(false);
   }
 
