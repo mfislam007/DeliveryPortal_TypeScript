@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-
 import { makeStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
 import Dialog from "@material-ui/core/Dialog";
@@ -131,16 +130,20 @@ const AddProject: React.FC = (): JSX.Element => {
   };
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
     addProject(
       project.projectName,
       project.customerName,
       project.managerName,
       project.projectTemplate
-    );
-    event.preventDefault();
-    setOpen(false);
-    history.push("/deliveryportal");
-    window.location.reload(false);
+    ).then(result => {
+      setOpen(false);
+      if (window.location.pathname === "/deliveryportal") {
+        window.location.reload(true);
+      } else {
+        history.push("/deliveryportal");
+      }
+    });
   };
 
   const enabled =
@@ -259,4 +262,5 @@ const AddProject: React.FC = (): JSX.Element => {
     </div>
   );
 };
+
 export default AddProject;
