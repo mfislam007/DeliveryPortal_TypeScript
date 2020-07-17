@@ -5,39 +5,40 @@ import Phase from "../entities/Phase";
 import data from "../../settings.json";
 
 /** Updates given phase start and end dates */
-export async function updatePhaseDates(webId: string, start: Date, end: Date) {
+export async function updatePhaseDates(webId: string, start: Date, end: Date): Promise<void> {
   const profileDoc = await fetchDocument(webId + "/action.ttl");
   console.log("PhaseCOntroller: " + webId + "/action.ttl");
   const profile = profileDoc.getSubject(webId);
   profile.setDateTime("https://schema.org/startTime", start);
   profile.setDateTime("https://schema.org/endTime", end);
-  const result = await profileDoc.save();
+  await profileDoc.save();
 }
 
 /** Adds given phase start and end dates */
-export async function addPhaseDates(webId: string, start: Date, end: Date) {
+export async function addPhaseDates(webId: string, start: Date, end: Date): Promise<void> {
   const profileDoc = await fetchDocument(webId + "/action.ttl");
   const profile = profileDoc.getSubject(webId);
   profile.addDateTime("https://schema.org/startTime", start);
   profile.addDateTime("https://schema.org/endTime", end);
-  const result = await profileDoc.save();
+  await profileDoc.save();
 }
 
 /** Removes given phase start and end dates */
-export async function removePhaseDates(webId: string, start: Date, end: Date) {
+export async function removePhaseDates(webId: string, start: Date, end: Date): Promise<void> {
   const profileDoc = await fetchDocument(webId + "/action.ttl");
   const profile = profileDoc.getSubject(webId);
   profile.removeDateTime("https://schema.org/startTime", start);
   profile.removeDateTime("https://schema.org/endTime", end);
-  const result = await profileDoc.save();
+  await profileDoc.save();
 }
 
 /** Returns the asked value for a property */
-export async function getPhaseDate(webId: string, property: string) {
+export async function getPhaseDate(webId: string, property: string): Promise<Date> {
   const profileDoc = await fetchDocument(webId + "/action.ttl");
   const profile = profileDoc.getSubject(webId);
   return profile.getDateTime(property);
 }
+
 export async function createPhase(webId: string, phase: Phase): Promise<void> {
   if (!doesFileExist(webId + phase.name + "/action.ttl")) {
     const newDocument = createDocument(webId + phase.name + "/action.ttl");
@@ -93,11 +94,9 @@ export async function getPhaseNames(webId: string): Promise<string[]> {
 export async function getPhasesForProject(webId: string): Promise<Phase[]> {
   const phaseNames = await getPhaseNames(webId);
   let phases: Phase[] = new Array<Phase>(phaseNames.length);
-
   for (let i = 0; i < phaseNames.length; i++) {
     phases[i] = await getPhase(`${webId}/${phaseNames[i]}`);
   }
-
   return phases;
 }
 
@@ -105,7 +104,6 @@ export async function getPhasesForProject(webId: string): Promise<Phase[]> {
 export async function getPhase(webId: string): Promise<Phase> {
   const profileDoc = await fetchDocument(webId + "/action.ttl");
   const profile = profileDoc.getSubject(webId);
-
   return {
     name: profile.getString(data.solid.write.phaseName),
     startTime: profile.getDateTime(data.solid.write.startTime),

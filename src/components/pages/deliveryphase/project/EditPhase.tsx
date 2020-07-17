@@ -17,9 +17,10 @@ interface Props {
   toggle: (event: React.MouseEvent<HTMLButtonElement>) => void;
   editTimes: (data: string) => void;
 }
-/**This modal component is used to adjust phase start and end time and finally to save the changed to the POD where the phase data locates.
+/**
+ * This modal component is used to adjust phase start and end time and finally to save the changed to the POD where the phase data locates.
  * @See https://github.com/mui-org/material-ui-pickers/issues/1440 for date-fns use, needed to use older version of @date-io/date-fns in package.json
- * TODO: Fix "App element is not defined. Please use `Modal.setAppElement(el)` or set `appElement={el}`."
+ *  FIX  (Timo Kankaanpää) [ App element is not defined. Please use `Modal.setAppElement(el)` or set `appElement={el}`. ]
  */
 
 const EditPhase: React.FC<Props> = (props): JSX.Element => {
