@@ -2,7 +2,7 @@ import React from "react";
 import { configure, shallow } from "enzyme";
 import { describe, expect, it } from "@jest/globals";
 
-import AddProject from "./AddProject";
+import AddProject from "../AddProject";
 
 describe("Testing for AddProject component", () => {
   it("Dialog exists", () => {
