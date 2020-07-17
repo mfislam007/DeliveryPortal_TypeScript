@@ -15,7 +15,6 @@ export async function createPhase(webId: string, phase: Phase): Promise<void> {
     profile.addDateTime(data.solid.write.startTime, phase.startTime);
     profile.addDateTime(data.solid.write.endTime, phase.endTime);
     await profileDoc.save();
-
     profileDoc = await fetchDocument(webId + "/project.ttl");
     profile = profileDoc.getSubject(webId + "/project.ttl");
     profile.addString(data.solid.write.phaseName, phase.name);
@@ -31,7 +30,6 @@ export async function updatePhase(webId: string, newPhase: Phase, oldPhase: Phas
   profile.addDateTime(data.solid.write.startTime, newPhase.startTime);
   profile.addDateTime(data.solid.write.endTime, newPhase.endTime);
   await profileDoc.save();
-
   profileDoc = await fetchDocument(webId + "/project.ttl");
   profile = profileDoc.getSubject(webId + "/project.ttl");
   profile.removeString(data.solid.write.phaseName, oldPhase.name);
