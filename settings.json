@@ -12,6 +12,7 @@
       "taskStatus": "https://schema.org/ActionStatusType"
     },
     "locations": {
+      "podRoot": "https://ekseli.dev.inrupt.net/private/dp2/cases",
       "casesFile": "https://ekseli.dev.inrupt.net/private/dp2/cases/cases.ttl",
       "projectABC": "https://ekseli.dev.inrupt.net/private/dp2/cases/ProjectABC"
     }
