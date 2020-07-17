@@ -22,7 +22,6 @@ interface Props {
  * @See https://github.com/mui-org/material-ui-pickers/issues/1440 for date-fns use, needed to use older version of @date-io/date-fns in package.json
  *  FIX  (Timo Kankaanpää) [ App element is not defined. Please use `Modal.setAppElement(el)` or set `appElement={el}`. ]
  */
-
 const EditPhase: React.FC<Props> = (props): JSX.Element => {
   const [phase, setPhase] = useState("");
   const [startDate, setStartDate] = useState<Date>();
