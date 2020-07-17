@@ -3,7 +3,6 @@ import { Route, useHistory } from "react-router";
 import { Link } from "react-router-dom";
 import PersonIcon from "@material-ui/icons/Person";
 import HomeIcon from "@material-ui/icons/Home";
-import AddIcon from "@material-ui/icons/Add";
 import IconButton from "@material-ui/core/IconButton";
 import MenuIcon from "@material-ui/icons/Menu";
 import ListItem from "@material-ui/core/ListItem";
@@ -14,6 +13,7 @@ import Typography from "@material-ui/core/Typography";
 
 import "./Toolbar.scss";
 import ToolbarProjectPageLinks from "./ToolbarProjectPageLinks";
+import AddProject from "../AddProject/AddProject";
 
 const Toolbar: React.FC = (): JSX.Element => {
   let history = useHistory();
@@ -71,9 +71,7 @@ const Toolbar: React.FC = (): JSX.Element => {
               </IconButton>
             </li>
             <li>
-              <IconButton color="inherit">
-                <AddIcon fontSize="default" />
-              </IconButton>
+              <AddProject />
             </li>
             <li>
               <IconButton color="inherit">

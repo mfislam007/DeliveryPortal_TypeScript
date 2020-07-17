@@ -1,6 +1,6 @@
 import React from "react";
 import ImageList from "../../../../containers/ImageList/ImageList";
-import TimeLine from "../../../time-line/TimeLine";
+import TimeLine from "../../../Timeline/TimeLine";
 import GetPhases from "../../../../containers/GetPhases/GetPhases";
 import { Typography } from "@material-ui/core";
 

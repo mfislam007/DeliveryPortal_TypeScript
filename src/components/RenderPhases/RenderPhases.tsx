@@ -1,7 +1,7 @@
 import React from "react";
 
 import { PhaseColors } from "../../constants/WidgetColors";
-import PhaseWidgetCard from "../list-items/PhaseWidgetCard";
+import PhaseWidgetCard from "../ListItems/PhaseWidgetCard";
 
 type Props = {
   projectPhases: string[];

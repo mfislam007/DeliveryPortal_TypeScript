@@ -1,5 +1,5 @@
 import React from "react";
-import ProjectCard from "../list-items/ProjectCard";
+import ProjectCard from "../ListItems/ProjectCard";
 
 import "./RenderProjects.scss";
 

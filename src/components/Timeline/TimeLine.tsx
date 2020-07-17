@@ -11,7 +11,7 @@ import { getPhasesForProject } from "../../controllers/PhaseController";
 import Phase from "../../entities/Phase";
 import data from "../../../settings.json";
 
-import "../pages/deliveryphase/project/ProjectPage.scss";
+import "../Pages/deliveryphase/project/ProjectPage.scss";
 
 const ContentTimeline: React.FC = (): JSX.Element => {
   const [phases, setPhases] = useState<Phase[]>([]);
