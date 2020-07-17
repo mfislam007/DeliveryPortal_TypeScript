@@ -2,7 +2,7 @@ import React from "react";
 import { useParams } from "react-router-dom";
 
 import "./ProjectPage.scss";
-import UserInfoBar from "../../../list-items/UserInfoBar";
+import UserInfoBar from "../../../ListItems/UserInfoBar";
 
 const ProjectUsers: React.FC = (): JSX.Element => {
   const { id } = useParams();

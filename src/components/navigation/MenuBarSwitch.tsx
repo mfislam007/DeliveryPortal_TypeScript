@@ -1,7 +1,6 @@
 import React from "react";
 import { Switch, Route } from "react-router-dom";
-
-import MenuBar from "../menubar/MenuBar";
+import ToolBar from "../Toolbar/Toolbar";
 
 const MenuBarSwitch: React.FC = (): JSX.Element => {
   return (
@@ -9,7 +8,7 @@ const MenuBarSwitch: React.FC = (): JSX.Element => {
       <Route exact path="/">
         <div></div>
       </Route>
-      <Route path="/*" component={MenuBar}></Route>
+      <Route path="/*" component={ToolBar}></Route>
     </Switch>
   );
 };

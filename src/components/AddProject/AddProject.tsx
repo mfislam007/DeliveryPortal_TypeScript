@@ -92,6 +92,7 @@ const AddProject: React.FC = (): JSX.Element => {
       case "projectName":
         let tempProject = { ...project };
         tempProject.projectName = event.currentTarget.value;
+
         setProject(tempProject);
         setProject({
           projectName: event.currentTarget.value,
@@ -100,6 +101,7 @@ const AddProject: React.FC = (): JSX.Element => {
           projectTemplate: project.projectTemplate,
         });
         break;
+
       case "customerName":
         setProject({
           projectName: project.projectName,
