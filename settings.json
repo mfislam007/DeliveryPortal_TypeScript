@@ -13,7 +13,8 @@
       "taskStatus": "https://schema.org/ActionStatusType"
     },
     "locations": {
-      "casesFile": "https://ekseli.dev.inrupt.net/private/dp2/cases/cases.ttl"
+      "casesFile": "https://ekseli.dev.inrupt.net/private/dp2/cases/cases.ttl",
+      "projectABC": "https://ekseli.dev.inrupt.net/private/dp2/cases/ProjectABC"
     }
   }
 }
