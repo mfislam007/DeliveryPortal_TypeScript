@@ -11,18 +11,23 @@ import LocalOfferIcon from "@material-ui/icons/LocalOffer";
 
 import "./ProjectCard.scss";
 
+type Tag = {
+  id: number;
+  name: string;
+};
+
 type Props = {
   id: number | string; //  NOTE  (Roman Bezusiak) [ Shouldn't it be just a `string`? ]
   title?: string;
   owner: string;
-  tags?: { id: number; name: string }[];
+  tags?: Tag[];
 };
 
 const ProjectCard: React.FC<Props> = (props): JSX.Element => {
   const [owner, setOwner] = useState("");
   const [title, setTitle] = useState("");
   const [id, setId] = useState(0 as number | string);
-  const [tagElements, setTagElements] = useState(undefined as JSX.Element[]);
+  const [tags, setTags] = useState(undefined as Tag[]);
   const { path } = useRouteMatch();
   let history = useHistory();
 
@@ -30,21 +35,21 @@ const ProjectCard: React.FC<Props> = (props): JSX.Element => {
     setOwner(props.owner);
     setTitle(props.title);
     setId(props.id);
-
-    if (props.tags) {
-      setTagElements(
-        props.tags.map(tag => (
-          <div className="tagDiv" key={tag.id.toString()}>
-            {tag.name}
-          </div>
-        ))
-      );
-    }
+    setTags(props.tags);
   }, [props]);
 
   const handleOnClick = (): void => {
     history.push(`${path}projectid=${id}`);
   };
+
+  const tagElements: JSX.Element[] =
+    tags !== undefined
+      ? tags.map(tag => (
+          <div className="tagDiv" key={tag.id.toString()}>
+            {tag.name}
+          </div>
+        ))
+      : null;
 
   return (
     <div className="project-card-container" onClick={handleOnClick}>
