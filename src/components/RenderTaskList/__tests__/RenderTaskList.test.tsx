@@ -34,8 +34,8 @@ describe('Testing RenderTaskList component")', () => {
   });
 
   it("Can render RenderTaskList component", () => {
-    const wrapper2 = render(<RenderTaskList {...props} />);
+    const wrapper = render(<RenderTaskList {...props} />);
 
-    expect(wrapper2.find("RenderTaskList")).toHaveLength(1);
+    expect(wrapper.find("RenderTaskList")).toHaveLength(1);
   });
 });
