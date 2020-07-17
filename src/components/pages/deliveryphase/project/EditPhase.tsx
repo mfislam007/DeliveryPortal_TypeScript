@@ -85,7 +85,7 @@ const EditPhase: React.FC<Props> = (props): JSX.Element => {
       "Dec",
     ];
 
-    if (startDate !== null && endDate !== null) {
+    if (startDate != null && endDate != null) {
       props.editTimes(
         `${monthNames[startDate.getMonth()]} ${startDate.getDate()}-` +
           `${monthNames[endDate.getMonth()]} ${endDate.getDate()}`
