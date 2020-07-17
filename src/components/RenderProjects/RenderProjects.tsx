@@ -1,6 +1,7 @@
 import React from "react";
-
 import ProjectCard from "../list-items/ProjectCard";
+
+import "./RenderProjects.scss";
 
 type Props = {
   projectNames: string[];
@@ -23,7 +24,7 @@ const RenderProjects: React.FC<Props> = props => {
 
   return (
     <div>
-      <div className="deliveryPortalProjectsContainer">{nameCards}</div>
+      <div className="container">{nameCards}</div>
     </div>
   );
 };
