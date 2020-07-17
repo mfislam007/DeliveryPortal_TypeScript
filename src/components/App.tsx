@@ -1,8 +1,8 @@
 import React from "react";
 import { BrowserRouter as Router } from "react-router-dom";
 
-import MenuBarSwitch from "./Navigation/MenuBarSwitch";
-import HomePageSwitch from "./Navigation/HomePageSwitch";
+import MenuBarSwitch from "./navigation/MenuBarSwitch";
+import HomePageSwitch from "./navigation/HomePageSwitch";
 
 const App: React.FC = (): JSX.Element => {
   return (
