@@ -16,7 +16,7 @@ import AccountCircle from "@material-ui/icons/AccountCircle";
 import ViewListIcon from "@material-ui/icons/ViewList";
 import { useHistory } from "react-router-dom";
 
-import { addProject } from "../../controllers/ProjectController/ProjectController";
+import { addProject } from "../../controllers/ProjectController";
 
 const templates = [
   {
