@@ -16,7 +16,6 @@ import ViewListIcon from "@material-ui/icons/ViewList";
 import { useHistory } from "react-router-dom";
 
 import { addProject } from "../../controllers/ProjectController";
-import "./AddProject.scss";
 
 const templates = [
   {
@@ -154,7 +153,12 @@ const AddProject: React.FC = (): JSX.Element => {
 
   return (
     <div>
-      <IconButton color="inherit" aria-label="add to cart" onClick={handleClickOpen}>
+      <IconButton
+        color="inherit"
+        aria-label="add to cart"
+        onClick={handleClickOpen}
+        style={{ marginTop: 0 }}
+      >
         <AddIcon />
       </IconButton>
 
@@ -180,7 +184,7 @@ const AddProject: React.FC = (): JSX.Element => {
             <div>
               <Grid container spacing={1} alignItems="flex-end">
                 <Grid item>
-                  <AccountCircle className="icon-image" />
+                  <AccountCircle style={{ marginTop: 20, marginLeft: 20 }} />
                 </Grid>
                 <Grid item xs={6}>
                   <TextField
@@ -196,7 +200,7 @@ const AddProject: React.FC = (): JSX.Element => {
             <div>
               <Grid container spacing={1} alignItems="flex-end">
                 <Grid item>
-                  <AccountCircle className="icon-image" />
+                  <AccountCircle style={{ marginTop: 20, marginLeft: 20 }} />
                 </Grid>
                 <Grid item xs={6}>
                   <TextField
@@ -212,7 +216,7 @@ const AddProject: React.FC = (): JSX.Element => {
             <div>
               <Grid container spacing={1} alignItems="flex-end">
                 <Grid item>
-                  <AccountCircle className="icon-image" />
+                  <AccountCircle style={{ marginTop: 20, marginLeft: 20 }} />
                 </Grid>
                 <Grid item xs={6}>
                   <TextField
@@ -228,7 +232,7 @@ const AddProject: React.FC = (): JSX.Element => {
             <div>
               <Grid container spacing={1} alignItems="flex-end">
                 <Grid item>
-                  <ViewListIcon className="icon-image" />
+                  <ViewListIcon style={{ marginTop: 20, marginLeft: 20 }} />
                 </Grid>
                 <Grid item xs={6}>
                   <TextField
