@@ -10,10 +10,12 @@ import Drawer from "@material-ui/core/Drawer";
 import ListItemIcon from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
 import Typography from "@material-ui/core/Typography";
+import { LoggedOut, LoggedIn, LogoutButton } from "@solid/react";
 
 import "./Toolbar.scss";
 import ToolbarProjectPageLinks from "./ToolbarProjectPageLinks";
 import AddProject from "../AddProject/AddProject";
+import Login from "../Login/Login";
 
 const Toolbar: React.FC = (): JSX.Element => {
   let history = useHistory();
@@ -72,6 +74,14 @@ const Toolbar: React.FC = (): JSX.Element => {
             </li>
             <li>
               <AddProject />
+            </li>
+            <li>
+              <LoggedOut>
+                <Login />
+              </LoggedOut>
+              <LoggedIn>
+                <LogoutButton />
+              </LoggedIn>
             </li>
             <li>
               <IconButton color="inherit">
