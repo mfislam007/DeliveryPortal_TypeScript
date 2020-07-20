@@ -26,7 +26,10 @@ module.exports = {
       // HTML loading rule
       {
         test: /\.html$/i,
-        use: ["html-loader"],
+        loader: "html-loader",
+        options: {
+          esModule: true,
+        },
       },
 
       // Font loading rule

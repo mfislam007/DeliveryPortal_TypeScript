@@ -49,7 +49,7 @@ const Login: React.FC = (): JSX.Element => {
           <div className="auth-button-wrapper">
             <AuthButton
               className="auth-button"
-              popup="popup.html"
+              popup="../../assets/popup.html"
               login="Login here!"
               logout="Log me out"
             />
