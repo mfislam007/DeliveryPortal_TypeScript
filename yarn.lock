@@ -3401,6 +3401,13 @@
   resolved "https://registry.yarnpkg.com/@types/solid-auth-client/-/solid-auth-client-2.4.0.tgz#0bd55ee813146b90053bf50c2c5691867e5bed60"
   integrity sha512-RsJ33lAZXiZn/p6dIcU9NNge5yCTPYE5lna51olYDqAR1QsLNXGTfWCi/k0TiwjorFrXA2+Qm6XQ8RQnP+RRkQ==
 
+"@types/solid__react@^1.6.1":
+  version "1.6.1"
+  resolved "https://registry.yarnpkg.com/@types/solid__react/-/solid__react-1.6.1.tgz#adf2b180bfaadb6039d18d42d10c2ebcee32dd8f"
+  integrity sha512-GCQtVDst42jkKD3GYnkVLPBN55RMl4HjC9lN4AQJuc1ONK+udVhz4/BQxMQAu7f2ujkNx1Hs39m2TVFet/QG/Q==
+  dependencies:
+    "@types/react" "*"
+
 "@types/source-list-map@*":
   version "0.1.2"
   resolved "https://registry.yarnpkg.com/@types/source-list-map/-/source-list-map-0.1.2.tgz#0078836063ffaf17412349bba364087e0ac02ec9"

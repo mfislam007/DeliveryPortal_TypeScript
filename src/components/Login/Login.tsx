@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { ProviderLogin } from "@inrupt/solid-react-components";
+import { AuthButton } from "@solid/react";
 import Dialog from "@material-ui/core/Dialog";
 import IconButton from "@material-ui/core/IconButton";
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
@@ -46,7 +46,14 @@ const Login: React.FC = (): JSX.Element => {
               </IconButton>
             </Toolbar>
           </AppBar>
-          <ProviderLogin className="provider-login" callbackUri={`${window.location.origin}/`} />
+          <div className="auth-button-wrapper">
+            <AuthButton
+              className="auth-button"
+              popup="popup.html"
+              login="Login here!"
+              logout="Log me out"
+            />
+          </div>
         </Dialog>
       </div>
     </div>

@@ -10,7 +10,6 @@ import Drawer from "@material-ui/core/Drawer";
 import ListItemIcon from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
 import Typography from "@material-ui/core/Typography";
-import { LoggedOut, LoggedIn, LogoutButton } from "@solid/react";
 
 import "./Toolbar.scss";
 import ToolbarProjectPageLinks from "./ToolbarProjectPageLinks";
@@ -76,12 +75,7 @@ const Toolbar: React.FC = (): JSX.Element => {
               <AddProject />
             </li>
             <li>
-              <LoggedOut>
-                <Login />
-              </LoggedOut>
-              <LoggedIn>
-                <LogoutButton />
-              </LoggedIn>
+              <Login />
             </li>
             <li>
               <IconButton color="inherit">
