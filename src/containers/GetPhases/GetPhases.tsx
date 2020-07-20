@@ -5,7 +5,11 @@ import { fetchDocument } from "tripledoc";
 import RenderPhases from "../../components/RenderPhases/RenderPhases";
 import data from "../../../settings.json";
 
-const GetProjects: React.FC = (): JSX.Element => {
+type Props = {
+  getPhaseInfo: (phaseInfo: { label: string; color: string }) => void;
+};
+
+const GetProjects: React.FC<Props> = (props): JSX.Element => {
   const [phaseNames, setPhaseNames] = useState([] as string[]);
   const { id } = useParams();
   const webId = `https://ekseli.dev.inrupt.net/private/dp2/cases/${id}/project.ttl`;
@@ -26,7 +30,7 @@ const GetProjects: React.FC = (): JSX.Element => {
 
   return (
     <div>
-      <RenderPhases projectPhases={phaseNames} />
+      <RenderPhases projectPhases={phaseNames} getPhaseInfo={props.getPhaseInfo} />
     </div>
   );
 };
