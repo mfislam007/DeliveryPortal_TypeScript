@@ -13,6 +13,7 @@ type Props = {
     totalTasks: number;
   };
   phaseColor?: string;
+  getPhaseInfo: (phaseInfo: { label: string; color: string }) => void;
 };
 
 const PhaseWidgetCard: React.FC<Props> = (props): JSX.Element => {
@@ -66,7 +67,12 @@ const PhaseWidgetCard: React.FC<Props> = (props): JSX.Element => {
           <div className="PhaseWidgetCardTextLabel">{label}</div>
           <div className="PhaseWidgetCardTextTimeFrame">{timeFrame}</div>
         </div>
-        <div className="PhaseWidgetCardTextDetails">See Details</div>
+        <div
+          className="PhaseWidgetCardTextDetails"
+          onClick={() => props.getPhaseInfo({ label: label, color: phaseColor })}
+        >
+          See Details
+        </div>
       </div>
       <div className="PhaseWidgetCardMisc">
         <div className="PhaseWidgetCardOptions" onClick={enableEditDates}>
