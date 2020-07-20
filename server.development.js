@@ -54,6 +54,9 @@ server
   .use(webpackDevMiddleware)
   .use(webpackHotMiddleware)
   .use(staticMiddleware)
+  .get("/assets/popup.html", (req, res) => {
+    res.sendFile(path.resolve(__dirname, "src/assets/popup.html"));
+  })
   .get("*", (req, res) => {
     latestRequestPath = req.path;
     res.sendFile(path.resolve(compiler.outputPath, "index.html"));
